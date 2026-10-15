@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ana & David - Nuestra Boda</title>
-    
+
     <!-- Fuentes tipo Editorial/Revista -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <script>
         tailwind.config = {
             theme: {
@@ -43,14 +46,16 @@
     <style>
         body {
             background-color: #FFFFFF;
-            color: #1C1917; /* Súper nítido y legible */
+            color: #1C1917;
+            /* Súper nítido y legible */
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
         }
-        
+
         /* Animación suave con fallback a opacidad 1 */
         .fade-in {
-            opacity: 1; /* Fallback directo por defecto para evitar textos difuminados */
+            opacity: 1;
+            /* Fallback directo por defecto para evitar textos difuminados */
             transform: translateY(0);
             transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
@@ -59,7 +64,7 @@
             opacity: 0;
             transform: translateY(25px);
         }
-        
+
         .js-anim .fade-in.visible {
             opacity: 1 !important;
             transform: translateY(0) !important;
@@ -84,7 +89,7 @@
         .floral-bg {
             position: relative;
         }
-        
+
         .floral-bg::before {
             content: "";
             position: absolute;
@@ -96,12 +101,13 @@
             background-repeat: no-repeat;
             background-position: center left -40px;
             background-size: 380px;
-            opacity: 0.08; /* Muy tenue para no ensuciar las fotos o textos */
+            opacity: 0.08;
+            /* Muy tenue para no ensuciar las fotos o textos */
             z-index: 0;
             pointer-events: none;
         }
-        
-        .floral-bg > div {
+
+        .floral-bg>div {
             position: relative;
             z-index: 10;
         }
@@ -113,22 +119,34 @@
         }
 
         /* Scrollbar elegante */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #F9F8F5; }
-        ::-webkit-scrollbar-thumb { background: #C2B2A3; }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #F9F8F5;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #C2B2A3;
+        }
     </style>
 </head>
+
 <body class="font-sans antialiased font-normal selection:bg-beige-dark selection:text-white">
 
-    <div class="bg-beige-dark text-white text-[10px] sm:text-xs uppercase tracking-widest text-center py-2 sm:py-3 z-50 relative w-full font-sans font-semibold">
+    <div
+        class="bg-beige-dark text-white text-[10px] sm:text-xs uppercase tracking-widest text-center py-2 sm:py-3 z-50 relative w-full font-sans font-semibold">
         CONFIRMACIONES ABIERTAS — 11 DE SEPTIEMBRE DE 2026
     </div>
 
-    <nav class="bg-white sticky top-0 z-40 shadow-sm border-b border-beige-light transition-all duration-300" id="navbar">
+    <nav class="bg-white sticky top-0 z-40 shadow-sm border-b border-beige-light transition-all duration-300"
+        id="navbar">
         <div class="max-w-6xl mx-auto px-6 h-20 md:h-24 flex justify-between items-center relative">
-            
+
             <!-- Menu Links Izquierda -->
-            <div class="hidden md:flex space-x-8 text-[11px] uppercase tracking-mega text-charcoal font-semibold w-1/3 justify-end pr-10">
+            <div
+                class="hidden md:flex space-x-8 text-[11px] uppercase tracking-mega text-charcoal font-semibold w-1/3 justify-end pr-10">
                 <a href="#historia" class="hover:text-beige-dark transition-colors">Historia</a>
                 <a href="#detalles" class="hover:text-beige-dark transition-colors">Lugares</a>
             </div>
@@ -141,15 +159,20 @@
             </button>
 
             <!-- Logo Central Circular (Estilo Editorial) -->
-            <div class="absolute left-1/2 transform -translate-x-1/2 top-3 md:top-5 z-50 w-24 h-24 md:w-32 md:h-32 bg-white rounded-full border border-beige-dark flex items-center justify-center shadow-lg transition-transform hover:scale-105">
-                <div class="w-20 h-20 md:w-28 md:h-28 rounded-full border border-beige flex flex-col items-center justify-center bg-white">
+            <div
+                class="absolute left-1/2 transform -translate-x-1/2 top-3 md:top-5 z-50 w-24 h-24 md:w-32 md:h-32 bg-white rounded-full border border-beige-dark flex items-center justify-center shadow-lg transition-transform hover:scale-105">
+                <div
+                    class="w-20 h-20 md:w-28 md:h-28 rounded-full border border-beige flex flex-col items-center justify-center bg-white">
                     <span class="font-serif italic font-bold text-2xl md:text-3xl text-charcoal">A & D</span>
                 </div>
             </div>
 
             <!-- Menu Links Derecha -->
-            <div class="hidden md:flex space-x-8 text-[11px] uppercase tracking-mega text-charcoal font-semibold w-1/3 justify-start pl-10">
+            <div
+                class="hidden md:flex space-x-8 text-[11px] uppercase tracking-mega text-charcoal font-semibold w-1/3 justify-start pl-10">
                 <a href="#horario" class="hover:text-beige-dark transition-colors">Horario</a>
+                <a href="#transporte" class="hover:text-beige-dark transition-colors">Autobuses</a>
+                <a href="#alojamiento" class="hover:text-beige-dark transition-colors">Hoteles</a>
                 <a href="#rsvp" class="hover:text-beige-dark transition-colors">RSVP</a>
             </div>
 
@@ -158,29 +181,42 @@
         </div>
 
         <!-- Menu Móvil -->
-        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-white border-b border-beige flex-col items-center py-8 space-y-6 shadow-md md:hidden">
-            <a href="#historia" class="text-xs uppercase tracking-widest text-charcoal font-semibold" onclick="toggleMobileMenu()">Historia</a>
-            <a href="#detalles" class="text-xs uppercase tracking-widest text-charcoal font-semibold" onclick="toggleMobileMenu()">Lugares</a>
-            <a href="#horario" class="text-xs uppercase tracking-widest text-charcoal font-semibold" onclick="toggleMobileMenu()">Horario</a>
-            <a href="#rsvp" class="text-xs uppercase tracking-widest text-charcoal font-semibold" onclick="toggleMobileMenu()">RSVP</a>
+        <div id="mobile-menu"
+            class="hidden absolute top-full left-0 w-full bg-white border-b border-beige flex-col items-center py-8 space-y-6 shadow-md md:hidden">
+            <a href="#historia" class="text-xs uppercase tracking-widest text-charcoal font-semibold"
+                onclick="toggleMobileMenu()">Historia</a>
+            <a href="#detalles" class="text-xs uppercase tracking-widest text-charcoal font-semibold"
+                onclick="toggleMobileMenu()">Lugares</a>
+            <a href="#horario" class="text-xs uppercase tracking-widest text-charcoal font-semibold"
+                onclick="toggleMobileMenu()">Horario</a>
+            <a href="#transporte" class="text-xs uppercase tracking-widest text-charcoal font-semibold"
+                onclick="toggleMobileMenu()">Autobuses</a>
+            <a href="#alojamiento" class="text-xs uppercase tracking-widest text-charcoal font-semibold"
+                onclick="toggleMobileMenu()">Hoteles</a>
+            <a href="#rsvp" class="text-xs uppercase tracking-widest text-charcoal font-semibold"
+                onclick="toggleMobileMenu()">RSVP</a>
         </div>
     </nav>
 
     <!-- Imagen 1: Catedral / Hero (IMG_0963.jpeg) -->
-    <header class="relative w-full h-[75vh] md:h-[85vh] flex items-center justify-center mt-0 overflow-hidden bg-charcoal">
+    <header
+        class="relative w-full h-[75vh] md:h-[85vh] flex items-center justify-center mt-0 overflow-hidden bg-charcoal">
         <div class="absolute inset-0 z-0">
             <img src="IMG_0963.jpeg" alt="Catedral de Santiago" class="w-full h-full object-cover object-center transform scale-105" />
             <div class="absolute inset-0 bg-charcoal/30"></div>
         </div>
 
-        <div class="relative z-10 fade-in bg-white/95 backdrop-blur-md px-8 md:px-16 py-10 md:py-14 text-center border border-beige-dark mx-4 max-w-2xl shadow-2xl">
-            <p class="text-[11px] md:text-xs uppercase tracking-mega text-charcoal-light mb-4 font-semibold">Capturando la belleza de la vida</p>
+        <div
+            class="relative z-10 fade-in bg-white/95 backdrop-blur-md px-8 md:px-16 py-10 md:py-14 text-center border border-beige-dark mx-4 max-w-2xl shadow-2xl">
+            <p class="text-[11px] md:text-xs uppercase tracking-mega text-charcoal-light mb-4 font-semibold">Capturando
+                la belleza de la vida</p>
             <div class="w-12 h-px bg-charcoal/40 mx-auto mb-6"></div>
             <h1 class="font-serif text-4xl md:text-6xl text-charcoal mb-4 leading-tight font-normal">
                 ANA <span class="italic font-light mx-2 text-beige-dark">&amp;</span> DAVID
             </h1>
             <p class="text-xs uppercase tracking-widest text-charcoal font-semibold mb-8">11 de Septiembre · Galicia</p>
-            <a href="#rsvp" class="inline-block border-2 border-charcoal text-charcoal px-8 py-3 text-[11px] uppercase tracking-widest font-semibold hover:bg-charcoal hover:text-white transition-colors duration-300">
+            <a href="#rsvp"
+                class="inline-block border-2 border-charcoal text-charcoal px-8 py-3 text-[11px] uppercase tracking-widest font-semibold hover:bg-charcoal hover:text-white transition-colors duration-300">
                 Confirmar Asistencia
             </a>
         </div>
@@ -189,7 +225,8 @@
     <!-- Subtítulo editorial -->
     <div class="bg-white py-12 text-center fade-in px-6 border-b border-beige-light">
         <p class="text-[11px] uppercase tracking-mega text-charcoal-light font-semibold">Nuestra Boda en Galicia</p>
-        <p class="font-serif italic text-2xl md:text-3xl text-charcoal mt-2 max-w-2xl mx-auto">Capturando los momentos más felices y la bella quietud de nuestro amor.</p>
+        <p class="font-serif italic text-2xl md:text-3xl text-charcoal mt-2 max-w-2xl mx-auto">Capturando los momentos
+            más felices y la bella quietud de nuestro amor.</p>
     </div>
 
     <div class="editorial-line fade-in"></div>
@@ -197,40 +234,46 @@
     <!-- Sección Historia (Fotos 2 y 3: IMG_4887.jpeg y IMG_0729.jpeg) -->
     <section id="historia" class="py-16 md:py-24 bg-white relative floral-bg">
         <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center gap-12 lg:gap-20">
-            
+
             <!-- Columna de Texto -->
             <div class="w-full md:w-5/12 fade-in relative pl-8 md:pl-0">
-                <div class="vertical-text absolute left-0 md:-left-12 top-0 text-[10px] uppercase tracking-mega text-beige-dark font-semibold">
+                <div
+                    class="vertical-text absolute left-0 md:-left-12 top-0 text-[10px] uppercase tracking-mega text-beige-dark font-semibold">
                     CONOCE NUESTRA HISTORIA
                 </div>
-                
+
                 <h2 class="font-serif text-4xl md:text-5xl italic font-normal text-charcoal mb-6 leading-tight">
                     Brindemos<br><span class="not-italic text-charcoal">por la Vida</span>
                 </h2>
-                
+
                 <p class="text-base leading-relaxed text-charcoal-light font-normal mb-8">
-                    Nuestro destino ha estado entrelazado desde el primer día. Después de incontables momentos, aventuras y risas que nos han traído hasta aquí, no podemos esperar para celebrar nuestro amor rodeados de las personas que más queremos en el mundo.
+                    Nuestro destino ha estado entrelazado desde el primer día. Después de incontables momentos,
+                    aventuras y risas que nos han traído hasta aquí, no podemos esperar para celebrar nuestro amor
+                    rodeados de las personas que más queremos en el mundo.
                 </p>
-                
-                <a href="#detalles" class="text-xs uppercase tracking-widest text-charcoal font-semibold border-b-2 border-beige-dark inline-block pb-1 hover:text-beige-dark transition-colors">
+
+                <a href="#detalles"
+                    class="text-xs uppercase tracking-widest text-charcoal font-semibold border-b-2 border-beige-dark inline-block pb-1 hover:text-beige-dark transition-colors">
                     Descubre todos los detalles →
                 </a>
             </div>
 
             <!-- Composición Editorial de Imágenes (Superpuestas pero 100% nítidas) -->
             <div class="w-full md:w-7/12 relative h-[480px] sm:h-[550px] md:h-[600px] mt-8 md:mt-0 fade-in">
-                
+
                 <!-- Imagen 2: Pareja (Izquierda / Fondo) - IMG_4887.jpeg -->
-                <div class="absolute left-0 top-0 w-[68%] h-[78%] z-10 shadow-2xl border-8 border-white bg-white rounded-sm overflow-hidden">
+                <div
+                    class="absolute left-0 top-0 w-[68%] h-[78%] z-10 shadow-2xl border-8 border-white bg-white rounded-sm overflow-hidden">
                     <img src="IMG_4887.jpeg" alt="Ana y David" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
                 </div>
-                
+
                 <!-- Imagen 3: Anillo (Derecha / Frente) - IMG_0729.jpeg -->
-                <div class="absolute right-0 bottom-0 w-[58%] h-[68%] z-20 shadow-2xl border-8 border-white bg-white rounded-sm overflow-hidden">
+                <div
+                    class="absolute right-0 bottom-0 w-[58%] h-[68%] z-20 shadow-2xl border-8 border-white bg-white rounded-sm overflow-hidden">
                     <img src="IMG_0729.jpeg" alt="Anillo de compromiso" class="w-full h-full object-cover" />
                     <div class="absolute bottom-3 right-3 text-right bg-black/40 backdrop-blur-sm p-3 rounded">
-                         <p class="font-serif italic text-white text-base drop-shadow-md">Capturando la belleza</p>
-                         <p class="font-serif italic text-white text-base drop-shadow-md">de los recuerdos</p>
+                        <p class="font-serif italic text-white text-base drop-shadow-md">Capturando la belleza</p>
+                        <p class="font-serif italic text-white text-base drop-shadow-md">de los recuerdos</p>
                     </div>
                 </div>
 
@@ -242,7 +285,7 @@
     <!-- Sección Lugares (Fotos 4 y 5: IMG_0967.jpeg y IMG_0966.jpeg) -->
     <section id="detalles" class="py-20 md:py-28 bg-beige-light border-t border-b border-beige">
         <div class="max-w-6xl mx-auto px-6">
-            
+
             <div class="text-center mb-16 fade-in">
                 <p class="text-xs uppercase tracking-mega text-charcoal-light font-semibold mb-3">Nuestros Espacios</p>
                 <div class="w-px h-10 bg-beige-dark mx-auto mb-4"></div>
@@ -250,12 +293,14 @@
             </div>
 
             <div class="flex flex-col lg:flex-row gap-12 lg:gap-10 justify-center">
-                
+
                 <!-- Imagen 4: Parroquia (IMG_0967.jpeg) -->
-                <div class="w-full lg:w-5/12 fade-in group cursor-pointer relative bg-white p-4 rounded-sm shadow-md border border-beige">
+                <div
+                    class="w-full lg:w-5/12 fade-in group cursor-pointer relative bg-white p-4 rounded-sm shadow-md border border-beige">
                     <div class="relative overflow-hidden mb-6 h-[380px] rounded-sm">
                         <img src="IMG_0967.jpeg" alt="San Xulián de Bastavales" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
-                        <div class="absolute bottom-4 left-4 bg-white/90 backdrop-blur-md px-4 py-2 text-[10px] uppercase tracking-widest font-semibold text-charcoal border border-beige-dark">
+                        <div
+                            class="absolute bottom-4 left-4 bg-white/90 backdrop-blur-md px-4 py-2 text-[10px] uppercase tracking-widest font-semibold text-charcoal border border-beige-dark">
                             La Ceremonia
                         </div>
                     </div>
@@ -263,7 +308,8 @@
                         <p class="text-xs uppercase tracking-mega text-beige-dark font-bold mb-1">12:30 PM</p>
                         <h3 class="font-serif text-2xl text-charcoal mb-3 font-normal">San Xulián de Bastavales</h3>
                         <p class="text-sm text-charcoal-light leading-relaxed font-normal">
-                            Daremos el "Sí, quiero" en esta histórica y hermosa parroquia. Sus campanas repicarán para celebrar nuestra unión en un entorno mágico.
+                            Daremos el "Sí, quiero" en esta histórica y hermosa parroquia. Sus campanas repicarán para
+                            celebrar nuestra unión en un entorno mágico.
                         </p>
                     </div>
                 </div>
@@ -275,10 +321,12 @@
                 </div>
 
                 <!-- Imagen 5: Pazo (IMG_0966.jpeg) -->
-                <div class="w-full lg:w-5/12 fade-in lg:mt-12 group cursor-pointer relative bg-white p-4 rounded-sm shadow-md border border-beige">
+                <div
+                    class="w-full lg:w-5/12 fade-in lg:mt-12 group cursor-pointer relative bg-white p-4 rounded-sm shadow-md border border-beige">
                     <div class="relative overflow-hidden mb-6 h-[380px] rounded-sm">
                         <img src="IMG_0966.jpeg" alt="Pazo de Vista Alegre" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
-                        <div class="absolute bottom-4 left-4 bg-white/90 backdrop-blur-md px-4 py-2 text-[10px] uppercase tracking-widest font-semibold text-charcoal border border-beige-dark">
+                        <div
+                            class="absolute bottom-4 left-4 bg-white/90 backdrop-blur-md px-4 py-2 text-[10px] uppercase tracking-widest font-semibold text-charcoal border border-beige-dark">
                             El Banquete
                         </div>
                     </div>
@@ -286,15 +334,17 @@
                         <p class="text-xs uppercase tracking-mega text-beige-dark font-bold mb-1">14:00 PM</p>
                         <h3 class="font-serif text-2xl text-charcoal mb-3 font-normal">Pazo de Vista Alegre</h3>
                         <p class="text-sm text-charcoal-light leading-relaxed font-normal">
-                            Tras la ceremonia, nos trasladaremos al imponente pazo. Rodeados de naturaleza y arquitectura gallega disfrutaremos de una velada inolvidable.
+                            Tras la ceremonia, nos trasladaremos al imponente pazo. Rodeados de naturaleza y
+                            arquitectura gallega disfrutaremos de una velada inolvidable.
                         </p>
                     </div>
                 </div>
 
             </div>
-            
+
             <div class="text-center mt-16 fade-in">
-                 <a href="#horario" class="inline-block bg-charcoal text-white px-8 py-4 text-xs uppercase tracking-widest font-semibold hover:bg-beige-dark transition-colors duration-300 rounded-sm shadow-md">
+                <a href="#horario"
+                    class="inline-block bg-charcoal text-white px-8 py-4 text-xs uppercase tracking-widest font-semibold hover:bg-beige-dark transition-colors duration-300 rounded-sm shadow-md">
                     Ver Horario e Itinerario →
                 </a>
             </div>
@@ -304,29 +354,211 @@
     <!-- Sección Horario -->
     <section id="horario" class="py-20 md:py-28 bg-white text-center">
         <div class="max-w-4xl mx-auto px-6 fade-in">
-            <h2 class="font-serif text-3xl md:text-4xl italic text-charcoal mb-2 font-normal">El lugar perfecto para celebrar</h2>
+            <h2 class="font-serif text-3xl md:text-4xl italic text-charcoal mb-2 font-normal">El lugar perfecto para
+                celebrar</h2>
             <p class="text-xs uppercase tracking-mega text-charcoal font-semibold mb-16">Nuestro Horario</p>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center border-t border-b border-beige py-12 relative">
-                
+            <div
+                class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center border-t border-b border-beige py-12 relative">
+
                 <div class="md:border-r border-beige p-4">
                     <h3 class="font-serif text-2xl text-charcoal mb-1">Ceremonia</h3>
                     <p class="text-xs uppercase tracking-widest text-beige-dark font-bold mb-4">12:30 PM</p>
-                    <p class="text-sm text-charcoal-light font-normal leading-relaxed">Iglesia de Bastavales.<br>Aparcamiento disponible.</p>
+                    <p class="text-sm text-charcoal-light font-normal leading-relaxed">Iglesia de Bastavales.<br>Aparcamiento disponible.
+                    </p>
                 </div>
 
                 <div class="md:border-r border-beige p-4">
                     <h3 class="font-serif text-2xl text-charcoal mb-1">Cóctel</h3>
                     <p class="text-xs uppercase tracking-widest text-beige-dark font-bold mb-4">14:00 PM</p>
-                    <p class="text-sm text-charcoal-light font-normal leading-relaxed">Pazo de Vista Alegre.<br>Aperitivos y brindis inicial.</p>
+                    <p class="text-sm text-charcoal-light font-normal leading-relaxed">Pazo de Vista Alegre.<br>Aperitivos y brindis inicial.
+                    </p>
                 </div>
 
                 <div class="p-4">
                     <h3 class="font-serif text-2xl text-charcoal mb-1">Fiesta</h3>
                     <p class="text-xs uppercase tracking-widest text-beige-dark font-bold mb-4">16:30 PM</p>
-                    <p class="text-sm text-charcoal-light font-normal leading-relaxed">Banquete tradicional y<br>barra libre al atardecer.</p>
+                    <p class="text-sm text-charcoal-light font-normal leading-relaxed">Banquete tradicional y<br>barra libre al atardecer.
+                    </p>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Sección Autobuses y Transporte -->
+    <section id="transporte" class="py-20 md:py-24 bg-beige-light border-t border-b border-beige text-center">
+        <div class="max-w-4xl mx-auto px-6 fade-in">
+            <p class="text-xs uppercase tracking-mega text-beige-dark font-bold mb-2">Para vuestra comodidad</p>
+            <h2 class="font-serif text-3xl md:text-5xl italic text-charcoal mb-4 font-normal">Servicio de Autobuses</h2>
+            <div class="w-12 h-px bg-beige-dark mx-auto mb-10"></div>
+
+            <div
+                class="bg-white p-8 md:p-12 border border-beige rounded-sm shadow-md max-w-2xl mx-auto relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 opacity-5 pointer-events-none">
+                    <svg class="w-48 h-48 text-charcoal" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M4 16c0 .88.39 1.67 1 2.22V20c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h8v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1.78c.61-.55 1-1.34 1-2.22V6c0-3.5-3.58-4-8-4s-8 .5-8 4v10zm3.5 1c-.83 0-1.5-.67-1.5-1.5S6.67 14 7.5 14s1.5.67 1.5 1.5S8.33 17 7.5 17zm9 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm1.5-6H6V6h12v5z" />
+                    </svg>
+                </div>
+
+                <p class="text-sm md:text-base text-charcoal-light leading-relaxed font-normal mb-6">
+                    Pondremos a vuestra disposición autobuses para facilitar los desplazamientos tanto hacia la
+                    ceremonia como hacia el convite y el regreso.
+                </p>
+
+                <div class="border-t border-b border-beige py-6 my-6 bg-beige-light/50 px-4">
+                    <p class="text-[11px] uppercase tracking-mega text-beige-dark font-bold mb-1">Punto de Recogida</p>
+                    <h3 class="font-serif text-2xl md:text-3xl text-charcoal italic font-normal">Plaza de Galicia</h3>
+                    <p class="text-xs text-charcoal-light uppercase tracking-widest mt-1">Santiago de Compostela</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left text-xs text-charcoal-light pt-2">
+                    <div class="flex items-start gap-2">
+                        <span class="text-beige-dark font-bold text-base">•</span>
+                        <span><strong>Ida:</strong> Salida hacia la Parroquia de San Xulián de Bastavales y traslado posterior al Pazo de Vista Alegre.</span>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <span class="text-beige-dark font-bold text-base">•</span>
+                        <span><strong>Vuelta:</strong> Diferentes horarios de regreso desde el pazo hacia la Plaza de Galicia de Santiago durante la fiesta.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Alojamiento y Hoteles -->
+    <section id="alojamiento" class="py-20 md:py-28 bg-white relative">
+        <div class="max-w-6xl mx-auto px-6">
+
+            <div class="text-center mb-16 fade-in">
+                <p class="text-xs uppercase tracking-mega text-charcoal-light font-semibold mb-3">Para vuestra estancia
+                </p>
+                <div class="w-px h-10 bg-beige-dark mx-auto mb-4"></div>
+                <h2 class="font-serif text-4xl md:text-5xl italic text-charcoal font-normal">Hoteles en Santiago</h2>
+                <p class="text-xs text-charcoal-light max-w-lg mx-auto mt-4 leading-relaxed font-normal">
+                    Hemos reservado un cupo limitado de habitaciones e igual conseguido descuentos exclusivos para que
+                    vuestra estancia sea lo más cómoda posible.
+                </p>
+            </div>
+
+            <!-- Hotel Destacado con Código Promocional -->
+            <div
+                class="fade-in mb-12 bg-beige-light p-8 md:p-10 border border-beige rounded-sm shadow-md flex flex-col lg:flex-row items-center justify-between gap-8">
+                <div class="text-left max-w-xl">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="text-xs uppercase tracking-widest text-beige-dark font-bold">Descuento Especial 15%</span>
+                        <span class="text-beige-dark">★★★★</span>
+                    </div>
+                    <h3 class="font-serif text-3xl text-charcoal mb-2 font-normal">Eurostars Gran Hotel Santiago</h3>
+                    <p class="text-xs text-charcoal-light leading-relaxed font-normal">
+                        Disfrutad de un 15% de descuento directo en la reserva de vuestra habitación reservando a través
+                        de su página web oficial utilizando nuestro código.
+                    </p>
+                </div>
+
+                <div class="bg-white p-6 border border-beige-dark/50 text-center min-w-[260px] rounded-sm shadow-sm">
+                    <p class="text-[10px] uppercase tracking-mega text-charcoal-light mb-1 font-semibold">Código de
+                        Descuento</p>
+                    <p class="font-mono text-xl font-bold text-charcoal tracking-widest mb-3" id="promoCodeText">
+                        BODASEP27</p>
+                    <button onclick="copyPromoCode()" id="copyPromoBtn" class="w-full bg-charcoal text-white text-[11px] uppercase tracking-widest py-2.5 px-4 font-semibold hover:bg-beige-dark transition-colors duration-300">
+                        Copiar Código
+                    </button>
+                </div>
+            </div>
+
+            <!-- Grid de Hoteles con Reserva de Bloque -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 fade-in">
+
+                <!-- Hotel Compostela **** -->
+                <div
+                    class="bg-white border border-beige p-8 rounded-sm shadow-sm hover:shadow-md transition-shadow relative">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <span class="text-beige-dark text-xs font-bold">★★★★</span>
+                            <h3 class="font-serif text-2xl text-charcoal font-normal">Hotel Compostela</h3>
+                        </div>
+                        <span class="text-[10px] uppercase tracking-widest bg-beige-light text-charcoal px-3 py-1 font-semibold border border-beige">Cupo Reservado</span>
+                    </div>
+                    <ul class="space-y-3 text-xs text-charcoal-light pt-2 border-t border-beige-light">
+                        <li class="flex justify-between items-center">
+                            <span>• 4 Hab. Dobles (con desayuno)</span>
+                            <strong class="text-charcoal font-semibold text-sm">487€</strong>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <span>• 2 Hab. Triples (con desayuno)</span>
+                            <strong class="text-charcoal font-semibold text-sm">567€</strong>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Hotel Gelmírez *** -->
+                <div
+                    class="bg-white border border-beige p-8 rounded-sm shadow-sm hover:shadow-md transition-shadow relative">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <span class="text-beige-dark text-xs font-bold">★★★</span>
+                            <h3 class="font-serif text-2xl text-charcoal font-normal">Hotel Gelmírez</h3>
+                        </div>
+                        <span class="text-[10px] uppercase tracking-widest bg-beige-light text-charcoal px-3 py-1 font-semibold border border-beige">Cupo Reservado</span>
+                    </div>
+                    <ul class="space-y-3 text-xs text-charcoal-light pt-2 border-t border-beige-light">
+                        <li class="flex justify-between items-center">
+                            <span>• 5 Hab. Dobles (con desayuno)</span>
+                            <strong class="text-charcoal font-semibold text-sm">414€</strong>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Hotel Nest Style Santiago -->
+                <div
+                    class="bg-white border border-beige p-8 rounded-sm shadow-sm hover:shadow-md transition-shadow relative">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <span class="text-beige-dark text-xs font-bold">Boutique</span>
+                            <h3 class="font-serif text-2xl text-charcoal font-normal">Nest Style Santiago</h3>
+                        </div>
+                        <span class="text-[10px] uppercase tracking-widest bg-beige-light text-charcoal px-3 py-1 font-semibold border border-beige">Cupo Reservado</span>
+                    </div>
+                    <ul class="space-y-3 text-xs text-charcoal-light pt-2 border-t border-beige-light">
+                        <li class="flex justify-between items-center">
+                            <span>• 5 Hab. Dobles (con desayuno)</span>
+                            <strong class="text-charcoal font-semibold text-sm">442€</strong>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Hotel Universal ** -->
+                <div
+                    class="bg-white border border-beige p-8 rounded-sm shadow-sm hover:shadow-md transition-shadow relative">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <span class="text-beige-dark text-xs font-bold">★★</span>
+                            <h3 class="font-serif text-2xl text-charcoal font-normal">Hotel Universal</h3>
+                        </div>
+                        <span class="text-[10px] uppercase tracking-widest bg-beige-light text-charcoal px-3 py-1 font-semibold border border-beige">Cupo Reservado</span>
+                    </div>
+                    <ul class="space-y-3 text-xs text-charcoal-light pt-2 border-t border-beige-light">
+                        <li class="flex justify-between items-center">
+                            <span>• 2 Hab. Dobles</span>
+                            <strong class="text-charcoal font-semibold text-sm">380€</strong>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <span>• 2 Hab. Triples</span>
+                            <strong class="text-charcoal font-semibold text-sm">440€</strong>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="text-center mt-12 fade-in">
+                <p class="text-xs text-charcoal-light italic">
+                    * Si estáis interesados en reservar alguna de estas habitaciones bloqueadas, poneros en contacto
+                    directamente con nosotros para indicaros cómo gestionarlo.
+                </p>
+            </div>
+
         </div>
     </section>
 
@@ -338,18 +570,21 @@
                 <h2 class="text-xs uppercase tracking-widest text-charcoal font-semibold">Os Esperamos</h2>
                 <div class="w-12 h-px bg-charcoal/30"></div>
             </div>
-            
-            <h3 class="font-serif text-3xl md:text-5xl italic text-charcoal mb-6 font-normal">¡Será un día inolvidable!</h3>
+
+            <h3 class="font-serif text-3xl md:text-5xl italic text-charcoal mb-6 font-normal">¡Será un día inolvidable!
+            </h3>
             <p class="text-sm text-charcoal-light font-normal leading-relaxed mb-10 max-w-lg mx-auto italic">
-                "Estamos deseando compartir este día tan especial con todos vosotros. Por favor, confirmad asistencia para organizar hasta el último detalle."
+                "Estamos deseando compartir este día tan especial con todos vosotros. Por favor, confirmad asistencia
+                para organizar hasta el último detalle."
             </p>
-            
+
             <p class="text-xs uppercase tracking-widest text-charcoal font-bold">
                 — Ana &amp; David
             </p>
 
             <!-- Foto circular usando IMG_4887.jpeg -->
-            <div class="mt-10 w-32 h-32 md:w-36 md:h-36 mx-auto rounded-full overflow-hidden border-4 border-white shadow-2xl relative -mb-32 z-20">
+            <div
+                class="mt-10 w-32 h-32 md:w-36 md:h-36 mx-auto rounded-full overflow-hidden border-4 border-white shadow-2xl relative -mb-32 z-20">
                 <img src="IMG_4887.jpeg" alt="Ana y David" class="w-full h-full object-cover object-top">
             </div>
         </div>
@@ -358,23 +593,26 @@
     <!-- Footer / RSVP Formulario -->
     <footer id="rsvp" class="bg-charcoal text-beige-light pt-40 pb-20 text-center px-6 relative">
         <div class="max-w-md mx-auto fade-in">
-            <p class="text-[10px] uppercase tracking-widest text-beige-dark mb-4 vertical-text absolute top-20 left-4 md:left-20 hidden md:block">RSVP NOW</p>
-            
+            <p
+                class="text-[10px] uppercase tracking-widest text-beige-dark mb-4 vertical-text absolute top-20 left-4 md:left-20 hidden md:block">
+                RSVP NOW</p>
+
             <h2 class="font-serif text-4xl italic mb-3 font-normal">¡Confirma tu Asistencia!</h2>
             <p class="text-xs uppercase tracking-widest text-beige-dark mb-8 font-semibold">Antes del 1 de Agosto</p>
-            
-            <form onsubmit="event.preventDefault(); alertRSVP();" class="flex flex-col gap-6 text-left border border-charcoal-light/40 p-8 bg-charcoal-dark/40 rounded-sm shadow-2xl">
-                
+
+            <form onsubmit="event.preventDefault(); alertRSVP();"
+                class="flex flex-col gap-6 text-left border border-charcoal-light/40 p-8 bg-charcoal-dark/40 rounded-sm shadow-2xl">
+
                 <div>
                     <label class="block text-[10px] uppercase tracking-widest text-beige-dark mb-2 font-semibold">Nombre Completo</label>
                     <input type="text" placeholder="Escribe tu nombre y apellidos" required class="w-full bg-transparent border-b border-beige/40 px-2 py-2 text-xs tracking-widest text-white focus:outline-none focus:border-beige transition-colors placeholder-beige/40 font-sans">
                 </div>
-                
+
                 <div>
                     <label class="block text-[10px] uppercase tracking-widest text-beige-dark mb-2 font-semibold">Correo Electrónico</label>
                     <input type="email" placeholder="tu@email.com" required class="w-full bg-transparent border-b border-beige/40 px-2 py-2 text-xs tracking-widest text-white focus:outline-none focus:border-beige transition-colors placeholder-beige/40 font-sans">
                 </div>
-                
+
                 <div>
                     <label class="block text-[10px] uppercase tracking-widest text-beige-dark mb-2 font-semibold">¿Asistirás?</label>
                     <select class="w-full bg-transparent border-b border-beige/40 px-2 py-2 text-xs tracking-widest text-white focus:outline-none focus:border-beige transition-colors font-sans appearance-none rounded-none">
@@ -382,7 +620,7 @@
                         <option value="no" class="text-charcoal">LO SIENTO, NO PODRÉ</option>
                     </select>
                 </div>
-                
+
                 <button type="submit" class="mt-4 border-2 border-beige text-beige px-8 py-4 text-xs uppercase tracking-widest font-semibold hover:bg-beige hover:text-charcoal transition-colors duration-300">
                     Enviar Confirmación
                 </button>
@@ -392,7 +630,8 @@
                 <div class="w-12 h-12 rounded-full border border-beige-dark flex items-center justify-center mb-4">
                     <span class="font-serif italic text-xl text-beige">A&amp;D</span>
                 </div>
-                <p class="text-[10px] tracking-widest uppercase text-beige-dark font-semibold">11 . 09 . 2026 | Galicia</p>
+                <p class="text-[10px] tracking-widest uppercase text-beige-dark font-semibold">11 . 09 . 2026 | Galicia
+                </p>
             </div>
         </div>
     </footer>
@@ -429,6 +668,25 @@
             }, 3000);
         }
 
+        // Copiar código promocional
+        function copyPromoCode() {
+            const code = "BODASEP27";
+            const btn = document.getElementById('copyPromoBtn');
+            const tempInput = document.createElement('input');
+            tempInput.value = code;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            btn.innerText = "¡COPIADO!";
+            btn.classList.add('bg-beige-dark');
+            setTimeout(() => {
+                btn.innerText = "Copiar Código";
+                btn.classList.remove('bg-beige-dark');
+            }, 2500);
+        }
+
         // Animación Fade-in robusta al hacer scroll
         document.addEventListener("DOMContentLoaded", function() {
             const observerOptions = {
@@ -452,4 +710,5 @@
         });
     </script>
 </body>
+
 </html>
