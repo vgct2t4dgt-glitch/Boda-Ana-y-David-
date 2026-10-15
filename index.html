@@ -76,11 +76,28 @@
 
         /* Ilustración floral SVG en CSS para el fondo (estilo del portfolio) */
         .floral-bg {
+            position: relative;
+        }
+        
+        .floral-bg::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 100 100' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 0C50 0 45 20 20 25C20 25 40 30 50 50C50 50 60 30 80 25C80 25 55 20 50 0Z' stroke='%23D4C4B7' stroke-width='0.5' stroke-dasharray='2 2'/%3E%3Cpath d='M50 50C50 50 40 70 10 75C10 75 35 80 50 100C50 100 65 80 90 75C90 75 60 70 50 50Z' stroke='%23D4C4B7' stroke-width='0.5' stroke-dasharray='2 2'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: center left -50px;
             background-size: 400px;
-            opacity: 0.4;
+            opacity: 0.15;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        .floral-bg > div {
+            position: relative;
+            z-index: 10;
         }
 
         /* Scrollbar elegante */
@@ -185,8 +202,8 @@
             <!-- Composición Editorial de Imágenes -->
             <div class="w-full md:w-7/12 relative h-[500px] md:h-[600px] mt-10 md:mt-0 fade-in delay-200">
                 <!-- Imagen 2: Pareja (Izquierda/Fondo) -->
-                <div class="absolute left-0 top-0 w-[60%] h-[75%] z-10 shadow-xl border-8 border-white">
-                    <img src="IMG_4887.jpeg" alt="Ana y David" class="w-full h-full object-cover grayscale-[20%] hover:grayscale-0 transition-all duration-700" />
+                <div class="absolute left-0 top-0 w-[60%] h-[75%] z-10 shadow-xl border-8 border-white bg-white">
+                    <img src="IMG_4887.jpeg" alt="Ana y David" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
                 </div>
                 
                 <!-- Imagen 3: Anillo (Derecha/Frente) -->
