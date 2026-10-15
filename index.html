@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ana & David - Nuestra Boda</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#F7F5F0',
+                        olive: '#4A5D4E',
+                        dark: '#2C2C2C',
+                        accent: '#D1C8B8'
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Lato"', 'sans-serif'],
+                        script: ['"Alex Brush"', 'cursive']
+                    },
+                    spacing: {
+                        '128': '32rem',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #F7F5F0;
+            color: #2C2C2C;
+            overflow-x: hidden;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero-overlay {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.5) 100%);
+        }
+
+        /* Hide scrollbar for cleaner look but keep functionality */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F7F5F0;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D1C8B8;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4A5D4E;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-olive selection:text-white">
+
+    <nav class="fixed w-full z-50 transition-all duration-300 bg-cream/90 backdrop-blur-md border-b border-accent/30 py-4" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
+            <div class="text-2xl font-serif tracking-widest text-dark">
+                A <span class="font-script text-3xl mx-1 text-olive">&amp;</span> D
+            </div>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8 text-sm uppercase tracking-widest text-dark/70 font-light">
+                <a href="#historia" class="hover:text-olive transition-colors">Nuestra Historia</a>
+                <a href="#detalles" class="hover:text-olive transition-colors">La Boda</a>
+                <a href="#horario" class="hover:text-olive transition-colors">Horario</a>
+                <a href="#info" class="hover:text-olive transition-colors">Info Útil</a>
+            </div>
+
+            <div class="hidden md:block">
+                <a href="#rsvp" class="border border-dark px-6 py-2 text-sm uppercase tracking-widest hover:bg-dark hover:text-cream transition-colors rounded-full">
+                    RSVP
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-dark focus:outline-none" onclick="toggleMobileMenu()">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-cream border-b border-accent/30 flex-col items-center py-6 space-y-4 shadow-lg md:hidden">
+            <a href="#historia" class="text-sm uppercase tracking-widest text-dark/70 hover:text-olive" onclick="toggleMobileMenu()">Nuestra Historia</a>
+            <a href="#detalles" class="text-sm uppercase tracking-widest text-dark/70 hover:text-olive" onclick="toggleMobileMenu()">La Boda</a>
+            <a href="#horario" class="text-sm uppercase tracking-widest text-dark/70 hover:text-olive" onclick="toggleMobileMenu()">Horario</a>
+            <a href="#info" class="text-sm uppercase tracking-widest text-dark/70 hover:text-olive" onclick="toggleMobileMenu()">Info Útil</a>
+            <a href="#rsvp" class="border border-dark px-6 py-2 text-sm uppercase tracking-widest hover:bg-dark hover:text-cream transition-colors rounded-full mt-4" onclick="toggleMobileMenu()">RSVP</a>
+        </div>
+    </nav>
+
+    <header class="relative w-full h-[90vh] flex items-center justify-center overflow-hidden">
+        <!-- Background Image (Pazo) -->
+        <div class="absolute inset-0 z-0">
+            <img src="image_2.png" alt="Pazo de Vista Alegre" class="w-full h-full object-cover object-center transform scale-105 motion-safe:animate-[pulse_20s_ease-in-out_infinite_alternate]" />
+            <div class="absolute inset-0 hero-overlay"></div>
+        </div>
+
+        <!-- Hero Content -->
+        <div class="relative z-10 text-center text-white mt-16 px-4 fade-in">
+            <p class="text-sm md:text-base uppercase tracking-[0.3em] mb-4 font-light drop-shadow-md">11 . 09 . 2026</p>
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-serif tracking-widest mb-2 drop-shadow-lg">
+                ANA <span class="font-script text-6xl md:text-8xl lg:text-9xl mx-2 text-cream/90 lowercase transform -translate-y-4 inline-block">&</span> DAVID
+            </h1>
+            <p class="font-script text-4xl md:text-5xl mt-4 text-cream/90 drop-shadow-md">Galicia</p>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
+            <a href="#historia" class="text-white/70 hover:text-white transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
+            </a>
+        </div>
+    </header>
+
+    <section id="historia" class="py-24 md:py-32 px-6 max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row items-center gap-16 md:gap-24">
+            
+            <!-- Left Side: Main Couple Image -->
+            <div class="w-full md:w-5/12 fade-in">
+                <div class="relative w-full aspect-[3/4] overflow-hidden rounded-t-full rounded-b-md shadow-2xl">
+                    <img src="image_4.png" alt="Ana y David" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
+                    <!-- Decorative border -->
+                    <div class="absolute inset-0 border border-white/30 m-4 rounded-t-[9999px] rounded-b-sm pointer-events-none"></div>
+                </div>
+            </div>
+
+            <!-- Right Side: Text and Secondary Image -->
+            <div class="w-full md:w-7/12 flex flex-col justify-center fade-in delay-200">
+                <h2 class="text-3xl md:text-5xl font-serif text-dark leading-tight mb-8">
+                    Acompáñanos en este<br>viaje de <span class="font-script text-olive text-5xl md:text-6xl lowercase">amor, alegría</span><br>y felicidad eterna.
+                </h2>
+                
+                <p class="text-dark/70 leading-relaxed font-light mb-12 max-w-lg">
+                    Nuestro destino ha estado entrelazado desde el primer día. Después de incontables momentos, aventuras y risas que nos han traído hasta aquí, no podemos esperar para celebrar nuestro amor rodeados de las personas que más queremos en el mundo.
+                </p>
+                
+                <div class="flex items-center gap-8">
+                    <a href="#detalles" class="inline-block border border-dark px-8 py-3 text-sm uppercase tracking-widest hover:bg-dark hover:text-cream transition-colors rounded-full">
+                        Leer Más
+                    </a>
+                    
+                    <!-- Small staggered image (Ring) -->
+                    <div class="w-32 h-40 md:w-40 md:h-48 overflow-hidden rounded-sm shadow-lg ml-auto transform translate-y-10">
+                        <img src="image.png" alt="Anillo de compromiso" class="w-full h-full object-cover" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="detalles" class="py-24 md:py-32 px-6 bg-white">
+        <div class="max-w-7xl mx-auto">
+            
+            <div class="text-center mb-20 fade-in">
+                <h2 class="text-sm uppercase tracking-[0.3em] text-dark/50 mb-2">Las Localizaciones</h2>
+                <h3 class="text-4xl md:text-5xl font-serif text-dark">
+                    En el Corazón de <span class="font-script text-olive text-5xl md:text-6xl lowercase">Galicia</span>
+                </h3>
+            </div>
+
+            <div class="flex flex-col md:flex-row-reverse items-center gap-16 md:gap-20">
+                
+                <!-- Right Side (visually): Church Image -->
+                <div class="w-full md:w-1/2 fade-in">
+                    <div class="relative w-full aspect-square md:aspect-[4/5] overflow-hidden rounded-sm shadow-xl">
+                        <img src="image_3.png" alt="Parroquia de San Xulian de Bastavales" class="w-full h-full object-cover transition-transform duration-1000 hover:scale-105" />
+                    </div>
+                </div>
+
+                <!-- Left Side: Venue Details -->
+                <div class="w-full md:w-1/2 fade-in delay-200">
+                    <div class="space-y-12">
+                        
+                        <!-- Ceremony -->
+                        <div>
+                            <h4 class="font-script text-3xl text-olive mb-2">La Ceremonia</h4>
+                            <h5 class="text-xl font-serif text-dark mb-4">Parroquia de San Xulián de Bastavales</h5>
+                            <p class="text-dark/70 font-light leading-relaxed">
+                                Daremos el "Sí, quiero" en esta histórica y hermosa parroquia. Sus campanas, famosas por los poemas de Rosalía de Castro, repicarán para celebrar nuestra unión en un entorno verdaderamente mágico y lleno de tradición.
+                            </p>
+                        </div>
+
+                        <hr class="border-accent/30 w-1/3">
+
+                        <!-- Banquet -->
+                        <div>
+                            <h4 class="font-script text-3xl text-olive mb-2">El Banquete</h4>
+                            <h5 class="text-xl font-serif text-dark mb-4">Pazo de Vista Alegre</h5>
+                            <p class="text-dark/70 font-light leading-relaxed">
+                                Tras la ceremonia, nos trasladaremos al imponente Pazo de Vista Alegre. Rodeados de naturaleza, viñedos y arquitectura tradicional gallega, disfrutaremos de una velada inolvidable con gastronomía de primera, música y mucha fiesta.
+                            </p>
+                        </div>
+
+                        <a href="#horario" class="inline-block border border-dark px-8 py-3 text-sm uppercase tracking-widest hover:bg-dark hover:text-cream transition-colors rounded-full mt-4">
+                            Ver Itinerario
+                        </a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <section id="horario" class="py-24 md:py-32 bg-olive text-cream text-center px-6">
+        <div class="max-w-5xl mx-auto fade-in">
+            <h2 class="text-3xl md:text-5xl font-serif mb-16">Nuestro Horario</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 relative">
+                <!-- Connecting Line (Desktop only) -->
+                <div class="hidden md:block absolute top-12 left-[15%] right-[15%] h-px bg-cream/30"></div>
+
+                <!-- Event 1 -->
+                <div class="relative z-10 flex flex-col items-center">
+                    <div class="w-24 h-24 rounded-full border border-cream/50 flex items-center justify-center mb-6 bg-olive shadow-lg">
+                        <svg class="w-10 h-10 text-cream" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <!-- Church/Ring Icon -->
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-serif text-xl mb-2">12:30 PM</h3>
+                    <h4 class="text-sm uppercase tracking-widest font-bold mb-3">Ceremonia</h4>
+                    <p class="text-cream/70 font-light text-sm max-w-[200px]">
+                        San Xulián de Bastavales. Por favor, llegad con 15 minutos de antelación.
+                    </p>
+                </div>
+
+                <!-- Event 2 -->
+                <div class="relative z-10 flex flex-col items-center">
+                    <div class="w-24 h-24 rounded-full border border-cream/50 flex items-center justify-center mb-6 bg-olive shadow-lg">
+                        <svg class="w-10 h-10 text-cream" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <!-- Cocktail/Glass Icon -->
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M21 21H3m6-10v10m6-10v10M12 3l3 4.5c1 1.5 1 3.5 1 5.5s-2 5.5-2 5.5H8s-2-3.5-2-5.5 0-4 1-5.5L12 3z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-serif text-xl mb-2">14:00 PM</h3>
+                    <h4 class="text-sm uppercase tracking-widest font-bold mb-3">Cóctel de Bienvenida</h4>
+                    <p class="text-cream/70 font-light text-sm max-w-[200px]">
+                        Pazo de Vista Alegre. Aperitivos, música en vivo y brindis inicial.
+                    </p>
+                </div>
+
+                <!-- Event 3 -->
+                <div class="relative z-10 flex flex-col items-center">
+                    <div class="w-24 h-24 rounded-full border border-cream/50 flex items-center justify-center mb-6 bg-olive shadow-lg">
+                        <svg class="w-10 h-10 text-cream" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <!-- Party/Music Icon -->
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-serif text-xl mb-2">16:30 PM</h3>
+                    <h4 class="text-sm uppercase tracking-widest font-bold mb-3">Banquete & Fiesta</h4>
+                    <p class="text-cream/70 font-light text-sm max-w-[200px]">
+                        Comida tradicional, corte de tarta y barra libre hasta el amanecer.
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-20">
+                <a href="#rsvp" class="inline-block border border-cream px-10 py-3 text-sm uppercase tracking-widest hover:bg-cream hover:text-olive transition-colors rounded-full">
+                    Confirmar Asistencia
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="info" class="py-24 px-6 max-w-4xl mx-auto">
+        <div class="text-center mb-16 fade-in">
+            <h2 class="text-3xl md:text-4xl font-serif text-dark mb-4">Información Útil</h2>
+            <p class="font-script text-3xl text-olive">Detalles para nuestros invitados</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 fade-in delay-200">
+            <!-- Transportation -->
+            <div class="border-t border-accent/40 pt-6">
+                <h3 class="text-sm uppercase tracking-widest font-bold text-dark mb-4">Transporte</h3>
+                <p class="text-dark/70 font-light text-sm leading-relaxed mb-4">
+                    Habrá un servicio de autobuses disponible desde el centro de Santiago de Compostela hasta la iglesia, y posteriormente hacia el pazo. Al finalizar la noche, realizarán varios viajes de vuelta.
+                </p>
+                <p class="text-dark/70 font-light text-sm leading-relaxed font-bold">
+                    Horario de salida: 11:30 AM (Plaza de Galicia)
+                </p>
+            </div>
+
+            <!-- Registry / Gifts -->
+            <div class="border-t border-accent/40 pt-6">
+                <h3 class="text-sm uppercase tracking-widest font-bold text-dark mb-4">Lista de Bodas</h3>
+                <p class="text-dark/70 font-light text-sm leading-relaxed mb-4">
+                    Vuestra presencia es nuestro mayor regalo. Sin embargo, si deseáis tener un detalle con nosotros para ayudarnos a construir nuestro nuevo hogar o financiar nuestra luna de miel, podéis hacerlo aquí:
+                </p>
+                <button onclick="copyAccountInfo()" class="text-olive hover:text-dark transition-colors text-sm font-bold underline underline-offset-4 flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                    Copiar Número de Cuenta
+                </button>
+                <p id="copy-message" class="text-xs text-green-600 mt-2 hidden transition-opacity">¡Copiado al portapapeles!</p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="rsvp" class="bg-dark text-cream py-20 text-center px-6">
+        <div class="max-w-2xl mx-auto fade-in">
+            <h2 class="text-4xl font-serif mb-6">Esperamos verte allí</h2>
+            <p class="font-light text-cream/70 mb-10">
+                Por favor, confírmanos tu asistencia antes del 1 de agosto para que podamos organizar todos los detalles con cariño.
+            </p>
+            
+            <form onsubmit="event.preventDefault(); alertRSVP();" class="flex flex-col gap-4 max-w-md mx-auto mb-16 text-left">
+                <input type="text" placeholder="Nombre completo" required class="bg-transparent border-b border-cream/30 px-2 py-3 text-cream focus:outline-none focus:border-cream transition-colors placeholder-cream/50 font-light">
+                <input type="email" placeholder="Correo electrónico" required class="bg-transparent border-b border-cream/30 px-2 py-3 text-cream focus:outline-none focus:border-cream transition-colors placeholder-cream/50 font-light">
+                <select class="bg-transparent border-b border-cream/30 px-2 py-3 text-cream/70 focus:outline-none focus:border-cream transition-colors font-light appearance-none">
+                    <option value="" disabled selected>¿Asistirás?</option>
+                    <option value="yes" class="text-dark">Sí, allí estaré</option>
+                    <option value="no" class="text-dark">Lo siento, no podré asistir</option>
+                </select>
+                <textarea placeholder="Alergias o requerimientos dietéticos..." class="bg-transparent border-b border-cream/30 px-2 py-3 text-cream focus:outline-none focus:border-cream transition-colors placeholder-cream/50 font-light resize-none h-24 mt-4"></textarea>
+                
+                <button type="submit" class="mt-8 bg-cream text-dark px-8 py-3 text-sm uppercase tracking-widest hover:bg-olive hover:text-cream transition-colors rounded-sm">
+                    Enviar Confirmación
+                </button>
+            </form>
+
+            <div class="text-2xl font-serif tracking-widest text-cream mb-4">
+                A <span class="font-script text-3xl mx-1 text-accent">&amp;</span> D
+            </div>
+            <p class="text-xs tracking-widest uppercase text-cream/40">11 . 09 . 2026 | Galicia</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                menu.classList.add('flex');
+            } else {
+                menu.classList.add('hidden');
+                menu.classList.remove('flex');
+            }
+        }
+
+        // Copy Account Info
+        function copyAccountInfo() {
+            // Fake IBAN for demonstration
+            const iban = "ES91 1234 5678 9012 3456 7890";
+            
+            // Create a temporary textarea element
+            const el = document.createElement('textarea');
+            el.value = iban;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            
+            // Show feedback message
+            const msg = document.getElementById('copy-message');
+            msg.classList.remove('hidden');
+            setTimeout(() => {
+                msg.classList.add('hidden');
+            }, 3000);
+        }
+
+        // Fake RSVP submission (Using custom modal/feedback instead of alert)
+        function alertRSVP() {
+            const form = document.querySelector('form');
+            const btn = form.querySelector('button[type="submit"]');
+            const originalText = btn.innerText;
+            
+            btn.innerText = "¡Enviado!";
+            btn.classList.remove('bg-cream', 'text-dark');
+            btn.classList.add('bg-olive', 'text-cream');
+            
+            setTimeout(() => {
+                form.reset();
+                btn.innerText = originalText;
+                btn.classList.add('bg-cream', 'text-dark');
+                btn.classList.remove('bg-olive', 'text-cream');
+            }, 3000);
+        }
+
+        // Intersection Observer for scroll animations (Fade-in effect)
+        document.addEventListener("DOMContentLoaded", function() {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // Run once
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in').forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
