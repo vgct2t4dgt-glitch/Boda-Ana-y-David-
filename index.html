@@ -47,7 +47,6 @@
         body {
             background-color: #FFFFFF;
             color: #1C1917;
-            /* Súper nítido y legible */
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
         }
@@ -55,7 +54,6 @@
         /* Animación suave con fallback a opacidad 1 */
         .fade-in {
             opacity: 1;
-            /* Fallback directo por defecto para evitar textos difuminados */
             transform: translateY(0);
             transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
@@ -102,7 +100,6 @@
             background-position: center left -40px;
             background-size: 380px;
             opacity: 0.08;
-            /* Muy tenue para no ensuciar las fotos o textos */
             z-index: 0;
             pointer-events: none;
         }
@@ -176,7 +173,6 @@
                 <a href="#rsvp" class="hover:text-beige-dark transition-colors">RSVP</a>
             </div>
 
-            <!-- Espacio para balance en móvil -->
             <div class="md:hidden w-6"></div>
         </div>
 
@@ -222,7 +218,6 @@
         </div>
     </header>
 
-    <!-- Subtítulo editorial -->
     <div class="bg-white py-12 text-center fade-in px-6 border-b border-beige-light">
         <p class="text-[11px] uppercase tracking-mega text-charcoal-light font-semibold">Nuestra Boda en Galicia</p>
         <p class="font-serif italic text-2xl md:text-3xl text-charcoal mt-2 max-w-2xl mx-auto">Capturando los momentos
@@ -258,16 +253,16 @@
                 </a>
             </div>
 
-            <!-- Composición Editorial de Imágenes (Superpuestas pero 100% nítidas) -->
+            <!-- Composición Editorial de Imágenes -->
             <div class="w-full md:w-7/12 relative h-[480px] sm:h-[550px] md:h-[600px] mt-8 md:mt-0 fade-in">
 
-                <!-- Imagen 2: Pareja (Izquierda / Fondo) - IMG_4887.jpeg -->
+                <!-- Imagen 2: Pareja (IMG_4887.jpeg) -->
                 <div
                     class="absolute left-0 top-0 w-[68%] h-[78%] z-10 shadow-2xl border-8 border-white bg-white rounded-sm overflow-hidden">
                     <img src="IMG_4887.jpeg" alt="Ana y David" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
                 </div>
 
-                <!-- Imagen 3: Anillo (Derecha / Frente) - IMG_0729.jpeg -->
+                <!-- Imagen 3: Anillo (IMG_0729.jpeg) -->
                 <div
                     class="absolute right-0 bottom-0 w-[58%] h-[68%] z-20 shadow-2xl border-8 border-white bg-white rounded-sm overflow-hidden">
                     <img src="IMG_0729.jpeg" alt="Anillo de compromiso" class="w-full h-full object-cover" />
@@ -351,7 +346,6 @@
         </div>
     </section>
 
-    <!-- Sección Horario -->
     <section id="horario" class="py-20 md:py-28 bg-white text-center">
         <div class="max-w-4xl mx-auto px-6 fade-in">
             <h2 class="font-serif text-3xl md:text-4xl italic text-charcoal mb-2 font-normal">El lugar perfecto para
@@ -385,7 +379,6 @@
         </div>
     </section>
 
-    <!-- Sección Autobuses y Transporte -->
     <section id="transporte" class="py-20 md:py-24 bg-beige-light border-t border-b border-beige text-center">
         <div class="max-w-4xl mx-auto px-6 fade-in">
             <p class="text-xs uppercase tracking-mega text-beige-dark font-bold mb-2">Para vuestra comodidad</p>
@@ -426,7 +419,6 @@
         </div>
     </section>
 
-    <!-- Sección Alojamiento y Hoteles -->
     <section id="alojamiento" class="py-20 md:py-28 bg-white relative">
         <div class="max-w-6xl mx-auto px-6">
 
@@ -562,7 +554,6 @@
         </div>
     </section>
 
-    <!-- Cita Editorial y Foto Circular superpuesta -->
     <section class="bg-beige-light py-20 text-center border-t border-beige">
         <div class="max-w-3xl mx-auto px-6 fade-in">
             <div class="flex items-center justify-center gap-4 mb-6">
@@ -590,7 +581,6 @@
         </div>
     </section>
 
-    <!-- Footer / RSVP Formulario -->
     <footer id="rsvp" class="bg-charcoal text-beige-light pt-40 pb-20 text-center px-6 relative">
         <div class="max-w-md mx-auto fade-in">
             <p
@@ -637,10 +627,8 @@
     </footer>
 
     <script>
-        // Activa la clase JS para animaciones suaves sin romper la opacidad inicial
         document.body.classList.add('js-anim');
 
-        // Menú móvil
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
             if (menu.classList.contains('hidden')) {
@@ -652,7 +640,6 @@
             }
         }
 
-        // Formulario RSVP
         function alertRSVP() {
             const form = document.querySelector('form');
             const btn = form.querySelector('button[type="submit"]');
@@ -668,7 +655,6 @@
             }, 3000);
         }
 
-        // Copiar código promocional
         function copyPromoCode() {
             const code = "BODASEP27";
             const btn = document.getElementById('copyPromoBtn');
@@ -687,7 +673,6 @@
             }, 2500);
         }
 
-        // Animación Fade-in robusta al hacer scroll
         document.addEventListener("DOMContentLoaded", function() {
             const observerOptions = {
                 root: null,
