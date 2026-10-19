@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ana & David - 11.09.2026</title>
+    <title>Ana & David - 11.09.2027</title>
     
     <!-- Fuentes: Playfair Display (Elegante/Editorial) y Montserrat (Moderna/Limpia) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,7 +44,7 @@
             overflow-x: hidden;
         }
 
-        /* Textura sutil de grano fotográfico para igualar el estilo analógico de las fotos */
+        /* Textura sutil de grano fotográfico */
         .bg-grain {
             position: fixed;
             top: 0;
@@ -68,7 +68,7 @@
             transform: translateY(0);
         }
 
-        /* Overlay para que el texto blanco se lea perfecto sobre la foto de portada */
+        /* Overlay para lectura sobre la foto principal */
         .hero-overlay {
             background: linear-gradient(to bottom, rgba(42, 54, 45, 0.35) 0%, rgba(42, 54, 45, 0.7) 100%);
         }
@@ -77,7 +77,6 @@
         .photo-print {
             border: 8px solid #FAF9F6;
             box-shadow: 0 10px 30px -10px rgba(0,0,0,0.15);
-            border-radius: 2px;
         }
 
         /* Scrollbar refinada */
@@ -112,17 +111,16 @@
     <!-- PORTADA: Foto Principal a Pantalla Completa -->
     <header class="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0 bg-olive-dark">
-            <!-- Portada: 36eb7cba-a6dc-4fa6-80b8-b8c29400c547.jpeg -->
             <img src="36eb7cba-a6dc-4fa6-80b8-b8c29400c547.jpeg" alt="Ana & David" class="w-full h-full object-cover object-center opacity-90" />
             <div class="absolute inset-0 hero-overlay"></div>
         </div>
 
         <div class="relative z-10 text-center text-white reveal active px-4 mt-12">
             <h1 class="text-5xl md:text-7xl lg:text-8xl font-serif tracking-widest mb-6">
-                ANA <span class="italic font-light mx-2">&</span> DAVID
+                ANA <span class="italic font-light mx-2">&amp;</span> DAVID
             </h1>
             <div class="flex items-center justify-center gap-6 text-sm tracking-[0.3em] font-light uppercase">
-                <span>11 . 09 . 2026</span>
+                <span>11 . 09 . 2027</span>
             </div>
         </div>
         
@@ -133,12 +131,12 @@
         </div>
     </header>
 
-    <!-- HISTORIA: Collage Estilo Analógico -->
-    <section id="historia" class="py-24 md:py-32 px-6 max-w-7xl mx-auto overflow-hidden">
-        <div class="flex flex-col lg:flex-row items-center gap-16 lg:gap-20">
+    <!-- HISTORIA: Grid Mosaico Mobile-First con 3 Fotografías -->
+    <section id="historia" class="py-24 md:py-32 px-6 max-w-7xl mx-auto">
+        <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
             
             <!-- Textos -->
-            <div class="w-full lg:w-5/12 reveal z-10">
+            <div class="w-full lg:w-5/12 reveal">
                 <p class="text-xs tracking-[0.2em] text-olive font-medium uppercase mb-4">Nuestra Historia</p>
                 <h2 class="text-4xl md:text-5xl font-serif text-charcoal leading-tight mb-8">
                     Momentos que <br><span class="italic text-olive">quedan para siempre</span>
@@ -151,30 +149,42 @@
                 </p>
             </div>
 
-            <!-- Collage de las 2 Fotos Analógicas Restantes -->
-            <div class="w-full lg:w-7/12 relative h-[480px] md:h-[580px] reveal">
-                <!-- Foto 1: e03ee37b-33d0-44b7-92b5-24f7016059b4.jpeg (Cervezas / Risas) -->
-                <div class="absolute top-0 right-4 w-4/5 md:w-3/5 z-10 transform rotate-2 hover:rotate-0 transition-transform duration-500">
-                    <img src="e03ee37b-33d0-44b7-92b5-24f7016059b4.jpeg" alt="Nosotros" class="w-full h-auto object-cover photo-print" />
-                </div>
-                
-                <!-- Foto 2: 0bc43841-20d7-41fd-9195-4c4755079096.jpeg (Noche / Festiva) -->
-                <div class="absolute bottom-4 left-4 w-3/4 md:w-7/12 z-20 transform -rotate-4 hover:rotate-0 transition-transform duration-500">
-                    <img src="0bc43841-20d7-41fd-9195-4c4755079096.jpeg" alt="Noche" class="w-full h-auto object-cover photo-print shadow-2xl" />
+            <!-- Mosaico en Grid Tailwind (Mobile-First) -->
+            <div class="w-full lg:w-7/12 reveal">
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+                    
+                    <!-- Imagen Principal (Mayor Tamaño) -->
+                    <div class="sm:col-span-2 sm:row-span-2 overflow-hidden rounded-xl photo-print group shadow-md hover:shadow-xl transition-all duration-500">
+                        <img src="36eb7cba-a6dc-4fa6-80b8-b8c29400c547.jpeg" alt="Ana y David" class="w-full h-full object-cover min-h-[280px] sm:min-h-[380px] group-hover:scale-105 transition-transform duration-700" />
+                    </div>
+
+                    <!-- Imagen Secundaria 1 (Cervezas / Risas) -->
+                    <div class="sm:col-span-1 overflow-hidden rounded-xl photo-print group shadow-md hover:shadow-xl transition-all duration-500">
+                        <img src="e03ee37b-33d0-44b7-92b5-24f7016059b4.jpeg" alt="Nosotros" class="w-full h-full object-cover min-h-[180px] sm:min-h-[185px] group-hover:scale-105 transition-transform duration-700" />
+                    </div>
+
+                    <!-- Imagen Secundaria 2 (Noche / Festival) -->
+                    <div class="sm:col-span-1 overflow-hidden rounded-xl photo-print group shadow-md hover:shadow-xl transition-all duration-500">
+                        <img src="0bc43841-20d7-41fd-9195-4c4755079096.jpeg" alt="Noche festiva" class="w-full h-full object-cover min-h-[180px] sm:min-h-[185px] group-hover:scale-105 transition-transform duration-700" />
+                    </div>
+
                 </div>
             </div>
 
         </div>
     </section>
 
-    <!-- DETALLE ELEGANTE: El Anillo -->
-    <section class="py-12 bg-cream-light reveal">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <div class="w-48 h-64 md:w-64 md:h-80 mx-auto photo-print overflow-hidden transform -rotate-1">
-                <!-- Foto Anillo -->
-                <img src="IMG_0729.jpeg" alt="El anillo" class="w-full h-full object-cover" />
-            </div>
-            <p class="font-serif italic text-xl md:text-2xl text-olive mt-8">Y ella dijo sí...</p>
+    <!-- DETALLE ELEGANTE: El Anillo (Ancho Completo + Parallax) -->
+    <section class="relative w-full h-[55vh] min-h-[380px] flex items-center justify-center overflow-hidden bg-fixed bg-center bg-cover reveal" style="background-image: url('IMG_0729.jpeg');">
+        <!-- Overlay oscuro sutil para máxima legibilidad -->
+        <div class="absolute inset-0 bg-charcoal/50 backdrop-blur-[1px]"></div>
+
+        <!-- Texto centrado con tipografía serif elegante -->
+        <div class="relative z-10 text-center text-cream px-6 max-w-3xl">
+            <p class="font-serif italic text-3xl md:text-5xl lg:text-6xl tracking-wide leading-snug drop-shadow-lg text-cream">
+                Y ella dijo sí...
+            </p>
+            <div class="w-16 h-[1px] bg-cream/50 mx-auto mt-6"></div>
         </div>
     </section>
 
@@ -193,7 +203,6 @@
                 <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20 reveal">
                     <div class="w-full md:w-1/2 text-center md:text-right order-2 md:order-1">
                         <div class="flex justify-center md:justify-end mb-6 text-olive">
-                            <!-- Icono Cóctel Refinado -->
                             <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M21 5H3l8 9v6H7v2h10v-2h-4v-6l8-9zM5.83 7h12.34l-1.78 2H7.61L5.83 7z"></path></svg>
                         </div>
                         <p class="text-olive text-xs tracking-[0.15em] uppercase mb-2">Viernes, 10 de Septiembre</p>
@@ -202,7 +211,7 @@
                             Para empezar a calentar motores, nos encantaría veros la tarde anterior. Una ocasión perfecta para tomar algo, charlar y conocernos entre todos antes del gran día. El lugar será en Santiago de Compostela (ubicación exacta por definir).
                         </p>
                     </div>
-                    <div class="w-full md:w-1/2 order-1 md:order-2 bg-cream-light aspect-[4/3] flex items-center justify-center p-12 text-center photo-print">
+                    <div class="w-full md:w-1/2 order-1 md:order-2 bg-cream-light aspect-[4/3] flex items-center justify-center p-12 text-center photo-print rounded-xl">
                         <p class="font-serif text-2xl text-olive/60 italic">Santiago de Compostela<br><span class="text-sm font-sans not-italic uppercase tracking-widest mt-4 block">Ubicación pendiente</span></p>
                     </div>
                 </div>
@@ -210,14 +219,12 @@
                 <!-- 2. CEREMONIA -->
                 <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20 reveal">
                     <div class="w-full md:w-1/2">
-                        <!-- Iglesia Bastavales -->
-                        <div class="aspect-[4/3] photo-print">
+                        <div class="aspect-[4/3] photo-print rounded-xl overflow-hidden">
                             <img src="IMG_0967.jpeg" alt="Parroquia de San Xulián de Bastavales" class="w-full h-full object-cover" />
                         </div>
                     </div>
                     <div class="w-full md:w-1/2 text-center md:text-left">
                         <div class="flex justify-center md:justify-start mb-6 text-olive">
-                            <!-- Icono Anillos -->
                             <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1"><circle cx="8" cy="12" r="5"></circle><circle cx="16" cy="12" r="5"></circle></svg>
                         </div>
                         <p class="text-olive text-xs tracking-[0.15em] uppercase mb-2">Sábado, 11 de Septiembre — Por la mañana</p>
@@ -233,7 +240,6 @@
                 <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20 reveal">
                     <div class="w-full md:w-1/2 text-center md:text-right order-2 md:order-1">
                         <div class="flex justify-center md:justify-end mb-6 text-olive">
-                            <!-- Icono Copa de Vino -->
                             <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
                         </div>
                         <p class="text-olive text-xs tracking-[0.15em] uppercase mb-2">Sábado, 11 de Septiembre — De día</p>
@@ -244,8 +250,7 @@
                         <a href="https://maps.google.com/?q=Pazo+de+Vista+Alegre" target="_blank" class="text-olive hover:text-charcoal text-xs uppercase tracking-widest border-b border-olive pb-1 transition-colors">Ver en Google Maps</a>
                     </div>
                     <div class="w-full md:w-1/2 order-1 md:order-2">
-                        <!-- Pazo Vista Alegre -->
-                        <div class="aspect-[4/3] photo-print">
+                        <div class="aspect-[4/3] photo-print rounded-xl overflow-hidden">
                             <img src="IMG_0966.jpeg" alt="Pazo de Vista Alegre" class="w-full h-full object-cover" />
                         </div>
                     </div>
@@ -259,7 +264,6 @@
     <section id="autobuses" class="py-24 bg-olive text-cream text-center px-6 border-y border-olive-light/30">
         <div class="max-w-3xl mx-auto reveal">
             <div class="flex justify-center mb-6">
-                <!-- Icono Autobús refinado -->
                 <svg class="w-12 h-12 text-cream/80" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4 16c0 .88.39 1.67 1 2.22V20c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h8v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1.78c.61-.55 1-1.34 1-2.22V6c0-3.5-3.58-4-8-4s-8 .5-8 4v10zm3.5 1c-.83 0-1.5-.67-1.5-1.5S6.67 14 7.5 14s1.5.67 1.5 1.5S8.33 17 7.5 17zm9 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm1.5-6H6V6h12v5z"></path>
                 </svg>
@@ -269,7 +273,7 @@
                 Para que podáis disfrutar al máximo sin preocuparos de conducir, pondremos a vuestra disposición un servicio de autobuses. Realizará el trayecto desde Santiago hasta la iglesia, de ahí al pazo, y ofrecerá varios horarios de vuelta de madrugada.
             </p>
             
-            <div class="inline-block border border-cream/30 px-12 py-8 bg-olive-dark/20 backdrop-blur-sm rounded-sm">
+            <div class="inline-block border border-cream/30 px-12 py-8 bg-olive-dark/20 backdrop-blur-sm rounded-xl">
                 <p class="text-xs uppercase tracking-[0.2em] text-cream/70 mb-2">Punto de salida oficial</p>
                 <p class="font-serif text-2xl md:text-3xl mb-4">Plaza de Galicia, Santiago</p>
                 <p class="text-xs font-light uppercase tracking-widest border-t border-cream/20 pt-4 mt-4 text-cream/60">Horarios exactos por confirmar</p>
@@ -277,19 +281,18 @@
         </div>
     </section>
 
-    <!-- ALOJAMIENTO -->
+    <!-- ALOJAMIENTO RECOMENDADO -->
     <section id="hoteles" class="py-24 md:py-32 px-6">
         <div class="max-w-6xl mx-auto reveal">
             <div class="text-center mb-16">
                 <div class="flex justify-center mb-6 text-olive">
-                    <!-- Icono Hotel/Llave -->
                     <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path>
                         <line x1="8" y1="12" x2="16" y2="12"></line>
                     </svg>
                 </div>
                 <h2 class="text-4xl md:text-5xl font-serif text-charcoal mb-6">Alojamiento Recomendado</h2>
-                <div class="bg-olive/10 border border-olive/20 p-6 max-w-2xl mx-auto rounded-sm">
+                <div class="bg-olive/10 border border-olive/20 p-6 max-w-2xl mx-auto rounded-xl">
                     <p class="text-charcoal text-sm font-light leading-relaxed">
                         <strong class="text-olive">Los primeros cuatro hoteles de la lista están estratégicamente situados junto a la Plaza de Galicia</strong> (punto de salida de los autobuses). <br><br>
                         <span class="text-xs uppercase tracking-widest font-medium text-olive-dark">Importante:</span> Todos los precios indicados a continuación son <strong>el total por las 2 noches</strong>.
@@ -297,68 +300,115 @@
                 </div>
             </div>
 
-            <!-- Grid de Hoteles cerca del bus (4 principales) -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <!-- Grid de Tarjetas Blancas para los 4 Hoteles Cercanos a la Plaza de Galicia -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
                 
-                <!-- Compostela -->
-                <div class="bg-white p-8 shadow-sm rounded-sm border border-charcoal/5 flex flex-col">
-                    <h3 class="text-xl font-serif text-charcoal mb-1">Hotel Compostela ****</h3>
-                    <p class="text-xs text-olive uppercase tracking-widest mb-6">Total por 2 noches</p>
-                    <ul class="text-sm font-light text-charcoal/80 space-y-3 mb-8 flex-grow">
-                        <li class="flex justify-between border-b border-cream pb-2"><span>4 Hab. dobles (con desayuno)</span> <span class="font-medium">487€</span></li>
-                        <li class="flex justify-between border-b border-cream pb-2"><span>2 Hab. triples (con desayuno)</span> <span class="font-medium">567€</span></li>
-                    </ul>
-                    <a href="https://www.hotelcompostela.es/" target="_blank" class="text-xs text-olive uppercase tracking-widest border-b border-olive/30 hover:border-olive self-start transition-colors">Web oficial →</a>
+                <!-- Hotel Compostela **** -->
+                <div class="bg-white p-8 rounded-xl border border-charcoal/10 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-serif text-charcoal group-hover:text-olive transition-colors">Hotel Compostela ****</h3>
+                        </div>
+                        <p class="text-xs text-olive font-medium uppercase tracking-widest mb-6">Total por 2 noches</p>
+                        <ul class="text-sm font-light text-charcoal/80 space-y-3 mb-8">
+                            <li class="flex justify-between border-b border-cream pb-2">
+                                <span>4 Hab. dobles (con desayuno)</span>
+                                <span class="font-medium text-charcoal">487€</span>
+                            </li>
+                            <li class="flex justify-between border-b border-cream pb-2">
+                                <span>2 Hab. triples (con desayuno)</span>
+                                <span class="font-medium text-charcoal">567€</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="https://www.hotelcompostela.es/" target="_blank" class="text-xs text-olive uppercase tracking-widest font-medium border-b border-olive/30 hover:border-olive self-start pb-1 transition-all">
+                        Web oficial &rarr;
+                    </a>
                 </div>
 
-                <!-- Gelmírez -->
-                <div class="bg-white p-8 shadow-sm rounded-sm border border-charcoal/5 flex flex-col">
-                    <h3 class="text-xl font-serif text-charcoal mb-1">Hotel Gelmírez ***</h3>
-                    <p class="text-xs text-olive uppercase tracking-widest mb-6">Total por 2 noches</p>
-                    <ul class="text-sm font-light text-charcoal/80 space-y-3 mb-8 flex-grow">
-                        <li class="flex justify-between border-b border-cream pb-2"><span>5 Hab. dobles (con desayuno)</span> <span class="font-medium">414€</span></li>
-                    </ul>
-                    <a href="https://www.hotelgelmirez.com/" target="_blank" class="text-xs text-olive uppercase tracking-widest border-b border-olive/30 hover:border-olive self-start transition-colors">Web oficial →</a>
+                <!-- Hotel Gelmírez *** -->
+                <div class="bg-white p-8 rounded-xl border border-charcoal/10 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-serif text-charcoal group-hover:text-olive transition-colors">Hotel Gelmírez ***</h3>
+                        </div>
+                        <p class="text-xs text-olive font-medium uppercase tracking-widest mb-6">Total por 2 noches</p>
+                        <ul class="text-sm font-light text-charcoal/80 space-y-3 mb-8">
+                            <li class="flex justify-between border-b border-cream pb-2">
+                                <span>5 Hab. dobles (con desayuno)</span>
+                                <span class="font-medium text-charcoal">414€</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="https://www.hotelgelmirez.com/" target="_blank" class="text-xs text-olive uppercase tracking-widest font-medium border-b border-olive/30 hover:border-olive self-start pb-1 transition-all">
+                        Web oficial &rarr;
+                    </a>
                 </div>
 
-                <!-- Universal -->
-                <div class="bg-white p-8 shadow-sm rounded-sm border border-charcoal/5 flex flex-col">
-                    <h3 class="text-xl font-serif text-charcoal mb-1">Hotel Universal **</h3>
-                    <p class="text-xs text-olive uppercase tracking-widest mb-6">Total por 2 noches</p>
-                    <ul class="text-sm font-light text-charcoal/80 space-y-3 mb-8 flex-grow">
-                        <li class="flex justify-between border-b border-cream pb-2"><span>2 Hab. dobles</span> <span class="font-medium">380€</span></li>
-                        <li class="flex justify-between border-b border-cream pb-2"><span>2 Hab. triples</span> <span class="font-medium">440€</span></li>
-                    </ul>
-                    <a href="https://www.hoteluniversalsantiago.com/" target="_blank" class="text-xs text-olive uppercase tracking-widest border-b border-olive/30 hover:border-olive self-start transition-colors">Web oficial →</a>
+                <!-- Hotel Universal ** -->
+                <div class="bg-white p-8 rounded-xl border border-charcoal/10 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-serif text-charcoal group-hover:text-olive transition-colors">Hotel Universal **</h3>
+                        </div>
+                        <p class="text-xs text-olive font-medium uppercase tracking-widest mb-6">Total por 2 noches</p>
+                        <ul class="text-sm font-light text-charcoal/80 space-y-3 mb-8">
+                            <li class="flex justify-between border-b border-cream pb-2">
+                                <span>2 Hab. dobles</span>
+                                <span class="font-medium text-charcoal">380€</span>
+                            </li>
+                            <li class="flex justify-between border-b border-cream pb-2">
+                                <span>2 Hab. triples</span>
+                                <span class="font-medium text-charcoal">440€</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="https://www.hoteluniversalsantiago.com/" target="_blank" class="text-xs text-olive uppercase tracking-widest font-medium border-b border-olive/30 hover:border-olive self-start pb-1 transition-all">
+                        Web oficial &rarr;
+                    </a>
                 </div>
 
-                <!-- Nest Style -->
-                <div class="bg-white p-8 shadow-sm rounded-sm border border-charcoal/5 flex flex-col">
-                    <h3 class="text-xl font-serif text-charcoal mb-1">Nest Style Santiago</h3>
-                    <p class="text-xs text-olive uppercase tracking-widest mb-6">Total por 2 noches</p>
-                    <ul class="text-sm font-light text-charcoal/80 space-y-3 mb-8 flex-grow">
-                        <li class="flex justify-between border-b border-cream pb-2"><span>5 Hab. dobles (con desayuno)</span> <span class="font-medium">442€</span></li>
-                    </ul>
-                    <a href="https://neststylehotels.com/alojamiento/nest-style-santiago/" target="_blank" class="text-xs text-olive uppercase tracking-widest border-b border-olive/30 hover:border-olive self-start transition-colors">Web oficial →</a>
+                <!-- Nest Style Santiago -->
+                <div class="bg-white p-8 rounded-xl border border-charcoal/10 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-serif text-charcoal group-hover:text-olive transition-colors">Nest Style Santiago</h3>
+                        </div>
+                        <p class="text-xs text-olive font-medium uppercase tracking-widest mb-6">Total por 2 noches</p>
+                        <ul class="text-sm font-light text-charcoal/80 space-y-3 mb-8">
+                            <li class="flex justify-between border-b border-cream pb-2">
+                                <span>5 Hab. dobles (con desayuno)</span>
+                                <span class="font-medium text-charcoal">442€</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="https://neststylehotels.com/alojamiento/nest-style-santiago/" target="_blank" class="text-xs text-olive uppercase tracking-widest font-medium border-b border-olive/30 hover:border-olive self-start pb-1 transition-all">
+                        Web oficial &rarr;
+                    </a>
                 </div>
 
             </div>
 
-            <!-- Destacado: Eurostars con código descuento -->
-            <div class="bg-white p-8 md:p-12 shadow-md rounded-sm border border-olive/20 flex flex-col md:flex-row justify-between items-center gap-8 relative overflow-hidden">
+            <!-- Destacado Especial: Eurostars Gran Hotel Santiago **** -->
+            <div class="bg-cream-light p-8 md:p-12 shadow-md rounded-2xl border-2 border-olive/30 flex flex-col md:flex-row justify-between items-center gap-8 relative overflow-hidden">
                 <div class="flex-1">
-                    <h3 class="text-2xl font-serif text-charcoal mb-2">Eurostars Gran Hotel Santiago ****</h3>
-                    <p class="text-charcoal/70 text-sm font-light mb-4">
-                        A unos 15 minutos caminando de la Plaza de Galicia. Reservando a través de su web oficial tenéis un <strong>15% de descuento</strong> en cualquier habitación aplicando nuestro código especial.
+                    <span class="inline-block bg-olive/10 text-olive text-[10px] uppercase tracking-[0.2em] font-semibold px-3 py-1 rounded-full mb-3">
+                        Descuento Especial Boda
+                    </span>
+                    <h3 class="text-2xl md:text-3xl font-serif text-charcoal mb-3">Eurostars Gran Hotel Santiago ****</h3>
+                    <p class="text-charcoal/80 text-sm font-light leading-relaxed mb-6">
+                        Ubicado a unos 15 minutos caminando de la Plaza de Galicia. Reservando a través de su web oficial tenéis un <strong class="text-olive font-medium">15% de descuento</strong> en cualquier habitación aplicando nuestro código de promoción exclusivo.
                     </p>
-                    <a href="https://www.eurostarshotels.com/eurostars-gran-hotel-santiago.html" target="_blank" class="inline-block border border-olive text-olive px-6 py-2 text-xs uppercase tracking-widest hover:bg-olive hover:text-white transition-colors">
-                        Visitar web oficial
+                    <a href="https://www.eurostarshotels.com/eurostars-gran-hotel-santiago.html" target="_blank" class="inline-block border border-olive text-olive px-6 py-2.5 text-xs uppercase tracking-widest hover:bg-olive hover:text-white transition-all rounded-sm font-medium">
+                        Visitar web oficial &rarr;
                     </a>
                 </div>
-                <div class="bg-cream p-6 text-center border border-olive/10 min-w-[250px] rounded-sm">
-                    <p class="text-xs text-olive uppercase tracking-widest mb-2">Código Promocional</p>
-                    <p class="text-2xl font-serif text-charcoal mb-4">BODASEP27</p>
-                    <button onclick="copyPromo()" id="copyBtn" class="w-full bg-olive text-white py-2 text-xs uppercase tracking-widest hover:bg-olive-dark transition-colors rounded-sm">
+
+                <!-- Recuadro Promocional Destacado -->
+                <div class="bg-olive text-cream p-6 text-center shadow-lg min-w-[260px] rounded-xl border border-olive-dark">
+                    <p class="text-[11px] uppercase tracking-[0.2em] text-cream/70 mb-2 font-medium">Código Promocional</p>
+                    <p class="text-3xl font-serif text-white tracking-wider mb-4 font-semibold">BODASEP27</p>
+                    <button onclick="copyPromo()" id="copyBtn" class="w-full bg-cream text-charcoal py-2.5 px-4 text-xs uppercase tracking-widest font-semibold hover:bg-white hover:scale-[1.02] active:scale-[0.98] transition-all rounded-sm shadow-sm">
                         Copiar Código
                     </button>
                 </div>
@@ -371,11 +421,18 @@
     <footer id="rsvp" class="bg-charcoal text-cream py-24 px-6 text-center border-t border-cream/10">
         <div class="max-w-xl mx-auto reveal">
             <h2 class="text-4xl md:text-5xl font-serif mb-6 text-white">Confirmar Asistencia</h2>
-            <p class="font-light text-cream/70 text-sm mb-12">
-                Nos haría muchísima ilusión compartir este día con vosotros. Por favor, confirmad vuestra asistencia antes del 1 de agosto de 2026.
+            <p class="font-light text-cream/70 text-sm mb-8">
+                Nos haría muchísima ilusión compartir este día con vosotros. Por favor, confirmad vuestra asistencia antes del 1 de agosto de 2027.
             </p>
 
-            <form onsubmit="event.preventDefault(); submitRSVP();" class="flex flex-col gap-6 text-left">
+            <!-- Botón destacado centrado enlazado al formulario -->
+            <div class="mb-12">
+                <a href="#rsvp-form" class="inline-block bg-cream text-charcoal px-10 py-4 text-xs uppercase tracking-[0.2em] font-medium rounded-sm shadow-lg hover:bg-olive hover:text-white hover:scale-105 hover:shadow-xl transition-all duration-300 border border-cream hover:border-olive">
+                    Confirmar Asistencia
+                </a>
+            </div>
+
+            <form id="rsvp-form" onsubmit="event.preventDefault(); submitRSVP();" class="flex flex-col gap-6 text-left border-t border-cream/10 pt-10">
                 <input type="text" placeholder="Nombre y Apellidos" required class="w-full bg-transparent border-b border-cream/30 py-3 text-sm focus:outline-none focus:border-white transition-colors placeholder-cream/50">
                 
                 <select required class="w-full bg-transparent border-b border-cream/30 py-3 text-sm focus:outline-none focus:border-white transition-colors text-cream/80">
@@ -393,14 +450,14 @@
 
                 <textarea placeholder="Alergias o necesidades dietéticas especiales..." class="w-full bg-transparent border-b border-cream/30 py-3 text-sm focus:outline-none focus:border-white transition-colors placeholder-cream/50 resize-none h-20"></textarea>
 
-                <button type="submit" id="rsvpBtn" class="mt-6 bg-white text-charcoal py-4 text-xs uppercase tracking-widest font-medium hover:bg-olive hover:text-white transition-colors rounded-sm">
+                <button type="submit" id="rsvpBtn" class="mt-6 bg-white text-charcoal py-4 text-xs uppercase tracking-widest font-medium hover:bg-olive hover:text-white hover:scale-105 transition-all duration-300 rounded-sm shadow-md">
                     Enviar Confirmación
                 </button>
             </form>
 
             <div class="mt-24 pt-12 border-t border-cream/10">
                 <p class="font-serif text-3xl mb-2 italic">Ana & David</p>
-                <p class="text-xs font-sans uppercase tracking-[0.3em] text-cream/50">11 . 09 . 2026</p>
+                <p class="text-xs font-sans uppercase tracking-[0.3em] text-cream/50">11 . 09 . 2027</p>
             </div>
         </div>
     </footer>
