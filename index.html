@@ -174,17 +174,17 @@
         </div>
     </section>
 
-    <!-- DETALLE ELEGANTE: El Anillo (Ancho Completo + Parallax) -->
-    <section class="relative w-full h-[55vh] min-h-[380px] flex items-center justify-center overflow-hidden bg-fixed bg-center bg-cover reveal" style="background-image: url('a7e19930-b57c-409d-8447-af1dfc59f3ac.jpeg');">
-        <!-- Overlay oscuro sutil para máxima legibilidad -->
-        <div class="absolute inset-0 bg-charcoal/50 backdrop-blur-[1px]"></div>
+    <!-- DETALLE ELEGANTE: El Anillo (Ancho Completo + Parallax + Overlay) -->
+    <section class="relative w-full h-96 min-h-[50vh] flex items-center justify-center overflow-hidden bg-cover bg-center bg-fixed reveal" style="background-image: url('a7e19930-b57c-409d-8447-af1dfc59f3ac.jpeg');">
+        <!-- Capa oscura semitransparente (Overlay) para máximo contraste -->
+        <div class="absolute inset-0 bg-black/40"></div>
 
-        <!-- Texto centrado con tipografía serif elegante -->
-        <div class="relative z-10 text-center text-cream px-6 max-w-3xl">
-            <p class="font-serif italic text-3xl md:text-5xl lg:text-6xl tracking-wide leading-snug drop-shadow-lg text-cream">
+        <!-- Texto centrado con Flexbox y tipografía serif itálica -->
+        <div class="relative z-10 text-center text-white px-6 max-w-3xl flex flex-col items-center justify-center">
+            <h2 class="font-serif italic text-4xl md:text-5xl lg:text-6xl tracking-wide leading-snug drop-shadow-md text-white">
                 Y ella dijo sí...
-            </p>
-            <div class="w-16 h-[1px] bg-cream/50 mx-auto mt-6"></div>
+            </h2>
+            <div class="w-16 h-[1px] bg-white/50 mx-auto mt-6"></div>
         </div>
     </section>
 
