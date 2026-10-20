@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ana & David - 11.09.2027</title>
+    <title>Ana & David — 11.09.2027</title>
     
     <!-- Fuentes: Playfair Display (Elegante/Editorial) y Montserrat (Moderna/Limpia) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -44,7 +44,7 @@
             overflow-x: hidden;
         }
 
-        /* Textura sutil de grano fotográfico */
+        /* Textura analógica de grano fotográfico */
         .bg-grain {
             position: fixed;
             top: 0;
@@ -57,7 +57,7 @@
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
 
-        /* Animaciones de aparición */
+        /* Animaciones de aparición progresiva */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -68,18 +68,13 @@
             transform: translateY(0);
         }
 
-        /* Overlay para lectura sobre la foto principal */
-        .hero-overlay {
-            background: linear-gradient(to bottom, rgba(42, 54, 45, 0.35) 0%, rgba(42, 54, 45, 0.7) 100%);
-        }
-
         /* Estilo fotos impresas/analógicas */
         .photo-print {
             border: 8px solid #FAF9F6;
             box-shadow: 0 10px 30px -10px rgba(0,0,0,0.15);
         }
 
-        /* Scrollbar refinada */
+        /* Scrollbar personalizada */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #F4F1EA; }
         ::-webkit-scrollbar-thumb { background: #4A5D4E; border-radius: 3px; }
@@ -90,11 +85,15 @@
     <!-- Textura analógica global -->
     <div class="bg-grain"></div>
 
-    <!-- Menú de Navegación -->
-    <nav class="fixed w-full z-40 transition-all duration-500 py-6" id="navbar">
+    <!-- Menú de Navegación Mobile-First -->
+    <nav class="fixed w-full z-40 transition-all duration-500 py-5" id="navbar">
         <div class="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
-            <a href="#" class="text-2xl font-serif text-white tracking-widest transition-colors duration-300" id="nav-logo">A & D</a>
+            <!-- Logo principal visible siempre -->
+            <a href="#" class="text-2xl font-serif text-white tracking-widest transition-colors duration-300" id="nav-logo">
+                A &amp; D
+            </a>
             
+            <!-- Enlaces intermedios: Ocultos en mobile (hidden), visibles en desktop (md:flex) -->
             <div class="hidden md:flex space-x-10 text-xs tracking-[0.15em] text-white font-light transition-colors duration-300" id="nav-links">
                 <a href="#historia" class="hover:opacity-70 transition-opacity">Historia</a>
                 <a href="#eventos" class="hover:opacity-70 transition-opacity">Eventos</a>
@@ -102,36 +101,42 @@
                 <a href="#hoteles" class="hover:opacity-70 transition-opacity">Hoteles</a>
             </div>
 
-            <a href="#rsvp" class="hidden md:inline-block border border-white text-white px-6 py-2 text-xs tracking-widest hover:bg-white hover:text-olive transition-all duration-300" id="nav-btn">
+            <!-- Botón RSVP visible en todas las pantallas -->
+            <a href="#rsvp" class="border border-white text-white px-5 py-2 text-xs tracking-widest hover:bg-white hover:text-olive transition-all duration-300 rounded-sm" id="nav-btn">
                 RSVP
             </a>
         </div>
     </nav>
 
-    <!-- PORTADA: Foto Principal a Pantalla Completa -->
-    <header class="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 z-0 bg-olive-dark">
-            <img src="36eb7cba-a6dc-4fa6-80b8-b8c29400c547.jpeg" alt="Ana & David" class="w-full h-full object-cover object-center opacity-90" />
-            <div class="absolute inset-0 hero-overlay"></div>
-        </div>
+    <!-- PORTADA HERO: Estilo Inmersivo Pantalla Completa -->
+    <header class="relative min-h-screen h-screen w-full flex flex-col items-center justify-center bg-cover bg-center overflow-hidden" style="background-image: url('36eb7cba-a6dc-4fa6-80b8-b8c29400c547.jpeg');">
+        <!-- Overlay con degradado: de transparente en la parte superior a oscuro en la parte inferior -->
+        <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/80 z-0"></div>
 
-        <div class="relative z-10 text-center text-white reveal active px-4 mt-12">
-            <h1 class="text-5xl md:text-7xl lg:text-8xl font-serif tracking-widest mb-6">
-                ANA <span class="italic font-light mx-2">&amp;</span> DAVID
+        <!-- Contenido centralizado sobre la zona oscura -->
+        <div class="relative z-10 text-center text-white px-6 mt-12 reveal active">
+            <p class="text-xs md:text-sm tracking-[0.3em] font-light uppercase text-cream/90 mb-4">
+                Nos Casamos
+            </p>
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-serif tracking-widest mb-6 drop-shadow-md">
+                ANA <span class="italic font-light mx-2 text-cream/90">&amp;</span> DAVID
             </h1>
-            <div class="flex items-center justify-center gap-6 text-sm tracking-[0.3em] font-light uppercase">
-                <span>11 . 09 . 2027</span>
+            <div class="inline-block border-y border-white/30 py-3 px-8">
+                <span class="text-sm md:text-base tracking-[0.35em] font-light uppercase whitespace-nowrap text-white">
+                    11 . 09 . 2027
+                </span>
             </div>
         </div>
         
-        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
-            <a href="#historia" class="text-white/70 hover:text-white transition-colors">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+        <!-- Flecha indicadora de scroll -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
+            <a href="#historia" class="text-white/70 hover:text-white transition-colors" aria-label="Ir a Nuestra Historia">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
             </a>
         </div>
     </header>
 
-    <!-- HISTORIA: Grid Mosaico Mobile-First con 3 Fotografías -->
+    <!-- HISTORIA: Grid Mosaico Mobile-First -->
     <section id="historia" class="py-24 md:py-32 px-6 max-w-7xl mx-auto">
         <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
             
@@ -149,23 +154,23 @@
                 </p>
             </div>
 
-            <!-- Mosaico en Grid Tailwind (Mobile-First) -->
+            <!-- Mosaico en Grid Tailwind -->
             <div class="w-full lg:w-7/12 reveal">
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
                     
-                    <!-- Imagen Principal (Sustituida para no repetir la portada) -->
+                    <!-- Imagen Principal -->
                     <div class="sm:col-span-2 sm:row-span-2 overflow-hidden rounded-xl photo-print group shadow-md hover:shadow-xl transition-all duration-500">
-                        <img src="cd37910e-3054-4c19-aba2-c7a64ed6a9f4.jpeg" alt="Ana y David" class="w-full h-full object-cover min-h-[280px] sm:min-h-[380px] group-hover:scale-105 transition-transform duration-700" />
+                        <img src="cd37910e-3054-4c19-aba2-c7a64ed6a9f4.jpeg" alt="Ana y David" loading="lazy" class="w-full h-full object-cover min-h-[280px] sm:min-h-[380px] group-hover:scale-105 transition-transform duration-700" />
                     </div>
 
-                    <!-- Imagen Secundaria 1 (Cervezas / Risas) -->
+                    <!-- Imagen Secundaria 1 -->
                     <div class="sm:col-span-1 overflow-hidden rounded-xl photo-print group shadow-md hover:shadow-xl transition-all duration-500">
-                        <img src="e03ee37b-33d0-44b7-92b5-24f7016059b4.jpeg" alt="Nosotros" class="w-full h-full object-cover min-h-[180px] sm:min-h-[185px] group-hover:scale-105 transition-transform duration-700" />
+                        <img src="e03ee37b-33d0-44b7-92b5-24f7016059b4.jpeg" alt="Nosotros juntos" loading="lazy" class="w-full h-full object-cover min-h-[180px] sm:min-h-[185px] group-hover:scale-105 transition-transform duration-700" />
                     </div>
 
-                    <!-- Imagen Secundaria 2 (Noche / Festival) -->
+                    <!-- Imagen Secundaria 2 -->
                     <div class="sm:col-span-1 overflow-hidden rounded-xl photo-print group shadow-md hover:shadow-xl transition-all duration-500">
-                        <img src="0bc43841-20d7-41fd-9195-4c4755079096.jpeg" alt="Noche festiva" class="w-full h-full object-cover min-h-[180px] sm:min-h-[185px] group-hover:scale-105 transition-transform duration-700" />
+                        <img src="0bc43841-20d7-41fd-9195-4c4755079096.jpeg" alt="Celebración nocturna" loading="lazy" class="w-full h-full object-cover min-h-[180px] sm:min-h-[185px] group-hover:scale-105 transition-transform duration-700" />
                     </div>
 
                 </div>
@@ -174,9 +179,9 @@
         </div>
     </section>
 
-    <!-- DETALLE ELEGANTE: El Anillo (Ancho Completo + Parallax + Overlay) -->
+    <!-- EL ANILLO: Ancho Completo + Parallax + Overlay -->
     <section class="relative w-full h-96 min-h-[50vh] flex items-center justify-center overflow-hidden bg-cover bg-center bg-fixed reveal" style="background-image: url('a7e19930-b57c-409d-8447-af1dfc59f3ac.jpeg');">
-        <!-- Capa oscura semitransparente (Overlay) para máximo contraste -->
+        <!-- Capa oscura semitransparente para óptimo contraste -->
         <div class="absolute inset-0 bg-black/40"></div>
 
         <!-- Texto centrado con Flexbox y tipografía serif itálica -->
@@ -189,74 +194,71 @@
     </section>
 
     <!-- LOS EVENTOS -->
-    <section id="eventos" class="py-24 md:py-32 px-6">
-        <div class="max-w-6xl mx-auto">
+    <section id="eventos" class="py-24 md:py-32 px-6 max-w-6xl mx-auto">
+        <div class="text-center mb-24 reveal">
+            <p class="text-xs tracking-[0.2em] text-olive font-medium uppercase mb-4">El Fin de Semana</p>
+            <h2 class="text-4xl md:text-5xl font-serif text-charcoal">Lugares de Celebración</h2>
+        </div>
+
+        <div class="space-y-32">
             
-            <div class="text-center mb-24 reveal">
-                <p class="text-xs tracking-[0.2em] text-olive font-medium uppercase mb-4">El Fin de Semana</p>
-                <h2 class="text-4xl md:text-5xl font-serif text-charcoal">Lugares de Celebración</h2>
+            <!-- 1. PREBODA -->
+            <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20 reveal">
+                <div class="w-full md:w-1/2 text-center md:text-right order-2 md:order-1">
+                    <div class="flex justify-center md:justify-end mb-6 text-olive">
+                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M21 5H3l8 9v6H7v2h10v-2h-4v-6l8-9zM5.83 7h12.34l-1.78 2H7.61L5.83 7z"></path></svg>
+                    </div>
+                    <p class="text-olive text-xs tracking-[0.15em] uppercase mb-2">Viernes, 10 de Septiembre</p>
+                    <h3 class="text-3xl font-serif text-charcoal mb-4">Preboda</h3>
+                    <p class="text-charcoal/70 font-light text-sm leading-relaxed max-w-md ml-auto">
+                        Para empezar a calentar motores, nos encantaría veros la tarde anterior. Una ocasión perfecta para tomar algo, charlar y conocernos entre todos antes del gran día. El lugar será en Santiago de Compostela (ubicación exacta por definir).
+                    </p>
+                </div>
+                <div class="w-full md:w-1/2 order-1 md:order-2 bg-cream-light aspect-[4/3] flex items-center justify-center p-12 text-center photo-print rounded-xl">
+                    <p class="font-serif text-2xl text-olive/60 italic">Santiago de Compostela<br><span class="text-sm font-sans not-italic uppercase tracking-widest mt-4 block">Ubicación pendiente</span></p>
+                </div>
             </div>
 
-            <div class="space-y-32">
-                
-                <!-- 1. PREBODA -->
-                <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20 reveal">
-                    <div class="w-full md:w-1/2 text-center md:text-right order-2 md:order-1">
-                        <div class="flex justify-center md:justify-end mb-6 text-olive">
-                            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M21 5H3l8 9v6H7v2h10v-2h-4v-6l8-9zM5.83 7h12.34l-1.78 2H7.61L5.83 7z"></path></svg>
-                        </div>
-                        <p class="text-olive text-xs tracking-[0.15em] uppercase mb-2">Viernes, 10 de Septiembre</p>
-                        <h3 class="text-3xl font-serif text-charcoal mb-4">Preboda</h3>
-                        <p class="text-charcoal/70 font-light text-sm leading-relaxed max-w-md ml-auto">
-                            Para empezar a calentar motores, nos encantaría veros la tarde anterior. Una ocasión perfecta para tomar algo, charlar y conocernos entre todos antes del gran día. El lugar será en Santiago de Compostela (ubicación exacta por definir).
-                        </p>
-                    </div>
-                    <div class="w-full md:w-1/2 order-1 md:order-2 bg-cream-light aspect-[4/3] flex items-center justify-center p-12 text-center photo-print rounded-xl">
-                        <p class="font-serif text-2xl text-olive/60 italic">Santiago de Compostela<br><span class="text-sm font-sans not-italic uppercase tracking-widest mt-4 block">Ubicación pendiente</span></p>
+            <!-- 2. CEREMONIA -->
+            <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20 reveal">
+                <div class="w-full md:w-1/2">
+                    <div class="aspect-[4/3] photo-print rounded-xl overflow-hidden">
+                        <img src="IMG_0967.jpeg" alt="Parroquia de San Xulián de Bastavales" loading="lazy" class="w-full h-full object-cover" />
                     </div>
                 </div>
-
-                <!-- 2. CEREMONIA -->
-                <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20 reveal">
-                    <div class="w-full md:w-1/2">
-                        <div class="aspect-[4/3] photo-print rounded-xl overflow-hidden">
-                            <img src="IMG_0967.jpeg" alt="Parroquia de San Xulián de Bastavales" class="w-full h-full object-cover" />
-                        </div>
+                <div class="w-full md:w-1/2 text-center md:text-left">
+                    <div class="flex justify-center md:justify-start mb-6 text-olive">
+                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1"><circle cx="8" cy="12" r="5"></circle><circle cx="16" cy="12" r="5"></circle></svg>
                     </div>
-                    <div class="w-full md:w-1/2 text-center md:text-left">
-                        <div class="flex justify-center md:justify-start mb-6 text-olive">
-                            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1"><circle cx="8" cy="12" r="5"></circle><circle cx="16" cy="12" r="5"></circle></svg>
-                        </div>
-                        <p class="text-olive text-xs tracking-[0.15em] uppercase mb-2">Sábado, 11 de Septiembre — Por la mañana</p>
-                        <h3 class="text-3xl font-serif text-charcoal mb-4">La Ceremonia</h3>
-                        <p class="text-charcoal/70 font-light text-sm leading-relaxed max-w-md mx-auto md:mx-0 mb-6">
-                            Daremos el "Sí, quiero" en la hermosa e histórica Parroquia de San Xulián de Bastavales. Un entorno lleno de tradición y naturaleza para formalizar nuestra unión.
-                        </p>
-                        <a href="https://maps.google.com/?q=San+Xulian+de+Bastavales" target="_blank" class="text-olive hover:text-charcoal text-xs uppercase tracking-widest border-b border-olive pb-1 transition-colors">Ver en Google Maps</a>
-                    </div>
+                    <p class="text-olive text-xs tracking-[0.15em] uppercase mb-2">Sábado, 11 de Septiembre — Por la mañana</p>
+                    <h3 class="text-3xl font-serif text-charcoal mb-4">La Ceremonia</h3>
+                    <p class="text-charcoal/70 font-light text-sm leading-relaxed max-w-md mx-auto md:mx-0 mb-6">
+                        Daremos el "Sí, quiero" en la hermosa e histórica Parroquia de San Xulián de Bastavales. Un entorno lleno de tradición y naturaleza para formalizar nuestra unión.
+                    </p>
+                    <a href="https://maps.google.com/?q=San+Xulian+de+Bastavales" target="_blank" rel="noopener noreferrer" class="text-olive hover:text-charcoal text-xs uppercase tracking-widest border-b border-olive pb-1 transition-colors">Ver en Google Maps &rarr;</a>
                 </div>
-
-                <!-- 3. BANQUETE -->
-                <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20 reveal">
-                    <div class="w-full md:w-1/2 text-center md:text-right order-2 md:order-1">
-                        <div class="flex justify-center md:justify-end mb-6 text-olive">
-                            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-                        </div>
-                        <p class="text-olive text-xs tracking-[0.15em] uppercase mb-2">Sábado, 11 de Septiembre — De día</p>
-                        <h3 class="text-3xl font-serif text-charcoal mb-4">Banquete & Fiesta</h3>
-                        <p class="text-charcoal/70 font-light text-sm leading-relaxed max-w-md ml-auto mb-6">
-                            Continuaremos la celebración en el espectacular Pazo de Vista Alegre. Disfrutaremos del aperitivo en sus jardines, seguido de una gran comida tradicional y barra libre para celebrar por todo lo alto.
-                        </p>
-                        <a href="https://maps.google.com/?q=Pazo+de+Vista+Alegre" target="_blank" class="text-olive hover:text-charcoal text-xs uppercase tracking-widest border-b border-olive pb-1 transition-colors">Ver en Google Maps</a>
-                    </div>
-                    <div class="w-full md:w-1/2 order-1 md:order-2">
-                        <div class="aspect-[4/3] photo-print rounded-xl overflow-hidden">
-                            <img src="IMG_0966.jpeg" alt="Pazo de Vista Alegre" class="w-full h-full object-cover" />
-                        </div>
-                    </div>
-                </div>
-
             </div>
+
+            <!-- 3. BANQUETE -->
+            <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20 reveal">
+                <div class="w-full md:w-1/2 text-center md:text-right order-2 md:order-1">
+                    <div class="flex justify-center md:justify-end mb-6 text-olive">
+                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                    </div>
+                    <p class="text-olive text-xs tracking-[0.15em] uppercase mb-2">Sábado, 11 de Septiembre — De día</p>
+                    <h3 class="text-3xl font-serif text-charcoal mb-4">Banquete &amp; Fiesta</h3>
+                    <p class="text-charcoal/70 font-light text-sm leading-relaxed max-w-md ml-auto mb-6">
+                        Continuaremos la celebración en el espectacular Pazo de Vista Alegre. Disfrutaremos del aperitivo en sus jardines, seguido de una gran comida tradicional y barra libre para celebrar por todo lo alto.
+                    </p>
+                    <a href="https://maps.google.com/?q=Pazo+de+Vista+Alegre" target="_blank" rel="noopener noreferrer" class="text-olive hover:text-charcoal text-xs uppercase tracking-widest border-b border-olive pb-1 transition-colors">Ver en Google Maps &rarr;</a>
+                </div>
+                <div class="w-full md:w-1/2 order-1 md:order-2">
+                    <div class="aspect-[4/3] photo-print rounded-xl overflow-hidden">
+                        <img src="IMG_0966.jpeg" alt="Pazo de Vista Alegre" loading="lazy" class="w-full h-full object-cover" />
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -273,7 +275,7 @@
                 Para que podáis disfrutar al máximo sin preocuparos de conducir, pondremos a vuestra disposición un servicio de autobuses. Realizará el trayecto desde Santiago hasta la iglesia, de ahí al pazo, y ofrecerá varios horarios de vuelta de madrugada.
             </p>
             
-            <div class="inline-block border border-cream/30 px-12 py-8 bg-olive-dark/20 backdrop-blur-sm rounded-xl">
+            <div class="inline-block border border-cream/30 px-10 md:px-16 py-8 bg-olive-dark/20 backdrop-blur-sm rounded-xl">
                 <p class="text-xs uppercase tracking-[0.2em] text-cream/70 mb-2">Punto de salida oficial</p>
                 <p class="font-serif text-2xl md:text-3xl mb-4">Plaza de Galicia, Santiago</p>
                 <p class="text-xs font-light uppercase tracking-widest border-t border-cream/20 pt-4 mt-4 text-cream/60">Horarios exactos por confirmar</p>
@@ -282,8 +284,8 @@
     </section>
 
     <!-- ALOJAMIENTO RECOMENDADO -->
-    <section id="hoteles" class="py-24 md:py-32 px-6">
-        <div class="max-w-6xl mx-auto reveal">
+    <section id="hoteles" class="py-24 md:py-32 px-6 max-w-6xl mx-auto">
+        <div class="reveal">
             <div class="text-center mb-16">
                 <div class="flex justify-center mb-6 text-olive">
                     <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1">
@@ -294,21 +296,19 @@
                 <h2 class="text-4xl md:text-5xl font-serif text-charcoal mb-6">Alojamiento Recomendado</h2>
                 <div class="bg-olive/10 border border-olive/20 p-6 max-w-2xl mx-auto rounded-xl">
                     <p class="text-charcoal text-sm font-light leading-relaxed">
-                        <strong class="text-olive">Los primeros cuatro hoteles de la lista están estratégicamente situados junto a la Plaza de Galicia</strong> (punto de salida de los autobuses). <br><br>
-                        <span class="text-xs uppercase tracking-widest font-medium text-olive-dark">Importante:</span> Todos los precios indicados a continuación son <strong>el total por las 2 noches</strong>.
+                        <strong class="text-olive font-medium">Los primeros cuatro hoteles de la lista están estratégicamente situados junto a la Plaza de Galicia</strong> (punto de salida de los autobuses). <br><br>
+                        <span class="text-xs uppercase tracking-widest font-semibold text-olive-dark">Importante:</span> Todos los precios indicados a continuación son <strong>el total por las 2 noches</strong>.
                     </p>
                 </div>
             </div>
 
-            <!-- Grid de Tarjetas Blancas para los 4 Hoteles Cercanos a la Plaza de Galicia -->
+            <!-- Grid de Tarjetas Blancas para Hoteles -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
                 
                 <!-- Hotel Compostela **** -->
                 <div class="bg-white p-8 rounded-xl border border-charcoal/10 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
                     <div>
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-xl font-serif text-charcoal group-hover:text-olive transition-colors">Hotel Compostela ****</h3>
-                        </div>
+                        <h3 class="text-xl font-serif text-charcoal group-hover:text-olive transition-colors mb-1">Hotel Compostela ****</h3>
                         <p class="text-xs text-olive font-medium uppercase tracking-widest mb-6">Total por 2 noches</p>
                         <ul class="text-sm font-light text-charcoal/80 space-y-3 mb-8">
                             <li class="flex justify-between border-b border-cream pb-2">
@@ -321,7 +321,7 @@
                             </li>
                         </ul>
                     </div>
-                    <a href="https://www.hotelcompostela.es/" target="_blank" class="text-xs text-olive uppercase tracking-widest font-medium border-b border-olive/30 hover:border-olive self-start pb-1 transition-all">
+                    <a href="https://www.hotelcompostela.es/" target="_blank" rel="noopener noreferrer" class="text-xs text-olive uppercase tracking-widest font-medium border-b border-olive/30 hover:border-olive self-start pb-1 transition-all">
                         Web oficial &rarr;
                     </a>
                 </div>
@@ -329,9 +329,7 @@
                 <!-- Hotel Gelmírez *** -->
                 <div class="bg-white p-8 rounded-xl border border-charcoal/10 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
                     <div>
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-xl font-serif text-charcoal group-hover:text-olive transition-colors">Hotel Gelmírez ***</h3>
-                        </div>
+                        <h3 class="text-xl font-serif text-charcoal group-hover:text-olive transition-colors mb-1">Hotel Gelmírez ***</h3>
                         <p class="text-xs text-olive font-medium uppercase tracking-widest mb-6">Total por 2 noches</p>
                         <ul class="text-sm font-light text-charcoal/80 space-y-3 mb-8">
                             <li class="flex justify-between border-b border-cream pb-2">
@@ -340,7 +338,7 @@
                             </li>
                         </ul>
                     </div>
-                    <a href="https://www.hotelgelmirez.com/" target="_blank" class="text-xs text-olive uppercase tracking-widest font-medium border-b border-olive/30 hover:border-olive self-start pb-1 transition-all">
+                    <a href="https://www.hotelgelmirez.com/" target="_blank" rel="noopener noreferrer" class="text-xs text-olive uppercase tracking-widest font-medium border-b border-olive/30 hover:border-olive self-start pb-1 transition-all">
                         Web oficial &rarr;
                     </a>
                 </div>
@@ -348,9 +346,7 @@
                 <!-- Hotel Universal ** -->
                 <div class="bg-white p-8 rounded-xl border border-charcoal/10 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
                     <div>
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-xl font-serif text-charcoal group-hover:text-olive transition-colors">Hotel Universal **</h3>
-                        </div>
+                        <h3 class="text-xl font-serif text-charcoal group-hover:text-olive transition-colors mb-1">Hotel Universal **</h3>
                         <p class="text-xs text-olive font-medium uppercase tracking-widest mb-6">Total por 2 noches</p>
                         <ul class="text-sm font-light text-charcoal/80 space-y-3 mb-8">
                             <li class="flex justify-between border-b border-cream pb-2">
@@ -363,7 +359,7 @@
                             </li>
                         </ul>
                     </div>
-                    <a href="https://www.hoteluniversalsantiago.com/" target="_blank" class="text-xs text-olive uppercase tracking-widest font-medium border-b border-olive/30 hover:border-olive self-start pb-1 transition-all">
+                    <a href="https://www.hoteluniversalsantiago.com/" target="_blank" rel="noopener noreferrer" class="text-xs text-olive uppercase tracking-widest font-medium border-b border-olive/30 hover:border-olive self-start pb-1 transition-all">
                         Web oficial &rarr;
                     </a>
                 </div>
@@ -371,9 +367,7 @@
                 <!-- Nest Style Santiago -->
                 <div class="bg-white p-8 rounded-xl border border-charcoal/10 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
                     <div>
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-xl font-serif text-charcoal group-hover:text-olive transition-colors">Nest Style Santiago</h3>
-                        </div>
+                        <h3 class="text-xl font-serif text-charcoal group-hover:text-olive transition-colors mb-1">Nest Style Santiago</h3>
                         <p class="text-xs text-olive font-medium uppercase tracking-widest mb-6">Total por 2 noches</p>
                         <ul class="text-sm font-light text-charcoal/80 space-y-3 mb-8">
                             <li class="flex justify-between border-b border-cream pb-2">
@@ -382,14 +376,14 @@
                             </li>
                         </ul>
                     </div>
-                    <a href="https://neststylehotels.com/alojamiento/nest-style-santiago/" target="_blank" class="text-xs text-olive uppercase tracking-widest font-medium border-b border-olive/30 hover:border-olive self-start pb-1 transition-all">
+                    <a href="https://neststylehotels.com/alojamiento/nest-style-santiago/" target="_blank" rel="noopener noreferrer" class="text-xs text-olive uppercase tracking-widest font-medium border-b border-olive/30 hover:border-olive self-start pb-1 transition-all">
                         Web oficial &rarr;
                     </a>
                 </div>
 
             </div>
 
-            <!-- Destacado Especial: Eurostars Gran Hotel Santiago **** -->
+            <!-- Recuadro Destacado: Eurostars Gran Hotel Santiago **** -->
             <div class="bg-cream-light p-8 md:p-12 shadow-md rounded-2xl border-2 border-olive/30 flex flex-col md:flex-row justify-between items-center gap-8 relative overflow-hidden">
                 <div class="flex-1">
                     <span class="inline-block bg-olive/10 text-olive text-[10px] uppercase tracking-[0.2em] font-semibold px-3 py-1 rounded-full mb-3">
@@ -399,15 +393,22 @@
                     <p class="text-charcoal/80 text-sm font-light leading-relaxed mb-6">
                         Ubicado a unos 15 minutos caminando de la Plaza de Galicia. Reservando a través de su web oficial tenéis un <strong class="text-olive font-medium">15% de descuento</strong> en cualquier habitación aplicando nuestro código de promoción exclusivo.
                     </p>
-                    <a href="https://www.eurostarshotels.com/eurostars-gran-hotel-santiago.html" target="_blank" class="inline-block border border-olive text-olive px-6 py-2.5 text-xs uppercase tracking-widest hover:bg-olive hover:text-white transition-all rounded-sm font-medium">
+                    <a href="https://www.eurostarshotels.com/eurostars-gran-hotel-santiago.html" target="_blank" rel="noopener noreferrer" class="inline-block border border-olive text-olive px-6 py-2.5 text-xs uppercase tracking-widest hover:bg-olive hover:text-white transition-all rounded-sm font-medium">
                         Visitar web oficial &rarr;
                     </a>
                 </div>
 
-                <!-- Recuadro Promocional Destacado -->
-                <div class="bg-olive text-cream p-6 text-center shadow-lg min-w-[260px] rounded-xl border border-olive-dark">
+                <!-- Recuadro Promocional Interactivo para Copia Fácil -->
+                <div class="bg-olive text-cream p-6 text-center shadow-lg min-w-[260px] rounded-xl border border-olive-dark flex flex-col items-center">
                     <p class="text-[11px] uppercase tracking-[0.2em] text-cream/70 mb-2 font-medium">Código Promocional</p>
-                    <p class="text-3xl font-serif text-white tracking-wider mb-4 font-semibold">BODASEP27</p>
+                    
+                    <!-- Código interactivo y copiable al tocar -->
+                    <div onclick="copyPromo()" title="Haz clic para copiar" class="w-full bg-cream/10 border-2 border-dashed border-cream/40 rounded-lg py-2.5 px-4 mb-4 select-all cursor-pointer hover:bg-cream/20 hover:border-cream transition-all group">
+                        <span class="text-2xl font-serif text-white tracking-wider font-semibold group-hover:scale-105 inline-block transition-transform">
+                            BODASEP27
+                        </span>
+                    </div>
+
                     <button onclick="copyPromo()" id="copyBtn" class="w-full bg-cream text-charcoal py-2.5 px-4 text-xs uppercase tracking-widest font-semibold hover:bg-white hover:scale-[1.02] active:scale-[0.98] transition-all rounded-sm shadow-sm">
                         Copiar Código
                     </button>
@@ -425,13 +426,14 @@
                 Nos haría muchísima ilusión compartir este día con vosotros. Por favor, confirmad vuestra asistencia antes del 1 de agosto de 2027.
             </p>
 
-            <!-- Botón destacado centrado enlazado al formulario -->
+            <!-- Botón destacado apuntando directamente al formulario id="rsvp-form" -->
             <div class="mb-12">
                 <a href="#rsvp-form" class="inline-block bg-cream text-charcoal px-10 py-4 text-xs uppercase tracking-[0.2em] font-medium rounded-sm shadow-lg hover:bg-olive hover:text-white hover:scale-105 hover:shadow-xl transition-all duration-300 border border-cream hover:border-olive">
                     Confirmar Asistencia
                 </a>
             </div>
 
+            <!-- Formulario con ID único de destino -->
             <form id="rsvp-form" onsubmit="event.preventDefault(); submitRSVP();" class="flex flex-col gap-6 text-left border-t border-cream/10 pt-10">
                 <input type="text" placeholder="Nombre y Apellidos" required class="w-full bg-transparent border-b border-cream/30 py-3 text-sm focus:outline-none focus:border-white transition-colors placeholder-cream/50">
                 
@@ -456,14 +458,16 @@
             </form>
 
             <div class="mt-24 pt-12 border-t border-cream/10">
-                <p class="font-serif text-3xl mb-2 italic">Ana & David</p>
-                <p class="text-xs font-sans uppercase tracking-[0.3em] text-cream/50">11 . 09 . 2027</p>
+                <p class="font-serif text-3xl mb-2 italic">Ana &amp; David</p>
+                <p class="text-xs font-sans uppercase tracking-[0.3em] text-cream/50 whitespace-nowrap">
+                    11 . 09 . 2027
+                </p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Efecto scroll en Navbar
+        // Transición de opacidad/color en Navbar al hacer scroll
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
             const logo = document.getElementById('nav-logo');
@@ -471,19 +475,19 @@
             const btn = document.getElementById('nav-btn');
             
             if (window.scrollY > 50) {
-                nav.classList.add('bg-cream/95', 'backdrop-blur-sm', 'shadow-sm', 'py-4');
-                nav.classList.remove('py-6');
+                nav.classList.add('bg-cream/95', 'backdrop-blur-sm', 'shadow-sm', 'py-3');
+                nav.classList.remove('py-5');
                 logo.classList.replace('text-white', 'text-charcoal');
-                links.classList.replace('text-white', 'text-charcoal');
+                if(links) links.classList.replace('text-white', 'text-charcoal');
                 btn.classList.replace('border-white', 'border-olive');
                 btn.classList.replace('text-white', 'text-olive');
                 btn.classList.replace('hover:bg-white', 'hover:bg-olive');
                 btn.classList.replace('hover:text-olive', 'hover:text-white');
             } else {
-                nav.classList.remove('bg-cream/95', 'backdrop-blur-sm', 'shadow-sm', 'py-4');
-                nav.classList.add('py-6');
+                nav.classList.remove('bg-cream/95', 'backdrop-blur-sm', 'shadow-sm', 'py-3');
+                nav.classList.add('py-5');
                 logo.classList.replace('text-charcoal', 'text-white');
-                links.classList.replace('text-charcoal', 'text-white');
+                if(links) links.classList.replace('text-charcoal', 'text-white');
                 btn.classList.replace('border-olive', 'border-white');
                 btn.classList.replace('text-olive', 'text-white');
                 btn.classList.replace('hover:bg-olive', 'hover:bg-white');
@@ -491,39 +495,48 @@
             }
         });
 
-        // Botón copiar Promo Code
+        // Copia interactiva del código de descuento promocional
         function copyPromo() {
             const code = "BODASEP27";
-            const temp = document.createElement('input');
-            temp.value = code;
-            document.body.appendChild(temp);
-            temp.select();
-            document.execCommand('copy');
-            document.body.removeChild(temp);
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(code);
+            } else {
+                const temp = document.createElement('input');
+                temp.value = code;
+                document.body.appendChild(temp);
+                temp.select();
+                document.execCommand('copy');
+                document.body.removeChild(temp);
+            }
 
             const btn = document.getElementById('copyBtn');
-            btn.innerText = "¡Copiado!";
+            const originalText = btn.innerText;
+            btn.innerText = "¡Código Copiado!";
+            btn.classList.replace('bg-cream', 'bg-white');
+            
             setTimeout(() => {
-                btn.innerText = "Copiar Código";
+                btn.innerText = originalText;
+                btn.classList.replace('bg-white', 'bg-cream');
             }, 2500);
         }
 
-        // Botón RSVP
+        // Envío simulado del formulario RSVP
         function submitRSVP() {
             const btn = document.getElementById('rsvpBtn');
             const original = btn.innerText;
-            btn.innerText = "¡Confirmación enviada!";
+            btn.innerText = "¡Confirmación Enviada!";
             btn.classList.replace('bg-white', 'bg-olive');
             btn.classList.replace('text-charcoal', 'text-white');
+
             setTimeout(() => {
                 btn.innerText = original;
                 btn.classList.replace('bg-olive', 'bg-white');
                 btn.classList.replace('text-white', 'text-charcoal');
-                document.querySelector('form').reset();
+                document.getElementById('rsvp-form').reset();
             }, 3000);
         }
 
-        // Animaciones Revelar (Intersection Observer)
+        // Animaciones de revelado suave al hacer scroll
         document.addEventListener("DOMContentLoaded", function () {
             const observer = new IntersectionObserver((entries, obs) => {
                 entries.forEach(entry => {
@@ -542,7 +555,7 @@
                 document.querySelectorAll('.reveal:not(.active)').forEach(el => {
                     el.classList.add('active');
                 });
-            }, 1000);
+            }, 800);
         });
     </script>
 </body>
