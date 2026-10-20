@@ -16,17 +16,22 @@
             theme: {
                 extend: {
                     colors: {
+                        sage: {
+                            light: '#EEF1EC',
+                            DEFAULT: '#E1E5DF', // Verde salvia empolvado / oliva suave (Fondo global)
+                            dark: '#C2C9BF',
+                        },
                         olive: {
                             light: '#728269',
                             DEFAULT: '#4A5D4E', // Verde oliva principal
                             dark: '#2A362D',
                         },
                         cream: {
-                            DEFAULT: '#F7F4EF', // Tono neutro cálido suave (Lino/Marfil)
+                            DEFAULT: '#F7F4EF', // Tono neutro cálido
                             paper: '#FAF8F5',
-                            light: '#FFFFFF',   // Blanco puro para efecto tarjeta
+                            light: '#FFFFFF',   // Blanco puro para tarjetas
                         },
-                        charcoal: '#2C2A28'     // Carbón/Piedra oscuro para alto contraste
+                        charcoal: '#2C2A28'     // Piedra oscuro / Carbón para alto contraste
                     },
                     fontFamily: {
                         serif: ['"Playfair Display"', 'serif'],
@@ -39,7 +44,7 @@
 
     <style>
         body {
-            background-color: #F7F4EF;
+            background-color: #E1E5DF;
             color: #2C2A28;
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
@@ -54,7 +59,7 @@
             height: 100vh;
             pointer-events: none;
             z-index: 50;
-            opacity: 0.035;
+            opacity: 0.03;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
 
@@ -72,16 +77,16 @@
         /* Estilo fotos impresas / papelería física */
         .photo-print {
             border: 8px solid #FFFFFF;
-            box-shadow: 0 12px 32px -8px rgba(44, 42, 40, 0.12);
+            box-shadow: 0 16px 36px -8px rgba(42, 54, 45, 0.18);
         }
 
         /* Scrollbar personalizada */
         ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #F7F4EF; }
+        ::-webkit-scrollbar-track { background: #E1E5DF; }
         ::-webkit-scrollbar-thumb { background: #4A5D4E; border-radius: 3px; }
     </style>
 </head>
-<body class="font-sans selection:bg-olive selection:text-white bg-cream">
+<body class="font-sans selection:bg-olive selection:text-white bg-sage">
 
     <!-- Textura analógica global -->
     <div class="bg-grain"></div>
@@ -112,7 +117,7 @@
     <!-- PORTADA HERO: Estilo Inmersivo Pantalla Completa con Gradiente Oscuro -->
     <header class="relative min-h-screen h-screen w-full flex flex-col items-center justify-center bg-cover bg-center overflow-hidden" style="background-image: url('36eb7cba-a6dc-4fa6-80b8-b8c29400c547.jpeg');">
         <!-- Overlay con degradado: asegura contraste 100% legible para texto en blanco -->
-        <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/45 to-black/80 z-0"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/35 via-black/45 to-black/85 z-0"></div>
 
         <!-- Contenido centralizado -->
         <div class="relative z-10 text-center text-white px-6 mt-12 reveal active">
@@ -137,13 +142,13 @@
         </div>
     </header>
 
-    <!-- HISTORIA: Grid Mosaico Mobile-First + Tarjeta de Papelería -->
+    <!-- HISTORIA: Grid Mosaico Mobile-First + Tarjeta de Papelería sobre Salvia -->
     <section id="historia" class="py-24 md:py-32 px-6 max-w-7xl mx-auto">
         <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
             
-            <!-- Tarjeta de Texto Estilo Papelería Física (Blanco Puro sobre Fondo Lino) -->
-            <div class="w-full lg:w-5/12 reveal bg-white p-8 md:p-12 rounded-2xl shadow-lg border border-charcoal/5">
-                <p class="text-xs tracking-[0.2em] text-olive font-medium uppercase mb-4">Nuestra Historia</p>
+            <!-- Tarjeta de Texto Estilo Papelería Física (Blanco Puro destacando sobre Verde Salvia) -->
+            <div class="w-full lg:w-5/12 reveal bg-white p-8 md:p-12 rounded-2xl shadow-xl border border-olive/10">
+                <p class="text-xs tracking-[0.2em] text-olive font-semibold uppercase mb-4">Nuestra Historia</p>
                 <h2 class="text-3xl md:text-4xl font-serif text-charcoal leading-tight mb-6">
                     Momentos que <br><span class="italic text-olive">quedan para siempre</span>
                 </h2>
@@ -194,17 +199,17 @@
         </div>
     </section>
 
-    <!-- LOS EVENTOS: Tarjetas Blancas sobre Fondo Lino Neutro -->
+    <!-- LOS EVENTOS: Tarjetas Blancas con Alta Sombra sobre Verde Salvia -->
     <section id="eventos" class="py-24 md:py-32 px-6 max-w-6xl mx-auto">
         <div class="text-center mb-20 reveal">
-            <p class="text-xs tracking-[0.2em] text-olive font-medium uppercase mb-4">El Fin de Semana</p>
+            <p class="text-xs tracking-[0.2em] text-olive-dark font-bold uppercase mb-4">El Fin de Semana</p>
             <h2 class="text-4xl md:text-5xl font-serif text-charcoal">Lugares de Celebración</h2>
         </div>
 
-        <div class="space-y-20">
+        <div class="space-y-16">
             
             <!-- 1. PREBODA -->
-            <div class="bg-white p-8 md:p-12 rounded-2xl shadow-md border border-charcoal/5 flex flex-col md:flex-row items-center gap-10 reveal hover:shadow-lg transition-all duration-300">
+            <div class="bg-white p-8 md:p-12 rounded-2xl shadow-xl border border-olive/10 flex flex-col md:flex-row items-center gap-10 reveal hover:shadow-2xl transition-all duration-300">
                 <div class="w-full md:w-1/2 text-center md:text-right order-2 md:order-1">
                     <div class="flex justify-center md:justify-end mb-4 text-olive">
                         <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 5H3l8 9v6H7v2h10v-2h-4v-6l8-9zM5.83 7h12.34l-1.78 2H7.61L5.83 7z"></path></svg>
@@ -215,13 +220,13 @@
                         Para empezar a calentar motores, nos encantaría veros la tarde anterior. Una ocasión perfecta para tomar algo, charlar y conocernos entre todos antes del gran día. El lugar será en Santiago de Compostela (ubicación exacta por definir).
                     </p>
                 </div>
-                <div class="w-full md:w-1/2 order-1 md:order-2 bg-cream p-10 text-center rounded-xl border border-charcoal/5">
-                    <p class="font-serif text-2xl text-olive/80 italic">Santiago de Compostela<br><span class="text-xs font-sans not-italic uppercase tracking-widest mt-4 block text-charcoal/60">Ubicación pendiente</span></p>
+                <div class="w-full md:w-1/2 order-1 md:order-2 bg-sage/30 p-10 text-center rounded-xl border border-olive/10">
+                    <p class="font-serif text-2xl text-olive-dark italic">Santiago de Compostela<br><span class="text-xs font-sans not-italic uppercase tracking-widest mt-4 block text-charcoal/70 font-medium">Ubicación pendiente</span></p>
                 </div>
             </div>
 
             <!-- 2. CEREMONIA -->
-            <div class="bg-white p-8 md:p-12 rounded-2xl shadow-md border border-charcoal/5 flex flex-col md:flex-row items-center gap-10 reveal hover:shadow-lg transition-all duration-300">
+            <div class="bg-white p-8 md:p-12 rounded-2xl shadow-xl border border-olive/10 flex flex-col md:flex-row items-center gap-10 reveal hover:shadow-2xl transition-all duration-300">
                 <div class="w-full md:w-1/2">
                     <div class="aspect-[4/3] photo-print rounded-xl overflow-hidden">
                         <img src="IMG_0967.jpeg" alt="Parroquia de San Xulián de Bastavales" loading="lazy" class="w-full h-full object-cover" />
@@ -241,7 +246,7 @@
             </div>
 
             <!-- 3. BANQUETE -->
-            <div class="bg-white p-8 md:p-12 rounded-2xl shadow-md border border-charcoal/5 flex flex-col md:flex-row items-center gap-10 reveal hover:shadow-lg transition-all duration-300">
+            <div class="bg-white p-8 md:p-12 rounded-2xl shadow-xl border border-olive/10 flex flex-col md:flex-row items-center gap-10 reveal hover:shadow-2xl transition-all duration-300">
                 <div class="w-full md:w-1/2 text-center md:text-right order-2 md:order-1">
                     <div class="flex justify-center md:justify-end mb-4 text-olive">
                         <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
@@ -263,7 +268,7 @@
         </div>
     </section>
 
-    <!-- SERVICIO DE AUTOBUSES -->
+    <!-- SERVICIO DE AUTOBUSES: Bloque Verde Oliva Oscuro -->
     <section id="autobuses" class="py-24 bg-olive text-cream text-center px-6 border-y border-olive-light/30 shadow-inner">
         <div class="max-w-3xl mx-auto reveal">
             <div class="flex justify-center mb-6">
@@ -276,7 +281,7 @@
                 Para que podáis disfrutar al máximo sin preocuparos de conducir, pondremos a vuestra disposición un servicio de autobuses. Realizará el trayecto desde Santiago hasta la iglesia, de ahí al pazo, y ofrecerá varios horarios de vuelta de madrugada.
             </p>
             
-            <div class="inline-block border border-cream/30 px-10 md:px-16 py-8 bg-olive-dark/30 backdrop-blur-sm rounded-xl shadow-lg">
+            <div class="inline-block border border-cream/30 px-10 md:px-16 py-8 bg-olive-dark/40 backdrop-blur-sm rounded-xl shadow-xl">
                 <p class="text-xs uppercase tracking-[0.2em] text-cream/80 mb-2 font-medium">Punto de salida oficial</p>
                 <p class="font-serif text-2xl md:text-3xl mb-4 text-white">Plaza de Galicia, Santiago</p>
                 <p class="text-xs font-light uppercase tracking-widest border-t border-cream/20 pt-4 mt-4 text-cream/70">Horarios exactos por confirmar</p>
@@ -295,7 +300,7 @@
                     </svg>
                 </div>
                 <h2 class="text-4xl md:text-5xl font-serif text-charcoal mb-6">Alojamiento Recomendado</h2>
-                <div class="bg-white border border-olive/20 p-8 max-w-2xl mx-auto rounded-2xl shadow-md">
+                <div class="bg-white border border-olive/15 p-8 max-w-2xl mx-auto rounded-2xl shadow-xl">
                     <p class="text-charcoal text-sm font-light leading-relaxed">
                         <strong class="text-olive font-semibold">Los primeros cuatro hoteles de la lista están estratégicamente situados junto a la Plaza de Galicia</strong> (punto de salida de los autobuses). <br><br>
                         <span class="text-xs uppercase tracking-widest font-semibold text-olive-dark">Importante:</span> Todos los precios indicados a continuación son <strong>el total por las 2 noches</strong>.
@@ -303,20 +308,20 @@
                 </div>
             </div>
 
-            <!-- Grid de Tarjetas Blancas (Efecto Papelería con Sombra Suave) -->
+            <!-- Grid de Tarjetas Blancas (Efecto Papelería sobre Fondo Salvia) -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
                 
                 <!-- Hotel Compostela **** -->
-                <div class="bg-white p-8 rounded-2xl border border-charcoal/10 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+                <div class="bg-white p-8 rounded-2xl border border-olive/10 shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group">
                     <div>
                         <h3 class="text-xl font-serif text-charcoal group-hover:text-olive transition-colors mb-1">Hotel Compostela ****</h3>
                         <p class="text-xs text-olive font-semibold uppercase tracking-widest mb-6">Total por 2 noches</p>
                         <ul class="text-sm font-light text-charcoal/80 space-y-3 mb-8">
-                            <li class="flex justify-between border-b border-cream/80 pb-2">
+                            <li class="flex justify-between border-b border-sage/60 pb-2">
                                 <span>4 Hab. dobles (con desayuno)</span>
                                 <span class="font-medium text-charcoal">487€</span>
                             </li>
-                            <li class="flex justify-between border-b border-cream/80 pb-2">
+                            <li class="flex justify-between border-b border-sage/60 pb-2">
                                 <span>2 Hab. triples (con desayuno)</span>
                                 <span class="font-medium text-charcoal">567€</span>
                             </li>
@@ -328,12 +333,12 @@
                 </div>
 
                 <!-- Hotel Gelmírez *** -->
-                <div class="bg-white p-8 rounded-2xl border border-charcoal/10 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+                <div class="bg-white p-8 rounded-2xl border border-olive/10 shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group">
                     <div>
                         <h3 class="text-xl font-serif text-charcoal group-hover:text-olive transition-colors mb-1">Hotel Gelmírez ***</h3>
                         <p class="text-xs text-olive font-semibold uppercase tracking-widest mb-6">Total por 2 noches</p>
                         <ul class="text-sm font-light text-charcoal/80 space-y-3 mb-8">
-                            <li class="flex justify-between border-b border-cream/80 pb-2">
+                            <li class="flex justify-between border-b border-sage/60 pb-2">
                                 <span>5 Hab. dobles (con desayuno)</span>
                                 <span class="font-medium text-charcoal">414€</span>
                             </li>
@@ -345,16 +350,16 @@
                 </div>
 
                 <!-- Hotel Universal ** -->
-                <div class="bg-white p-8 rounded-2xl border border-charcoal/10 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+                <div class="bg-white p-8 rounded-2xl border border-olive/10 shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group">
                     <div>
                         <h3 class="text-xl font-serif text-charcoal group-hover:text-olive transition-colors mb-1">Hotel Universal **</h3>
                         <p class="text-xs text-olive font-semibold uppercase tracking-widest mb-6">Total por 2 noches</p>
                         <ul class="text-sm font-light text-charcoal/80 space-y-3 mb-8">
-                            <li class="flex justify-between border-b border-cream/80 pb-2">
+                            <li class="flex justify-between border-b border-sage/60 pb-2">
                                 <span>2 Hab. dobles</span>
                                 <span class="font-medium text-charcoal">380€</span>
                             </li>
-                            <li class="flex justify-between border-b border-cream/80 pb-2">
+                            <li class="flex justify-between border-b border-sage/60 pb-2">
                                 <span>2 Hab. triples</span>
                                 <span class="font-medium text-charcoal">440€</span>
                             </li>
@@ -366,12 +371,12 @@
                 </div>
 
                 <!-- Nest Style Santiago -->
-                <div class="bg-white p-8 rounded-2xl border border-charcoal/10 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+                <div class="bg-white p-8 rounded-2xl border border-olive/10 shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group">
                     <div>
                         <h3 class="text-xl font-serif text-charcoal group-hover:text-olive transition-colors mb-1">Nest Style Santiago</h3>
                         <p class="text-xs text-olive font-semibold uppercase tracking-widest mb-6">Total por 2 noches</p>
                         <ul class="text-sm font-light text-charcoal/80 space-y-3 mb-8">
-                            <li class="flex justify-between border-b border-cream/80 pb-2">
+                            <li class="flex justify-between border-b border-sage/60 pb-2">
                                 <span>5 Hab. dobles (con desayuno)</span>
                                 <span class="font-medium text-charcoal">442€</span>
                             </li>
@@ -385,7 +390,7 @@
             </div>
 
             <!-- Recuadro Destacado: Eurostars Gran Hotel Santiago **** -->
-            <div class="bg-white p-8 md:p-12 shadow-lg rounded-2xl border-2 border-olive/30 flex flex-col md:flex-row justify-between items-center gap-8 relative overflow-hidden">
+            <div class="bg-white p-8 md:p-12 shadow-2xl rounded-2xl border-2 border-olive/30 flex flex-col md:flex-row justify-between items-center gap-8 relative overflow-hidden">
                 <div class="flex-1">
                     <span class="inline-block bg-olive/10 text-olive text-[10px] uppercase tracking-[0.2em] font-semibold px-3 py-1 rounded-full mb-3">
                         Descuento Especial Boda
@@ -476,7 +481,7 @@
             const btn = document.getElementById('nav-btn');
             
             if (window.scrollY > 50) {
-                nav.classList.add('bg-[#F7F4EF]/95', 'backdrop-blur-sm', 'shadow-sm', 'py-3');
+                nav.classList.add('bg-[#E1E5DF]/95', 'backdrop-blur-sm', 'shadow-sm', 'py-3');
                 nav.classList.remove('py-5');
                 logo.classList.replace('text-white', 'text-charcoal');
                 if(links) links.classList.replace('text-white', 'text-charcoal');
@@ -485,7 +490,7 @@
                 btn.classList.replace('hover:bg-white', 'hover:bg-olive');
                 btn.classList.replace('hover:text-olive', 'hover:text-white');
             } else {
-                nav.classList.remove('bg-[#F7F4EF]/95', 'backdrop-blur-sm', 'shadow-sm', 'py-3');
+                nav.classList.remove('bg-[#E1E5DF]/95', 'backdrop-blur-sm', 'shadow-sm', 'py-3');
                 nav.classList.add('py-5');
                 logo.classList.replace('text-charcoal', 'text-white');
                 if(links) links.classList.replace('text-charcoal', 'text-white');
