@@ -137,7 +137,7 @@
         <!-- Flecha indicadora de scroll -->
         <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
             <a href="#historia" class="text-white/70 hover:text-white transition-colors" aria-label="Ir a Nuestra Historia">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
             </a>
         </div>
     </header>
@@ -211,8 +211,11 @@
             <!-- 1. PREBODA -->
             <div class="bg-white p-8 md:p-12 rounded-2xl shadow-xl border border-olive/10 flex flex-col md:flex-row items-center gap-10 reveal hover:shadow-2xl transition-all duration-300">
                 <div class="w-full md:w-1/2 text-center md:text-right order-2 md:order-1">
+                    <!-- Icono Copas de Brindis / Cóctel (SVG Trazo Fino 1.5) -->
                     <div class="flex justify-center md:justify-end mb-4 text-olive">
-                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 5H3l8 9v6H7v2h10v-2h-4v-6l8-9zM5.83 7h12.34l-1.78 2H7.61L5.83 7z"></path></svg>
+                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8 22h8m-4-7v7M7 3h10l-1.5 7.5a4.5 4.5 0 01-8.8 0L7 3z"></path>
+                        </svg>
                     </div>
                     <p class="text-olive text-xs tracking-[0.15em] uppercase font-semibold mb-2">Viernes, 10 de Septiembre</p>
                     <h3 class="text-3xl font-serif text-charcoal mb-4">Preboda</h3>
@@ -233,30 +236,50 @@
                     </div>
                 </div>
                 <div class="w-full md:w-1/2 text-center md:text-left">
+                    <!-- Icono Iglesia / Campanario (SVG Trazo Fino 1.5) -->
                     <div class="flex justify-center md:justify-start mb-4 text-olive">
-                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.2"><circle cx="8" cy="12" r="5"></circle><circle cx="16" cy="12" r="5"></circle></svg>
+                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 2v3m0 0H9.5m2.5 0h2.5M12 5L4 11v10a1 1 0 001 1h14a1 1 0 001-1V11l-8-6zM12 14v4m-2-2h4"></path>
+                        </svg>
                     </div>
                     <p class="text-olive text-xs tracking-[0.15em] uppercase font-semibold mb-2">Sábado, 11 de Septiembre — Por la mañana</p>
                     <h3 class="text-3xl font-serif text-charcoal mb-4">La Ceremonia</h3>
                     <p class="text-charcoal/80 font-light text-sm leading-relaxed max-w-md mx-auto md:mx-0 mb-6">
                         Daremos el "Sí, quiero" en la hermosa e histórica Parroquia de San Xulián de Bastavales. Un entorno lleno de tradición y naturaleza para formalizar nuestra unión.
                     </p>
-                    <a href="https://maps.google.com/?q=San+Xulian+de+Bastavales" target="_blank" rel="noopener noreferrer" class="text-olive hover:text-charcoal text-xs uppercase tracking-widest border-b border-olive/50 pb-1 font-semibold transition-colors">Ver en Google Maps &rarr;</a>
+                    <!-- Enlace a Google Maps con Chincheta Map Pin (SVG) -->
+                    <a href="https://maps.google.com/?q=San+Xulian+de+Bastavales" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-olive hover:text-charcoal text-xs uppercase tracking-widest border-b border-olive/50 pb-1 font-semibold transition-colors">
+                        <svg class="w-4 h-4 text-olive shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"></path>
+                        </svg>
+                        <span>Ver en Google Maps &rarr;</span>
+                    </a>
                 </div>
             </div>
 
             <!-- 3. BANQUETE -->
             <div class="bg-white p-8 md:p-12 rounded-2xl shadow-xl border border-olive/10 flex flex-col md:flex-row items-center gap-10 reveal hover:shadow-2xl transition-all duration-300">
                 <div class="w-full md:w-1/2 text-center md:text-right order-2 md:order-1">
+                    <!-- Icono Finca / Pazo / Mansión (SVG Trazo Fino 1.5) -->
                     <div class="flex justify-center md:justify-end mb-4 text-olive">
-                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5m0 0v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4M9 7h1m-1 4h1m4-4h1m-1 4h1"></path>
+                        </svg>
                     </div>
                     <p class="text-olive text-xs tracking-[0.15em] uppercase font-semibold mb-2">Sábado, 11 de Septiembre — De día</p>
                     <h3 class="text-3xl font-serif text-charcoal mb-4">Banquete &amp; Fiesta</h3>
                     <p class="text-charcoal/80 font-light text-sm leading-relaxed max-w-md ml-auto mb-6">
                         Continuaremos la celebración en el espectacular Pazo de Vista Alegre. Disfrutaremos del aperitivo en sus jardines, seguido de una gran comida tradicional y barra libre para celebrar por todo lo alto.
                     </p>
-                    <a href="https://maps.google.com/?q=Pazo+de+Vista+Alegre" target="_blank" rel="noopener noreferrer" class="text-olive hover:text-charcoal text-xs uppercase tracking-widest border-b border-olive/50 pb-1 font-semibold transition-colors">Ver en Google Maps &rarr;</a>
+                    <!-- Enlace a Google Maps con Chincheta Map Pin (SVG) -->
+                    <a href="https://maps.google.com/?q=Pazo+de+Vista+Alegre" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-olive hover:text-charcoal text-xs uppercase tracking-widest border-b border-olive/50 pb-1 font-semibold transition-colors">
+                        <svg class="w-4 h-4 text-olive shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"></path>
+                        </svg>
+                        <span>Ver en Google Maps &rarr;</span>
+                    </a>
                 </div>
                 <div class="w-full md:w-1/2 order-1 md:order-2">
                     <div class="aspect-[4/3] photo-print rounded-xl overflow-hidden">
@@ -271,9 +294,10 @@
     <!-- SERVICIO DE AUTOBUSES: Bloque Verde Oliva Oscuro -->
     <section id="autobuses" class="py-24 bg-olive text-cream text-center px-6 border-y border-olive-light/30 shadow-inner">
         <div class="max-w-3xl mx-auto reveal">
+            <!-- Icono Autobús de Trazo Fino Centrado (SVG 1.5) -->
             <div class="flex justify-center mb-6">
-                <svg class="w-12 h-12 text-cream/90" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 16c0 .88.39 1.67 1 2.22V20c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h8v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1.78c.61-.55 1-1.34 1-2.22V6c0-3.5-3.58-4-8-4s-8 .5-8 4v10zm3.5 1c-.83 0-1.5-.67-1.5-1.5S6.67 14 7.5 14s1.5.67 1.5 1.5S8.33 17 7.5 17zm9 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm1.5-6H6V6h12v5z"></path>
+                <svg class="w-12 h-12 text-cream/90" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 17h.01M16 17h.01M3 11h18M5 4h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2zm0 13v2a1 1 0 001 1h1a1 1 0 001-1v-2m8 0v2a1 1 0 001 1h1a1 1 0 001-1v-2"></path>
                 </svg>
             </div>
             <h2 class="text-3xl md:text-4xl font-serif mb-6 text-white">Servicio de Autobuses</h2>
@@ -282,7 +306,13 @@
             </p>
             
             <div class="inline-block border border-cream/30 px-10 md:px-16 py-8 bg-olive-dark/40 backdrop-blur-sm rounded-xl shadow-xl">
-                <p class="text-xs uppercase tracking-[0.2em] text-cream/80 mb-2 font-medium">Punto de salida oficial</p>
+                <p class="text-xs uppercase tracking-[0.2em] text-cream/80 mb-2 font-medium flex items-center justify-center gap-2">
+                    <svg class="w-4 h-4 text-cream/90" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"></path>
+                    </svg>
+                    Punto de salida oficial
+                </p>
                 <p class="font-serif text-2xl md:text-3xl mb-4 text-white">Plaza de Galicia, Santiago</p>
                 <p class="text-xs font-light uppercase tracking-widest border-t border-cream/20 pt-4 mt-4 text-cream/70">Horarios exactos por confirmar</p>
             </div>
@@ -293,10 +323,10 @@
     <section id="hoteles" class="py-24 md:py-32 px-6 max-w-6xl mx-auto">
         <div class="reveal">
             <div class="text-center mb-16">
+                <!-- Icono Hotel / Cama / Edificio (SVG Trazo Fino 1.5) -->
                 <div class="flex justify-center mb-4 text-olive">
-                    <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path>
-                        <line x1="8" y1="12" x2="16" y2="12"></line>
+                    <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21"></path>
                     </svg>
                 </div>
                 <h2 class="text-4xl md:text-5xl font-serif text-charcoal mb-6">Alojamiento Recomendado</h2>
@@ -404,9 +434,15 @@
                     </a>
                 </div>
 
-                <!-- Recuadro Promocional Interactivo para Copia Fácil -->
+                <!-- Recuadro Promocional Interactivo para Copia Fácil con Icono Tag/Ticket (SVG 1.5) -->
                 <div class="bg-olive text-cream p-6 text-center shadow-lg min-w-[260px] rounded-xl border border-olive-dark flex flex-col items-center">
-                    <p class="text-[11px] uppercase tracking-[0.2em] text-cream/80 mb-2 font-medium">Código Promocional</p>
+                    <div class="flex items-center justify-center gap-1.5 text-[11px] uppercase tracking-[0.2em] text-cream/80 mb-2 font-medium">
+                        <svg class="w-4 h-4 text-cream/90 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6z"></path>
+                        </svg>
+                        <span>Código Promocional</span>
+                    </div>
                     
                     <!-- Código interactivo -->
                     <div onclick="copyPromo()" title="Haz clic para copiar" class="w-full bg-cream/10 border-2 border-dashed border-cream/40 rounded-lg py-2.5 px-4 mb-4 select-all cursor-pointer hover:bg-cream/20 hover:border-cream transition-all group">
@@ -427,15 +463,25 @@
     <!-- RSVP FOOTER -->
     <footer id="rsvp" class="bg-charcoal text-cream py-24 px-6 text-center border-t border-cream/10">
         <div class="max-w-xl mx-auto reveal">
+            <!-- Icono Sobre / Carta de Invitación (SVG Trazo Fino 1.5) -->
+            <div class="flex justify-center mb-4 text-cream/80">
+                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"></path>
+                </svg>
+            </div>
+
             <h2 class="text-4xl md:text-5xl font-serif mb-6 text-white">Confirmar Asistencia</h2>
             <p class="font-light text-cream/70 text-sm mb-8">
                 Nos haría muchísima ilusión compartir este día con vosotros. Por favor, confirmad vuestra asistencia antes del 1 de agosto de 2027.
             </p>
 
-            <!-- Botón destacado apuntando directamente al formulario id="rsvp-form" -->
+            <!-- Botón destacado apuntando directamente al formulario id="rsvp-form" con icono -->
             <div class="mb-12">
-                <a href="#rsvp-form" class="inline-block bg-white text-charcoal px-10 py-4 text-xs uppercase tracking-[0.2em] font-semibold rounded-sm shadow-lg hover:bg-olive hover:text-white hover:scale-105 hover:shadow-xl transition-all duration-300 border border-white hover:border-olive">
-                    Confirmar Asistencia
+                <a href="#rsvp-form" class="inline-flex items-center gap-2 bg-white text-charcoal px-10 py-4 text-xs uppercase tracking-[0.2em] font-semibold rounded-sm shadow-lg hover:bg-olive hover:text-white hover:scale-105 hover:shadow-xl transition-all duration-300 border border-white hover:border-olive">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"></path>
+                    </svg>
+                    <span>Confirmar Asistencia</span>
                 </a>
             </div>
 
