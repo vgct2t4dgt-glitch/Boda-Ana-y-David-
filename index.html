@@ -42,6 +42,16 @@
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: #FFFFFF; }
         ::-webkit-scrollbar-thumb { background: #18181B; }
+
+        /* Estilos para ocultar el radio button real y mostrar solo la píldora */
+        .pill-radio input[type="radio"] {
+            display: none;
+        }
+        .pill-radio input[type="radio"]:checked + label {
+            background-color: #18181B; /* zinc-900 */
+            color: #FFFFFF;
+            border-color: #18181B;
+        }
     </style>
 </head>
 <body class="font-sans selection:bg-zinc-900 selection:text-white bg-white">
@@ -102,7 +112,7 @@
         
         <!-- Cabecera de Sección Minimalista -->
         <div class="mb-20 md:mb-32" data-aos="fade-up" data-aos-duration="1200">
-            <span class="text-[10px] tracking-[0.3em] text-zinc-400 uppercase font-medium block mb-3">01 / Relato</span>
+            <span class="text-[10px] tracking-[0.3em] text-zinc-400 uppercase font-medium block mb-3">SECCIÓN 01 — Relato</span>
             <h2 class="text-4xl md:text-6xl lg:text-7xl font-serif font-light text-zinc-900 leading-tight">
                 Nuestra <span class="italic font-normal">Historia</span>
             </h2>
@@ -114,9 +124,9 @@
             <!-- Fotografía Vertical Principal (Izquierda) -->
             <div class="lg:col-span-5 relative" data-aos="fade-up" data-aos-duration="1500">
                 <div class="aspect-[3/4] overflow-hidden bg-zinc-100">
-                    <img src="cd37910e-3054-4c19-aba2-c7a64ed6a9f4.jpeg" alt="Ana y David" loading="lazy" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000 scale-100 hover:scale-105" />
+                    <img src="cd37910e-3054-4c19-aba2-c7a64ed6a9f4.jpeg" alt="Ana y David" loading="lazy" class="w-full h-full object-cover transition-all duration-1000 scale-100 hover:scale-105" />
                 </div>
-                <p class="text-[10px] tracking-[0.2em] text-zinc-400 uppercase mt-4">Fig. 01 — Ana &amp; David</p>
+                <p class="text-[10px] tracking-[0.2em] text-zinc-400 uppercase mt-4">FIG. 01 — Ana &amp; David</p>
             </div>
 
             <!-- Columna de Texto Flotante + Galería Secundaria (Derecha) -->
@@ -136,12 +146,12 @@
                 <!-- Dos Fotos Secundarias Asimétricas en Paralelo -->
                 <div class="grid grid-cols-2 gap-6 md:gap-8">
                     <div class="aspect-[4/5] overflow-hidden bg-zinc-100" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300">
-                        <img src="e03ee37b-33d0-44b7-92b5-24f7016059b4.jpeg" alt="Detalle historia 1" loading="lazy" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000" />
-                        <p class="text-[10px] tracking-[0.2em] text-zinc-400 uppercase mt-3">Fig. 02 — Santiago</p>
+                        <img src="e03ee37b-33d0-44b7-92b5-24f7016059b4.jpeg" alt="Detalle historia 1" loading="lazy" class="w-full h-full object-cover transition-all duration-1000" />
+                        <p class="text-[10px] tracking-[0.2em] text-zinc-400 uppercase mt-3">FIG. 02 — Santiago</p>
                     </div>
                     <div class="aspect-[4/5] overflow-hidden bg-zinc-100 mt-8 md:mt-12" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="400">
-                        <img src="0bc43841-20d7-41fd-9195-4c4755079096.jpeg" alt="Detalle historia 2" loading="lazy" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000" />
-                        <p class="text-[10px] tracking-[0.2em] text-zinc-400 uppercase mt-3">Fig. 03 — Noche</p>
+                        <img src="0bc43841-20d7-41fd-9195-4c4755079096.jpeg" alt="Detalle historia 2" loading="lazy" class="w-full h-full object-cover transition-all duration-1000" />
+                        <p class="text-[10px] tracking-[0.2em] text-zinc-400 uppercase mt-3">FIG. 03 — Noche</p>
                     </div>
                 </div>
             </div>
@@ -166,7 +176,7 @@
     <!-- LOS EVENTOS: Editorial Flotante Sin Tarjetas ni Sombras -->
     <section id="eventos" class="py-32 md:py-48 px-6 max-w-7xl mx-auto">
         <div class="mb-24 md:mb-32" data-aos="fade-up" data-aos-duration="1200">
-            <span class="text-[10px] tracking-[0.3em] text-zinc-400 uppercase font-medium block mb-3">02 / Programa</span>
+            <span class="text-[10px] tracking-[0.3em] text-zinc-400 uppercase font-medium block mb-3">SECCIÓN 02 — Programa</span>
             <h2 class="text-4xl md:text-6xl lg:text-7xl font-serif font-light text-zinc-900">
                 El Fin de <span class="italic font-normal">Semana</span>
             </h2>
@@ -192,15 +202,15 @@
                 </div>
             </div>
 
-            <!-- 2. CEREMONIA -->
+            <!-- 2. CEREMONIA (Proporción vertical 3:5) -->
             <div class="border-t border-zinc-200 pt-16 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 items-center" data-aos="fade-up" data-aos-duration="1500">
-                <div class="md:col-span-5 order-2 md:order-1">
-                    <div class="aspect-[4/3] overflow-hidden bg-zinc-100">
-                        <img src="IMG_0967.jpeg" alt="Parroquia de San Xulián de Bastavales" loading="lazy" class="w-full h-full object-cover filter grayscale hover:grayscale-0 transition-all duration-1000" />
+                <div class="md:col-span-4 order-2 md:order-1">
+                    <div class="aspect-[3/5] overflow-hidden bg-zinc-100">
+                        <img src="IMG_0967.jpeg" alt="Parroquia de San Xulián de Bastavales" loading="lazy" class="w-full h-full object-cover transition-all duration-1000" />
                     </div>
-                    <p class="text-[10px] tracking-[0.2em] text-zinc-400 uppercase mt-3">San Xulián de Bastavales</p>
+                    <p class="text-[10px] tracking-[0.2em] text-zinc-400 uppercase mt-4">LUGAR 01 — San Xulián de Bastavales</p>
                 </div>
-                <div class="md:col-span-7 order-1 md:order-2">
+                <div class="md:col-span-8 order-1 md:order-2">
                     <span class="text-[11px] tracking-[0.25em] text-zinc-500 uppercase font-medium block mb-2">Sábado, 11 de Septiembre — Por la mañana</span>
                     <h3 class="text-3xl md:text-5xl font-serif font-light text-zinc-900 mb-6">La Ceremonia</h3>
                     <p class="text-zinc-600 font-light text-base leading-relaxed max-w-xl mb-8">
@@ -212,9 +222,9 @@
                 </div>
             </div>
 
-            <!-- 3. BANQUETE -->
+            <!-- 3. BANQUETE (Proporción panorámica 16:9) -->
             <div class="border-t border-zinc-200 pt-16 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 items-center" data-aos="fade-up" data-aos-duration="1500">
-                <div class="md:col-span-7">
+                <div class="md:col-span-5">
                     <span class="text-[11px] tracking-[0.25em] text-zinc-500 uppercase font-medium block mb-2">Sábado, 11 de Septiembre — De día</span>
                     <h3 class="text-3xl md:text-5xl font-serif font-light text-zinc-900 mb-6">Banquete &amp; Fiesta</h3>
                     <p class="text-zinc-600 font-light text-base leading-relaxed max-w-xl mb-8">
@@ -224,11 +234,11 @@
                         <span>Ver en Google Maps &rarr;</span>
                     </a>
                 </div>
-                <div class="md:col-span-5">
-                    <div class="aspect-[4/3] overflow-hidden bg-zinc-100">
-                        <img src="IMG_0966.jpeg" alt="Pazo de Vista Alegre" loading="lazy" class="w-full h-full object-cover filter grayscale hover:grayscale-0 transition-all duration-1000" />
+                <div class="md:col-span-7">
+                    <div class="aspect-video (16/9) overflow-hidden bg-zinc-100">
+                        <img src="IMG_0966.jpeg" alt="Pazo de Vista Alegre" loading="lazy" class="w-full h-full object-cover transition-all duration-1000" />
                     </div>
-                    <p class="text-[10px] tracking-[0.2em] text-zinc-400 uppercase mt-3">Pazo de Vista Alegre</p>
+                    <p class="text-[10px] tracking-[0.2em] text-zinc-400 uppercase mt-4">LUGAR 02 — Pazo de Vista Alegre</p>
                 </div>
             </div>
 
@@ -238,7 +248,7 @@
     <!-- SERVICIO DE AUTOBUSES: Bloque Tipográfico Limpio -->
     <section id="autobuses" class="py-32 bg-zinc-50 border-y border-zinc-200 px-6">
         <div class="max-w-4xl mx-auto text-center" data-aos="fade-up" data-aos-duration="1500">
-            <span class="text-[10px] tracking-[0.3em] text-zinc-400 uppercase font-medium block mb-4">03 / Logística</span>
+            <span class="text-[10px] tracking-[0.3em] text-zinc-400 uppercase font-medium block mb-4">SECCIÓN 03 — Logística</span>
             <h2 class="text-4xl md:text-6xl font-serif font-light text-zinc-900 mb-8">Servicio de Autobuses</h2>
             <p class="font-light text-zinc-600 text-base leading-relaxed max-w-2xl mx-auto mb-12">
                 Pondremos a vuestra disposición un servicio de autobuses para que disfrutéis al máximo. Realizará el trayecto desde Santiago hasta la iglesia, de ahí al pazo, y ofrecerá varios horarios de vuelta de madrugada.
@@ -255,7 +265,7 @@
     <!-- ALOJAMIENTO RECOMENDADO: Lista Editorial Minimalista -->
     <section id="hoteles" class="py-32 md:py-48 px-6 max-w-7xl mx-auto">
         <div class="mb-20 md:mb-28" data-aos="fade-up" data-aos-duration="1200">
-            <span class="text-[10px] tracking-[0.3em] text-zinc-400 uppercase font-medium block mb-3">04 / Estancia</span>
+            <span class="text-[10px] tracking-[0.3em] text-zinc-400 uppercase font-medium block mb-3">SECCIÓN 04 — Estancia</span>
             <h2 class="text-4xl md:text-6xl lg:text-7xl font-serif font-light text-zinc-900 mb-6">Alojamiento Recomendado</h2>
             <p class="text-zinc-600 text-sm font-light max-w-xl leading-relaxed">
                 Los cuatro primeros hoteles están situados junto a la Plaza de Galicia (salida de los autobuses). <strong class="text-zinc-900 font-normal">Todos los precios indicados corresponden al total por las 2 noches.</strong>
@@ -268,7 +278,7 @@
             <!-- Hotel Compostela **** -->
             <div class="border-b border-zinc-200 pb-10 flex flex-col justify-between" data-aos="fade-up" data-aos-duration="1500">
                 <div>
-                    <span class="text-[10px] tracking-[0.2em] text-zinc-400 uppercase font-medium block mb-1">Junto a Plaza de Galicia</span>
+                    <span class="text-[10px] tracking-[0.2em] text-zinc-400 uppercase font-medium block mb-1">HOTEL 01 — Plaza de Galicia</span>
                     <h3 class="text-2xl font-serif font-light text-zinc-900 mb-6">Hotel Compostela ****</h3>
                     <ul class="text-sm font-light text-zinc-600 space-y-3 mb-8">
                         <li class="flex justify-between border-b border-zinc-100 pb-2">
@@ -289,7 +299,7 @@
             <!-- Hotel Gelmírez *** -->
             <div class="border-b border-zinc-200 pb-10 flex flex-col justify-between" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">
                 <div>
-                    <span class="text-[10px] tracking-[0.2em] text-zinc-400 uppercase font-medium block mb-1">Junto a Plaza de Galicia</span>
+                    <span class="text-[10px] tracking-[0.2em] text-zinc-400 uppercase font-medium block mb-1">HOTEL 02 — Plaza de Galicia</span>
                     <h3 class="text-2xl font-serif font-light text-zinc-900 mb-6">Hotel Gelmírez ***</h3>
                     <ul class="text-sm font-light text-zinc-600 space-y-3 mb-8">
                         <li class="flex justify-between border-b border-zinc-100 pb-2">
@@ -306,7 +316,7 @@
             <!-- Hotel Universal ** -->
             <div class="border-b border-zinc-200 pb-10 flex flex-col justify-between" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">
                 <div>
-                    <span class="text-[10px] tracking-[0.2em] text-zinc-400 uppercase font-medium block mb-1">Junto a Plaza de Galicia</span>
+                    <span class="text-[10px] tracking-[0.2em] text-zinc-400 uppercase font-medium block mb-1">HOTEL 03 — Plaza de Galicia</span>
                     <h3 class="text-2xl font-serif font-light text-zinc-900 mb-6">Hotel Universal **</h3>
                     <ul class="text-sm font-light text-zinc-600 space-y-3 mb-8">
                         <li class="flex justify-between border-b border-zinc-100 pb-2">
@@ -327,7 +337,7 @@
             <!-- Nest Style Santiago -->
             <div class="border-b border-zinc-200 pb-10 flex flex-col justify-between" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300">
                 <div>
-                    <span class="text-[10px] tracking-[0.2em] text-zinc-400 uppercase font-medium block mb-1">Junto a Plaza de Galicia</span>
+                    <span class="text-[10px] tracking-[0.2em] text-zinc-400 uppercase font-medium block mb-1">HOTEL 04 — Plaza de Galicia</span>
                     <h3 class="text-2xl font-serif font-light text-zinc-900 mb-6">Nest Style Santiago</h3>
                     <ul class="text-sm font-light text-zinc-600 space-y-3 mb-8">
                         <li class="flex justify-between border-b border-zinc-100 pb-2">
@@ -347,7 +357,7 @@
         <div class="bg-zinc-900 text-white p-10 md:p-16 rounded-3xl flex flex-col md:flex-row justify-between items-center gap-10" data-aos="fade-up" data-aos-duration="1500">
             <div class="max-w-xl">
                 <span class="inline-block border border-white/20 text-zinc-300 text-[10px] uppercase tracking-[0.25em] font-medium px-4 py-1.5 rounded-full mb-4">
-                    A 15 min caminando
+                    HOTEL ESPECIAL — A 15 min caminando
                 </span>
                 <h3 class="text-3xl md:text-4xl font-serif font-light mb-4 text-white">Eurostars Gran Hotel Santiago ****</h3>
                 <p class="text-zinc-400 text-sm font-light leading-relaxed mb-6">
@@ -377,43 +387,66 @@
     <!-- FOOTER / RSVP: Galería Oscura Final -->
     <footer id="rsvp" class="bg-black text-white py-32 md:py-48 px-6 border-t border-zinc-800">
         <div class="max-w-2xl mx-auto text-center" data-aos="fade-up" data-aos-duration="1500">
-            <span class="text-[10px] tracking-[0.3em] text-zinc-500 uppercase font-medium block mb-4">05 / Asistencia</span>
+            <span class="text-[10px] tracking-[0.3em] text-zinc-500 uppercase font-medium block mb-4">SECCIÓN 05 — Asistencia</span>
             <h2 class="text-5xl md:text-7xl font-serif font-light mb-6 text-white">Confirmar Asistencia</h2>
             <p class="font-light text-zinc-400 text-sm mb-12 leading-relaxed">
                 Nos haría muchísima ilusión compartir este día con vosotros. Por favor, confirmad vuestra asistencia antes del <strong class="text-white font-normal">1 de agosto de 2027</strong>.
             </p>
 
-            <!-- Formulario Minimalista de Líneas Finas -->
-            <form id="rsvp-form" onsubmit="event.preventDefault(); submitRSVP();" class="flex flex-col gap-8 text-left max-w-lg mx-auto">
+            <!-- Formulario Minimalista de Líneas Finas con Píldoras -->
+            <form id="rsvp-form" onsubmit="event.preventDefault(); submitRSVP();" class="flex flex-col gap-10 text-left max-w-lg mx-auto">
+                
+                <!-- Nombre -->
                 <div>
                     <label class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 block mb-2">Nombre completo</label>
                     <input type="text" placeholder="Nombre y Apellidos" required class="w-full bg-transparent border-b border-zinc-700 py-3 text-sm focus:outline-none focus:border-white transition-colors placeholder-zinc-600 text-white font-light">
                 </div>
                 
+                <!-- Asistencia (Botones Píldora) -->
                 <div>
-                    <label class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 block mb-2">¿Asistirás a la boda?</label>
-                    <select required class="w-full bg-transparent border-b border-zinc-700 py-3 text-sm focus:outline-none focus:border-white transition-colors text-zinc-200 font-light">
-                        <option value="" disabled selected class="text-zinc-900">Selecciona una opción</option>
-                        <option value="yes" class="text-zinc-900">Sí, ¡con muchas ganas!</option>
-                        <option value="no" class="text-zinc-900">Lo siento, no podré asistir</option>
-                    </select>
+                    <label class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 block mb-4">¿Asistirás a la boda?</label>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <div class="pill-radio flex-1">
+                            <input type="radio" id="asiste-si" name="asistencia" value="yes" required>
+                            <label for="asiste-si" class="block text-center border border-zinc-700 text-zinc-300 px-6 py-3 rounded-full text-xs uppercase tracking-[0.1em] cursor-pointer hover:border-white transition-all font-light">
+                                Sí, ¡asistiré!
+                            </label>
+                        </div>
+                        <div class="pill-radio flex-1">
+                            <input type="radio" id="asiste-no" name="asistencia" value="no">
+                            <label for="asiste-no" class="block text-center border border-zinc-700 text-zinc-300 px-6 py-3 rounded-full text-xs uppercase tracking-[0.1em] cursor-pointer hover:border-white transition-all font-light">
+                                No podré ir
+                            </label>
+                        </div>
+                    </div>
                 </div>
 
+                <!-- Autobús (Botones Píldora) -->
                 <div>
-                    <label class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 block mb-2">Servicio de Autobús</label>
-                    <select required class="w-full bg-transparent border-b border-zinc-700 py-3 text-sm focus:outline-none focus:border-white transition-colors text-zinc-200 font-light">
-                        <option value="" disabled selected class="text-zinc-900">¿Necesitarás plaza?</option>
-                        <option value="yes" class="text-zinc-900">Sí, usaré el autobús (Salida: Plaza de Galicia)</option>
-                        <option value="no" class="text-zinc-900">No, me organizaré por mi cuenta</option>
-                    </select>
+                    <label class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 block mb-4">Servicio de Autobús</label>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <div class="pill-radio flex-1">
+                            <input type="radio" id="bus-si" name="bus" value="yes" required>
+                            <label for="bus-si" class="block text-center border border-zinc-700 text-zinc-300 px-6 py-3 rounded-full text-xs uppercase tracking-[0.1em] cursor-pointer hover:border-white transition-all font-light">
+                                Sí, necesito plaza
+                            </label>
+                        </div>
+                        <div class="pill-radio flex-1">
+                            <input type="radio" id="bus-no" name="bus" value="no">
+                            <label for="bus-no" class="block text-center border border-zinc-700 text-zinc-300 px-6 py-3 rounded-full text-xs uppercase tracking-[0.1em] cursor-pointer hover:border-white transition-all font-light">
+                                Iré por mi cuenta
+                            </label>
+                        </div>
+                    </div>
                 </div>
 
+                <!-- Observaciones -->
                 <div>
                     <label class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 block mb-2">Observaciones / Alergias</label>
                     <textarea placeholder="Alergias o necesidades dietéticas..." class="w-full bg-transparent border-b border-zinc-700 py-3 text-sm focus:outline-none focus:border-white transition-colors placeholder-zinc-600 resize-none h-20 text-white font-light"></textarea>
                 </div>
 
-                <button type="submit" id="rsvpBtn" class="mt-6 w-full bg-white text-zinc-900 py-4 rounded-full text-xs uppercase tracking-[0.25em] font-medium hover:bg-zinc-200 transition-all duration-300">
+                <button type="submit" id="rsvpBtn" class="mt-4 w-full bg-white text-zinc-900 py-4 rounded-full text-xs uppercase tracking-[0.25em] font-medium hover:bg-zinc-200 transition-all duration-300">
                     Enviar Confirmación
                 </button>
             </form>
