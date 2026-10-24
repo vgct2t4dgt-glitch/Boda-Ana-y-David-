@@ -17,6 +17,7 @@
                 extend: {
                     colors: {
                         gallery: '#FAF9F6',
+                        linen: '#f7f4ee',
                     },
                     fontFamily: {
                         serif: ['"Cormorant Garamond"', 'serif'],
@@ -28,7 +29,7 @@
     </script>
     <style>
         body {
-            background-color: #FFFFFF;
+            background-color: #f7f4ee; /* Tono lino / piedra muy ligero y cálido */
             color: #18181B; /* text-zinc-900 */
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
@@ -44,11 +45,16 @@
         }
         /* Scrollbar ultra fina estilo minimalista */
         ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: #FFFFFF; }
+        ::-webkit-scrollbar-track { background: #f7f4ee; }
         ::-webkit-scrollbar-thumb { background: #18181B; }
+
+        /* Ocultar la flecha por defecto de los detalles desplegables en algunos navegadores si se desea, o estilizarla */
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
     </style>
 </head>
-<body class="font-sans selection:bg-zinc-900 selection:text-white bg-white">
+<body class="font-sans selection:bg-zinc-900 selection:text-white bg-[#f7f4ee]">
     <!-- Menú de Navegación Flotante Minimalista -->
     <nav class="fixed w-full z-50 transition-all duration-700 py-6" id="navbar">
         <div class="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
@@ -127,7 +133,7 @@
         </div>
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
             <div class="lg:col-span-5 relative" data-aos="fade-up" data-aos-duration="1500">
-                <div class="aspect-[3/4] overflow-hidden bg-zinc-100">
+                <div class="aspect-[3/4] overflow-hidden bg-white shadow-sm">
                     <img src="cd37910e-3054-4c19-aba2-c7a64ed6a9f4.jpeg" alt="Ana y David" loading="lazy" class="w-full h-full object-cover transition-transform duration-1000 scale-100 hover:scale-105" />
                 </div>
                 <p class="text-[10px] tracking-[0.2em] text-zinc-400 uppercase mt-4">Fig. 01 — Ana &amp; David</p>
@@ -146,11 +152,11 @@
                 </div>
 
                 <div class="grid grid-cols-2 gap-6 md:gap-8 mb-20">
-                    <div class="aspect-[4/5] overflow-hidden bg-zinc-100" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300">
+                    <div class="aspect-[4/5] overflow-hidden bg-white shadow-sm" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300">
                         <img src="e03ee37b-33d0-44b7-92b5-24f7016059b4.jpeg" alt="Detalle historia 1" loading="lazy" class="w-full h-full object-cover transition-transform duration-1000" />
                         <p class="text-[10px] tracking-[0.2em] text-zinc-400 uppercase mt-3">Fig. 02 — Santiago</p>
                     </div>
-                    <div class="aspect-[4/5] overflow-hidden bg-zinc-100 mt-8 md:mt-12" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="400">
+                    <div class="aspect-[4/5] overflow-hidden bg-white shadow-sm mt-8 md:mt-12" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="400">
                         <img src="0bc43841-20d7-41fd-9195-4c4755079096.jpeg" alt="Detalle historia 2" loading="lazy" class="w-full h-full object-cover transition-transform duration-1000" />
                         <p class="text-[10px] tracking-[0.2em] text-zinc-400 uppercase mt-3">Fig. 03 — Noche</p>
                     </div>
@@ -159,9 +165,9 @@
         </div>
 
         <!-- EL INVITADO DE HONOR: Rediseño Editorial al Final de la Historia -->
-        <div class="mt-24 pt-20 border-t border-zinc-200" data-aos="fade-up" data-aos-duration="1500">
+        <div class="mt-24 pt-20 border-t border-zinc-300/60" data-aos="fade-up" data-aos-duration="1500">
             <div class="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-                <div class="lg:col-span-5 relative aspect-[4/3] overflow-hidden rounded-xl bg-zinc-100 shadow-lg">
+                <div class="lg:col-span-5 relative aspect-[4/3] overflow-hidden rounded-xl bg-white shadow-md border border-zinc-200/50">
                     <img src="3d9635e1-6a29-4485-a211-041fcf3b2ec6.jpeg" alt="El Invitado de Honor" loading="lazy" class="w-full h-full object-cover" />
                 </div>
                 <div class="lg:col-span-7 lg:pl-6">
@@ -198,7 +204,7 @@
             <!-- 1. PREBODA: Estilo Editorial con Solapamiento y Sello Minimalista -->
             <div class="relative w-full flex flex-col lg:flex-row items-end justify-center pt-8" data-aos="fade-up" data-aos-duration="1500">
                 <div class="w-full lg:w-[75%] relative z-0">
-                    <div class="absolute top-4 left-4 bg-white p-3 md:p-5 shadow-2xl z-20 flex flex-col items-center justify-center w-16 h-20 md:w-20 md:h-24 rounded-sm border border-zinc-100">
+                    <div class="absolute top-4 left-4 bg-white p-3 md:p-5 shadow-xl z-20 flex flex-col items-center justify-center w-16 h-20 md:w-20 md:h-24 rounded-sm border border-zinc-100">
                         <span class="font-serif text-2xl md:text-4xl font-light text-zinc-900 leading-none">10</span>
                         <div class="w-6 h-[1px] bg-zinc-300 my-1.5"></div>
                         <span class="text-[7px] md:text-[9px] tracking-[0.2em] uppercase text-zinc-500 font-medium">SEP.</span>
@@ -258,8 +264,8 @@
             <p class="text-zinc-600 font-light text-base leading-relaxed mb-16">
                 Para que podáis disfrutar al máximo sin preocupaciones, pondremos a vuestra disposición un servicio de transporte que realizará el trayecto hacia la ceremonia, posteriormente al pazo, y viajes de vuelta de madrugada.
             </p>
-            <div class="border border-zinc-200/80 p-10 md:p-14 bg-zinc-50/50 rounded-2xl relative shadow-sm inline-block w-full max-w-xl">
-                <div class="w-10 h-10 mx-auto mb-6 text-zinc-700 flex items-center justify-center border border-zinc-300 rounded-full bg-white shadow-sm">
+            <div class="border border-zinc-300/70 p-10 md:p-14 bg-white rounded-2xl relative shadow-sm inline-block w-full max-w-xl">
+                <div class="w-10 h-10 mx-auto mb-6 text-zinc-700 flex items-center justify-center border border-zinc-200 rounded-full bg-[#f7f4ee] shadow-sm">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M8 7h8m-8 5h8m-4 5h.01M5 5h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2z"></path>
                     </svg>
@@ -287,16 +293,16 @@
     <!-- CONTENIDO DE HOTELES, GUÍA Y PELUQUERÍAS -->
     <section class="py-12 md:py-20 px-6 max-w-7xl mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 mb-24">
-            <div class="border-b border-zinc-200 pb-10 flex flex-col justify-between" data-aos="fade-up" data-aos-duration="1500">
+            <div class="border-b border-zinc-300/70 pb-10 flex flex-col justify-between" data-aos="fade-up" data-aos-duration="1500">
                 <div>
                     <span class="text-[10px] tracking-[0.2em] text-zinc-400 uppercase font-medium block mb-1">Junto a Plaza de Galicia</span>
                     <h3 class="text-2xl font-serif font-light text-zinc-900 mb-6">Hotel Compostela ****</h3>
                     <ul class="text-sm font-light text-zinc-600 space-y-3 mb-8">
-                        <li class="flex flex-col sm:flex-row sm:justify-between border-b border-zinc-100 pb-2 gap-1">
+                        <li class="flex flex-col sm:flex-row sm:justify-between border-b border-zinc-200/60 pb-2 gap-1">
                             <span>4 Hab. dobles (con desayuno)</span>
                             <span class="font-normal text-zinc-900">487€ / 2 noches</span>
                         </li>
-                        <li class="flex flex-col sm:flex-row sm:justify-between border-b border-zinc-100 pb-2 gap-1">
+                        <li class="flex flex-col sm:flex-row sm:justify-between border-b border-zinc-200/60 pb-2 gap-1">
                             <span>2 Hab. triples (con desayuno)</span>
                             <span class="font-normal text-zinc-900">567€ / 2 noches</span>
                         </li>
@@ -306,12 +312,12 @@
                     Web oficial &rarr;
                 </a>
             </div>
-            <div class="border-b border-zinc-200 pb-10 flex flex-col justify-between" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">
+            <div class="border-b border-zinc-300/70 pb-10 flex flex-col justify-between" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">
                 <div>
                     <span class="text-[10px] tracking-[0.2em] text-zinc-400 uppercase font-medium block mb-1">Junto a Plaza de Galicia</span>
                     <h3 class="text-2xl font-serif font-light text-zinc-900 mb-6">Hotel Gelmírez ***</h3>
                     <ul class="text-sm font-light text-zinc-600 space-y-3 mb-8">
-                        <li class="flex flex-col sm:flex-row sm:justify-between border-b border-zinc-100 pb-2 gap-1">
+                        <li class="flex flex-col sm:flex-row sm:justify-between border-b border-zinc-200/60 pb-2 gap-1">
                             <span>5 Hab. dobles (con desayuno)</span>
                             <span class="font-normal text-zinc-900">414€ / 2 noches</span>
                         </li>
@@ -321,16 +327,16 @@
                     Web oficial &rarr;
                 </a>
             </div>
-            <div class="border-b border-zinc-200 pb-10 flex flex-col justify-between" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">
+            <div class="border-b border-zinc-300/70 pb-10 flex flex-col justify-between" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">
                 <div>
                     <span class="text-[10px] tracking-[0.2em] text-zinc-400 uppercase font-medium block mb-1">Junto a Plaza de Galicia</span>
                     <h3 class="text-2xl font-serif font-light text-zinc-900 mb-6">Hotel Universal **</h3>
                     <ul class="text-sm font-light text-zinc-600 space-y-3 mb-8">
-                        <li class="flex flex-col sm:flex-row sm:justify-between border-b border-zinc-100 pb-2 gap-1">
+                        <li class="flex flex-col sm:flex-row sm:justify-between border-b border-zinc-200/60 pb-2 gap-1">
                             <span>2 Hab. dobles</span>
                             <span class="font-normal text-zinc-900">380€ / 2 noches</span>
                         </li>
-                        <li class="flex flex-col sm:flex-row sm:justify-between border-b border-zinc-100 pb-2 gap-1">
+                        <li class="flex flex-col sm:flex-row sm:justify-between border-b border-zinc-200/60 pb-2 gap-1">
                             <span>2 Hab. triples</span>
                             <span class="font-normal text-zinc-900">440€ / 2 noches</span>
                         </li>
@@ -340,12 +346,12 @@
                     Web oficial &rarr;
                 </a>
             </div>
-            <div class="border-b border-zinc-200 pb-10 flex flex-col justify-between" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300">
+            <div class="border-b border-zinc-300/70 pb-10 flex flex-col justify-between" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300">
                 <div>
                     <span class="text-[10px] tracking-[0.2em] text-zinc-400 uppercase font-medium block mb-1">Junto a Plaza de Galicia</span>
                     <h3 class="text-2xl font-serif font-light text-zinc-900 mb-6">Nest Style Santiago</h3>
                     <ul class="text-sm font-light text-zinc-600 space-y-3 mb-8">
-                        <li class="flex flex-col sm:flex-row sm:justify-between border-b border-zinc-100 pb-2 gap-1">
+                        <li class="flex flex-col sm:flex-row sm:justify-between border-b border-zinc-200/60 pb-2 gap-1">
                             <span>5 Hab. dobles (con desayuno)</span>
                             <span class="font-normal text-zinc-900">442€ / 2 noches</span>
                         </li>
@@ -358,7 +364,7 @@
         </div>
 
         <!-- Bloque Especial Descuento: Eurostars Gran Hotel Santiago -->
-        <div class="bg-zinc-900 text-white p-10 md:p-16 rounded-3xl flex flex-col md:flex-row justify-between items-center gap-10 mb-20" data-aos="fade-up" data-aos-duration="1500">
+        <div class="bg-zinc-900 text-white p-10 md:p-16 rounded-3xl flex flex-col md:flex-row justify-between items-center gap-10 mb-20 shadow-lg" data-aos="fade-up" data-aos-duration="1500">
             <div class="max-w-xl">
                 <span class="inline-block border border-white/20 text-zinc-300 text-[10px] uppercase tracking-[0.25em] font-medium px-4 py-1.5 rounded-full mb-4">
                     A 15 min caminando
@@ -384,10 +390,10 @@
             </div>
         </div>
 
-        <!-- GUÍA DE SANTIAGO Y PELUQUERÍAS -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 border-t border-zinc-200 pt-20" data-aos="fade-up" data-aos-duration="1500">
+        <!-- GUÍA DE SANTIAGO Y PELUQUERÍAS (Textos Actualizados) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 border-t border-zinc-300/70 pt-20" data-aos="fade-up" data-aos-duration="1500">
             <div>
-                <h3 class="text-2xl md:text-3xl font-serif font-light text-zinc-900 mb-6">Nuestros Imprescindibles en Santiago</h3>
+                <h3 class="text-2xl md:text-3xl font-serif font-light text-zinc-900 mb-6">Por si llegas antes a Santiago (o te quieres perder un rato)</h3>
                 <ul class="text-zinc-600 font-light text-sm space-y-4 leading-relaxed">
                     <li><strong class="font-medium text-zinc-800">Vinos y tapas:</strong> Rúa do Franco o Rúa da Raíña.</li>
                     <li><strong class="font-medium text-zinc-800">Un paseo:</strong> El Parque de la Herradura (Alameda) para las mejores vistas de la Catedral.</li>
@@ -397,7 +403,7 @@
             </div>
             <div>
                 <h3 class="text-2xl md:text-3xl font-serif font-light text-zinc-900 mb-6">Peluquería y Maquillaje</h3>
-                <p class="text-[11px] tracking-[0.1em] text-zinc-400 uppercase font-medium mb-4">A menos de 5 min. a pie de Plaza de Galicia</p>
+                <p class="text-[11px] tracking-[0.1em] text-zinc-500 uppercase font-medium mb-4">Para cuando quieras ser la segunda más guapa de la boda (la primera ya sabemos quién es):</p>
                 <ul class="text-zinc-600 font-light text-sm space-y-4 leading-relaxed">
                     <li><strong class="font-medium text-zinc-800">Loida (Rúa de Fernando III O Santo):</strong> Un clásico en Santiago, expertos en eventos.</li>
                     <li><strong class="font-medium text-zinc-800">Tania Barreiro (Rúa Nova de Abaixo):</strong> Especialistas en recogidos y maquillaje de invitada.</li>
@@ -407,7 +413,7 @@
     </section>
 
     <!-- NUEVA SECCIÓN: VIAJE / CÓMO LLEGAR -->
-    <section id="viaje" class="py-24 md:py-32 bg-zinc-50 border-y border-zinc-200 px-6">
+    <section id="viaje" class="py-24 md:py-32 bg-[#f0ece1] border-y border-zinc-300/60 px-6">
         <div class="max-w-4xl mx-auto" data-aos="fade-up" data-aos-duration="1200">
             <div class="text-center mb-16">
                 <span class="text-[10px] tracking-[0.3em] text-zinc-400 uppercase font-medium block mb-3">05 / Viaje</span>
@@ -417,19 +423,19 @@
                 </p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <div class="bg-white p-8 rounded-2xl border border-zinc-200/60 shadow-sm text-center">
+                <div class="bg-white p-8 rounded-2xl border border-zinc-200/80 shadow-sm text-center">
                     <h4 class="font-serif text-xl mb-3 text-zinc-900">En Tren (AVE/Alvia)</h4>
                     <p class="text-sm font-light text-zinc-600 leading-relaxed">
                         El tren rápido os deja en la Estación de Santiago. Desde allí hasta la Plaza de Galicia hay solo 10 minutos caminando.
                     </p>
                 </div>
-                <div class="bg-white p-8 rounded-2xl border border-zinc-200/60 shadow-sm text-center">
+                <div class="bg-white p-8 rounded-2xl border border-zinc-200/80 shadow-sm text-center">
                     <h4 class="font-serif text-xl mb-3 text-zinc-900">En Avión</h4>
                     <p class="text-sm font-light text-zinc-600 leading-relaxed">
                         El Aeropuerto Rosalía de Castro (SCQ) tiene vuelos directos. Podéis coger el autobús 6A o un taxi hasta la Plaza de Galicia (15 min).
                     </p>
                 </div>
-                <div class="bg-white p-8 rounded-2xl border border-zinc-200/60 shadow-sm text-center">
+                <div class="bg-white p-8 rounded-2xl border border-zinc-200/80 shadow-sm text-center">
                     <h4 class="font-serif text-xl mb-3 text-zinc-900">En Coche</h4>
                     <p class="text-sm font-light text-zinc-600 leading-relaxed">
                         Recomendamos preguntar en vuestro hotel por acuerdos de aparcamiento, ya que el centro es peatonal o de acceso restringido.
@@ -439,21 +445,32 @@
         </div>
     </section>
 
-    <!-- NUEVA SECCIÓN: LISTA DE BODAS -->
-    <section id="detalles" class="py-24 md:py-32 px-6 max-w-3xl mx-auto text-center" data-aos="fade-up" data-aos-duration="1200">
+    <!-- SECCIÓN 06: LISTA DE BODAS EN FORMATO DESPLEGABLE (<details>) -->
+    <section id="detalles" class="py-24 md:py-32 px-6 max-w-2xl mx-auto text-center" data-aos="fade-up" data-aos-duration="1200">
         <span class="text-[10px] tracking-[0.3em] text-zinc-400 uppercase font-medium block mb-3">06 / Detalles</span>
-        <h2 class="text-4xl md:text-6xl font-serif font-light text-zinc-900 mb-6">Lista de Bodas</h2>
-        <p class="text-zinc-600 font-light text-base leading-relaxed mb-12">
-            Para nosotros, el regalo más grande es que hagáis las maletas y os vengáis a Galicia a celebrar con nosotros. De verdad, vuestra presencia lo es todo. Sin embargo, si además de vuestra compañía queréis tener un detalle con nosotros para ayudarnos a arrancar esta nueva aventura, os dejamos nuestro número de cuenta.
-        </p>
-        <div class="inline-block border border-zinc-200 p-8 rounded-2xl bg-zinc-50 max-w-lg w-full shadow-sm text-center">
-            <p class="text-[10px] uppercase tracking-[0.25em] text-zinc-400 mb-3 font-medium">Cuenta Bancaria</p>
-            <div class="font-serif text-xl md:text-2xl tracking-widest text-zinc-800 mb-4 select-all">
-                ESXX XXXX XXXX XXXX XXXX
+        
+        <details class="group bg-white border border-zinc-300/70 rounded-2xl p-6 md:p-8 shadow-sm transition-all duration-300 text-left">
+            <summary class="flex justify-between items-center cursor-pointer list-none font-serif text-2xl md:text-3xl font-light text-zinc-900 select-none">
+                <span>¿Quieres hacernos un detalle?</span>
+                <span class="transition-transform duration-300 group-open:rotate-180 text-zinc-400 text-xl font-sans">
+                    &darr;
+                </span>
+            </summary>
+            
+            <div class="mt-6 pt-6 border-t border-zinc-200 text-zinc-600 font-light text-sm md:text-base leading-relaxed">
+                <p class="mb-8">
+                    Para nosotros, el regalo más grande es que hagáis las maletas y os vengáis a Galicia a celebrar con nosotros. De verdad, vuestra presencia lo es todo. Sin embargo, si además de vuestra compañía queréis tener un detalle con nosotros para ayudarnos a arrancar esta nueva aventura, os dejamos nuestro número de cuenta.
+                </p>
+                <div class="border border-zinc-200 p-6 rounded-xl bg-[#f7f4ee] max-w-md mx-auto text-center shadow-inner">
+                    <p class="text-[10px] uppercase tracking-[0.25em] text-zinc-400 mb-2 font-medium">Cuenta Bancaria</p>
+                    <div class="font-serif text-lg md:text-xl tracking-widest text-zinc-800 mb-3 select-all">
+                        ESXX XXXX XXXX XXXX XXXX
+                    </div>
+                    <div class="w-10 h-[1px] bg-zinc-300 mx-auto mb-3"></div>
+                    <span class="text-xs text-zinc-500 uppercase tracking-wider block font-light">Titulares: Ana y David</span>
+                </div>
             </div>
-            <div class="w-12 h-[1px] bg-zinc-200 mx-auto mb-4"></div>
-            <span class="text-xs text-zinc-500 uppercase tracking-wider block font-light">Titulares: Ana y David</span>
-        </div>
+        </details>
     </section>
 
     <!-- FOOTER / RSVP ACTUALIZADO -->
@@ -531,14 +548,14 @@
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
             if (window.scrollY > 80) {
-                nav.classList.add('bg-white/90', 'backdrop-blur-md', 'py-4', 'border-b', 'border-zinc-100');
+                nav.classList.add('bg-white/95', 'backdrop-blur-md', 'py-4', 'border-b', 'border-zinc-200');
                 nav.classList.remove('py-6');
                 document.getElementById('nav-logo').classList.replace('text-white', 'text-zinc-900');
                 document.getElementById('nav-links').classList.replace('text-white/90', 'text-zinc-800');
                 document.getElementById('nav-btn').classList.add('border-zinc-900', 'text-zinc-900', 'hover:bg-zinc-900', 'hover:text-white');
                 document.getElementById('nav-btn').classList.remove('border-white', 'text-white', 'hover:bg-white', 'hover:text-zinc-900');
             } else {
-                nav.classList.remove('bg-white/90', 'backdrop-blur-md', 'py-4', 'border-b', 'border-zinc-100');
+                nav.classList.remove('bg-white/95', 'backdrop-blur-md', 'py-4', 'border-b', 'border-zinc-200');
                 nav.classList.add('py-6');
                 document.getElementById('nav-logo').classList.replace('text-zinc-900', 'text-white');
                 document.getElementById('nav-links').classList.replace('text-zinc-800', 'text-white/90');
