@@ -48,7 +48,6 @@
         ::-webkit-scrollbar-track { background: #f7f4ee; }
         ::-webkit-scrollbar-thumb { background: #18181B; }
 
-        /* Ocultar la flecha por defecto de los detalles desplegables en algunos navegadores si se desea, o estilizarla */
         details > summary::-webkit-details-marker {
             display: none;
         }
@@ -75,14 +74,10 @@
         </div>
     </nav>
 
-    <!-- PORTADA HERO: Galería Inmersiva A Pantalla Completa con Cuenta Atrás y Calendario -->
+    <!-- PORTADA HERO: Galería Inmersiva A Pantalla Completa con Cuenta Atrás y Calendario Moderno -->
     <header class="relative h-screen w-full flex flex-col items-center justify-center bg-cover bg-center overflow-hidden" style="background-image: url('36eb7cba-a6dc-4fa6-80b8-b8c29400c547.jpeg');">
         <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/80 z-0"></div>
         <div class="relative z-10 text-center text-white px-6 mt-10 w-full" data-aos="fade-up" data-aos-duration="1500">
-            <p class="text-xs md:text-sm tracking-[0.4em] font-light uppercase text-zinc-300 mb-6 flex items-center justify-center gap-3">
-                <svg class="w-4 h-4 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M12 13a3 3 0 100-6 3 3 0 000 6z"></path></svg>
-                Celebración de Boda
-            </p>
             <h1 class="text-6xl md:text-8xl lg:text-9xl font-serif font-extralight tracking-tight mb-8 leading-none">
                 ANA <span class="italic font-normal mx-2 md:mx-4 font-serif text-zinc-300">&amp;</span> DAVID
             </h1>
@@ -92,27 +87,27 @@
                 </span>
             </div>
 
-            <!-- CUENTA ATRÁS -->
-            <div class="flex justify-center items-center gap-6 md:gap-10 mb-10 text-white/90">
+            <!-- CUENTA ATRÁS (Más pequeña y con tono blanco suave) -->
+            <div class="flex justify-center items-center gap-5 md:gap-8 mb-10 text-white/80">
                 <div class="flex flex-col items-center">
-                    <span id="cd-days" class="text-4xl md:text-5xl font-serif font-light tracking-wider">00</span>
-                    <span class="text-[9px] uppercase tracking-[0.3em] text-zinc-400 mt-2">Días</span>
+                    <span id="cd-days" class="text-2xl md:text-3xl font-serif font-light tracking-wider">00</span>
+                    <span class="text-[8px] uppercase tracking-[0.3em] text-zinc-400 mt-1">Días</span>
                 </div>
-                <span class="text-2xl font-serif font-light text-white/30">:</span>
+                <span class="text-xl font-serif font-light text-white/30">:</span>
                 <div class="flex flex-col items-center">
-                    <span id="cd-hours" class="text-4xl md:text-5xl font-serif font-light tracking-wider">00</span>
-                    <span class="text-[9px] uppercase tracking-[0.3em] text-zinc-400 mt-2">Horas</span>
+                    <span id="cd-hours" class="text-2xl md:text-3xl font-serif font-light tracking-wider">00</span>
+                    <span class="text-[8px] uppercase tracking-[0.3em] text-zinc-400 mt-1">Horas</span>
                 </div>
-                <span class="text-2xl font-serif font-light text-white/30">:</span>
+                <span class="text-xl font-serif font-light text-white/30">:</span>
                 <div class="flex flex-col items-center">
-                    <span id="cd-mins" class="text-4xl md:text-5xl font-serif font-light tracking-wider">00</span>
-                    <span class="text-[9px] uppercase tracking-[0.3em] text-zinc-400 mt-2">Min</span>
+                    <span id="cd-mins" class="text-2xl md:text-3xl font-serif font-light tracking-wider">00</span>
+                    <span class="text-[8px] uppercase tracking-[0.3em] text-zinc-400 mt-1">Min</span>
                 </div>
             </div>
 
-            <!-- BOTÓN AÑADIR AL CALENDARIO -->
-            <button onclick="downloadICS()" class="inline-flex items-center gap-3 border border-white/40 text-white/90 px-6 py-2.5 rounded-full text-[10px] tracking-[0.2em] uppercase hover:bg-white hover:text-zinc-900 hover:border-white transition-all duration-500 font-medium">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z"></path></svg>
+            <!-- BOTÓN AÑADIR AL CALENDARIO (Estilo moderno y sofisticado) -->
+            <button onclick="downloadICS()" class="group inline-flex items-center gap-3 bg-white/10 hover:bg-white text-white hover:text-zinc-900 border border-white/30 hover:border-white px-7 py-3 rounded-full text-[10px] tracking-[0.25em] uppercase transition-all duration-500 font-medium backdrop-blur-sm shadow-sm">
+                <svg class="w-3.5 h-3.5 transition-transform duration-500 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z"></path></svg>
                 Añadir al Calendario
             </button>
         </div>
@@ -548,14 +543,14 @@
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
             if (window.scrollY > 80) {
-                nav.classList.add('bg-white/95', 'backdrop-blur-md', 'py-4', 'border-b', 'border-zinc-200');
+                nav.classList.add('bg-[#f7f4ee]/95', 'backdrop-blur-md', 'py-4', 'border-b', 'border-zinc-300/60');
                 nav.classList.remove('py-6');
                 document.getElementById('nav-logo').classList.replace('text-white', 'text-zinc-900');
                 document.getElementById('nav-links').classList.replace('text-white/90', 'text-zinc-800');
                 document.getElementById('nav-btn').classList.add('border-zinc-900', 'text-zinc-900', 'hover:bg-zinc-900', 'hover:text-white');
                 document.getElementById('nav-btn').classList.remove('border-white', 'text-white', 'hover:bg-white', 'hover:text-zinc-900');
             } else {
-                nav.classList.remove('bg-white/95', 'backdrop-blur-md', 'py-4', 'border-b', 'border-zinc-200');
+                nav.classList.remove('bg-[#f7f4ee]/95', 'backdrop-blur-md', 'py-4', 'border-b', 'border-zinc-300/60');
                 nav.classList.add('py-6');
                 document.getElementById('nav-logo').classList.replace('text-zinc-900', 'text-white');
                 document.getElementById('nav-links').classList.replace('text-zinc-800', 'text-white/90');
