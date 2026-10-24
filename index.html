@@ -26,7 +26,7 @@
 <style>
     body {
         background-color: #FFFFFF;
-        color: #18181B; /* text-zinc-900 */
+        color: #18181B;
         -webkit-font-smoothing: antialiased;
         overflow-x: hidden;
     }
@@ -36,7 +36,7 @@
     ::-webkit-scrollbar-track { background: #FFFFFF; }
     ::-webkit-scrollbar-thumb { background: #18181B; }
 
-    /* Botones píldora personalizados */
+    /* Botones píldora personalizados para RSVP */
     .pill-radio input[type="radio"] {
         display: none;
     }
@@ -48,6 +48,7 @@
 </style>
 
 
+
 <!-- Menú de Navegación Flotante Minimalista -->
 <nav class="fixed w-full z-50 transition-all duration-700 py-6" id="navbar">
     <div class="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
@@ -55,10 +56,9 @@
             A &amp; D
         </a>
         
-        <div class="hidden lg:flex space-x-10 text-[11px] tracking-[0.25em] text-white/90 font-light uppercase transition-colors duration-500" id="nav-links">
+        <div class="hidden md:flex space-x-8 lg:space-x-12 text-[11px] tracking-[0.25em] text-white/90 font-light uppercase transition-colors duration-500" id="nav-links">
             <a href="#historia" class="hover:opacity-50 transition-opacity">Historia</a>
             <a href="#eventos" class="hover:opacity-50 transition-opacity">Programa</a>
-            <a href="#autobuses" class="hover:opacity-50 transition-opacity">Logística</a>
             <a href="#hoteles" class="hover:opacity-50 transition-opacity">Estancia</a>
             <a href="#viaje" class="hover:opacity-50 transition-opacity">Viaje</a>
             <a href="#detalles" class="hover:opacity-50 transition-opacity">Detalles</a>
@@ -85,7 +85,7 @@
             ANA <span class="italic font-normal mx-2 md:mx-4 font-serif text-zinc-300">&amp;</span> DAVID
         </h1>
         
-        <div class="inline-block border-y border-white/20 py-3 px-8 mb-10">
+        <div class="inline-block border-y border-white/20 py-3 px-8 mb-8">
             <span class="text-xs md:text-sm tracking-[0.4em] font-light uppercase whitespace-nowrap text-zinc-200">
                 11 . 09 . 2027
             </span>
@@ -151,14 +151,14 @@
                 <p class="text-zinc-600 text-sm font-light leading-loose mb-6">
                     Nuestro camino juntos nos ha traído hasta aquí. Queremos reunir a las personas que más queremos en un fin de semana inolvidable rodeados de la naturaleza, la piedra y la magia de Galicia.
                 </p>
-                <p class="text-zinc-600 text-sm font-light leading-loose mb-16">
+                <p class="text-zinc-600 text-sm font-light leading-loose">
                     No podríamos imaginar dar este paso sin vuestra compañía. Preparad las cámaras, porque celebraremos a lo grande.
                 </p>
 
                 <!-- EL INVITADO DE HONOR -->
-                <div class="p-8 border border-zinc-100 bg-zinc-50/50 rounded-2xl flex flex-col sm:flex-row gap-8 items-center sm:items-start transition-all hover:border-zinc-200">
+                <div class="mt-16 p-8 border border-zinc-100 bg-zinc-50/50 rounded-2xl flex flex-col sm:flex-row gap-8 items-center sm:items-start transition-all hover:border-zinc-200">
                     <div class="w-24 h-24 sm:w-28 sm:h-28 shrink-0 rounded-full overflow-hidden bg-zinc-200 shadow-inner">
-                        <!-- FOTO PERRO -->
+                        <!-- Sustituye el src por la URL de la foto de vuestro perro -->
                         <img src="" onerror="this.src='https://images.unsplash.com/photo-1544568100-847a948585b9?auto=format&fit=crop&w=300&q=80'" alt="Nuestro Gordon Setter" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" />
                     </div>
                     <div class="text-center sm:text-left">
@@ -207,7 +207,7 @@
         </h2>
     </div>
 
-    <!-- PREBODA (Layout Editorial) -->
+    <!-- PREBODA -->
     <div class="relative w-full flex flex-col lg:flex-row items-end justify-center pt-8 mb-32" data-aos="fade-up" data-aos-duration="1500">
         <div class="w-full lg:w-[75%] relative z-0">
             <div class="absolute top-4 left-4 bg-white px-4 py-3 md:px-5 md:py-4 shadow-xl z-20 flex flex-col items-center justify-center rounded-sm">
@@ -237,7 +237,7 @@
     </div>
 </section>
 
-<!-- CEREMONIA (Inmersiva vertical) -->
+<!-- CEREMONIA -->
 <div class="relative w-full min-h-[85vh] flex flex-col md:flex-row items-center justify-center overflow-hidden bg-zinc-900 mb-2">
     <div class="absolute inset-0 bg-cover bg-center opacity-40 md:opacity-100 md:w-1/2 md:static md:h-full" style="background-image: url('IMG_0967.jpeg');"></div>
     <div class="relative z-10 w-full md:w-1/2 px-8 py-20 md:p-24 flex flex-col items-start justify-center text-left" data-aos="fade-left" data-aos-duration="1500">
@@ -256,7 +256,7 @@
     </div>
 </div>
 
-<!-- BANQUETE (Inmersiva panorámica) -->
+<!-- BANQUETE -->
 <div class="relative w-full min-h-[80vh] flex items-center justify-center overflow-hidden bg-cover bg-center bg-scroll md:bg-fixed" style="background-image: url('IMG_0966.jpeg');">
     <div class="absolute inset-0 bg-black/60 z-0"></div>
     <div class="relative z-10 text-center text-white px-6 max-w-3xl flex flex-col items-center" data-aos="fade-up" data-aos-duration="1500">
@@ -316,7 +316,6 @@
     
     <!-- Grid de Hoteles -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 mb-24">
-        <!-- Hotel 1 -->
         <div class="border-b border-zinc-200 pb-10 flex flex-col justify-between" data-aos="fade-up" data-aos-duration="1500">
             <div>
                 <span class="text-[10px] tracking-[0.2em] text-zinc-400 uppercase font-medium block mb-1">HOTEL 01 — PLAZA DE GALICIA</span>
@@ -335,7 +334,6 @@
             <a href="https://www.hotelcompostela.es/" target="_blank" rel="noopener noreferrer" class="text-xs text-zinc-900 uppercase tracking-widest font-medium underline underline-offset-8 hover:opacity-50 transition-opacity self-start">Web oficial &rarr;</a>
         </div>
 
-        <!-- Hotel 2 -->
         <div class="border-b border-zinc-200 pb-10 flex flex-col justify-between" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">
             <div>
                 <span class="text-[10px] tracking-[0.2em] text-zinc-400 uppercase font-medium block mb-1">HOTEL 02 — PLAZA DE GALICIA</span>
@@ -350,7 +348,6 @@
             <a href="https://www.hotelgelmirez.com/" target="_blank" rel="noopener noreferrer" class="text-xs text-zinc-900 uppercase tracking-widest font-medium underline underline-offset-8 hover:opacity-50 transition-opacity self-start">Web oficial &rarr;</a>
         </div>
 
-        <!-- Hotel 3 -->
         <div class="border-b border-zinc-200 pb-10 flex flex-col justify-between" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">
             <div>
                 <span class="text-[10px] tracking-[0.2em] text-zinc-400 uppercase font-medium block mb-1">HOTEL 03 — PLAZA DE GALICIA</span>
@@ -369,7 +366,6 @@
             <a href="https://www.hoteluniversalsantiago.com/" target="_blank" rel="noopener noreferrer" class="text-xs text-zinc-900 uppercase tracking-widest font-medium underline underline-offset-8 hover:opacity-50 transition-opacity self-start">Web oficial &rarr;</a>
         </div>
 
-        <!-- Hotel 4 -->
         <div class="border-b border-zinc-200 pb-10 flex flex-col justify-between" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300">
             <div>
                 <span class="text-[10px] tracking-[0.2em] text-zinc-400 uppercase font-medium block mb-1">HOTEL 04 — PLAZA DE GALICIA</span>
@@ -413,11 +409,10 @@
 
     <!-- GUÍA DE SANTIAGO Y PELUQUERÍAS -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 border-t border-zinc-200 pt-24" data-aos="fade-up" data-aos-duration="1500">
-        <!-- Guía -->
         <div>
             <div class="flex items-center gap-3 mb-6">
                 <svg class="w-6 h-6 text-zinc-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"></path></svg>
-                <h3 class="text-3xl font-serif font-light text-zinc-900">Nuestros Imprescindibles en Santiago</h3>
+                <h3 class="text-3xl font-serif font-light text-zinc-900">Nuestros Imprescindibles</h3>
             </div>
             <ul class="text-zinc-600 font-light text-sm space-y-4 leading-relaxed">
                 <li><strong class="font-medium text-zinc-800">Vinos y tapas:</strong> Rúa do Franco o Rúa da Raíña.</li>
@@ -427,7 +422,6 @@
             </ul>
         </div>
         
-        <!-- Peluquerías -->
         <div>
             <div class="flex items-center gap-3 mb-6">
                 <svg class="w-6 h-6 text-zinc-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"></path></svg>
@@ -447,17 +441,13 @@
     <div class="max-w-4xl mx-auto" data-aos="fade-up" data-aos-duration="1200">
         <div class="text-center mb-16">
             <span class="text-[10px] tracking-[0.3em] text-zinc-400 uppercase font-medium block mb-3">05 / Viaje</span>
-            <div class="flex items-center justify-center gap-4 mb-6">
-                <svg class="w-8 h-8 text-zinc-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"></path></svg>
-                <h2 class="text-4xl md:text-6xl font-serif font-light text-zinc-900">Cómo llegar a Santiago</h2>
-            </div>
+            <h2 class="text-4xl md:text-6xl font-serif font-light text-zinc-900 mb-6">Cómo llegar a Santiago</h2>
             <p class="text-zinc-600 font-light text-base leading-relaxed max-w-2xl mx-auto">
                 Queremos ponéroslo muy fácil para que nadie se quede en tierra. Si venís desde fuera, estas son las mejores opciones para llegar al centro de Santiago:
             </p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-            <!-- Tren -->
             <div class="bg-white p-8 rounded-2xl border border-zinc-200/60 shadow-sm text-center">
                 <div class="w-12 h-12 mx-auto mb-5 rounded-full bg-zinc-100 flex items-center justify-center text-zinc-800">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2 12h20M4 12v6a2 2 0 002 2h12a2 2 0 002-2v-6M9 6v2m6-2v2M6 6h12a2 2 0 012 2v4H4V8a2 2 0 012-2z"></path></svg>
@@ -468,7 +458,6 @@
                 </p>
             </div>
             
-            <!-- Avión -->
             <div class="bg-white p-8 rounded-2xl border border-zinc-200/60 shadow-sm text-center">
                 <div class="w-12 h-12 mx-auto mb-5 rounded-full bg-zinc-100 flex items-center justify-center text-zinc-800">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"></path></svg>
@@ -479,7 +468,6 @@
                 </p>
             </div>
 
-            <!-- Coche -->
             <div class="bg-white p-8 rounded-2xl border border-zinc-200/60 shadow-sm text-center">
                 <div class="w-12 h-12 mx-auto mb-5 rounded-full bg-zinc-100 flex items-center justify-center text-zinc-800">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"></path></svg>
@@ -582,10 +570,8 @@
 <!-- JS -->
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script>
-    // Iniciar Animaciones
     AOS.init({ duration: 1400, once: true, offset: 100 });
 
-    // Navbar Scroll
     window.addEventListener('scroll', () => {
         const nav = document.getElementById('navbar');
         if (window.scrollY > 80) {
@@ -605,7 +591,6 @@
         }
     });
 
-    // Copiar Promo
     function copyPromo() {
         const code = "BODASEP27";
         if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -621,7 +606,6 @@
         }, 2500);
     }
 
-    // Formulario
     function submitRSVP() {
         const btn = document.getElementById('rsvpBtn');
         const original = btn.innerText;
@@ -634,7 +618,6 @@
         }, 3000);
     }
 
-    // Lógica de la Cuenta Atrás
     function initCountdown() {
         const weddingDate = new Date('2027-09-11T12:00:00').getTime();
         
@@ -661,9 +644,9 @@
     }
     initCountdown();
 
-    // Generar y descargar archivo .ics
     function downloadICS() {
         const icsContent = 
+
 
 
 BEGIN:VCALENDAR VERSION:2.0 CALSCALE:GREGORIAN BEGIN:VEVENT SUMMARY:Boda Ana & David DTSTART;TZID=Europe/Madrid:20270911T120000 DTEND;TZID=Europe/Madrid:20270911T235900 LOCATION:Pazo de Vista Alegre DESCRIPTION:¡Nos casamos! Acompañanos en nuestro gran día. STATUS:CONFIRMED BEGIN:VALARM TRIGGER:-PT24H ACTION:DISPLAY DESCRIPTION:Recordatorio de la Boda END:VALARM END:VEVENT END:VCALENDAR;
@@ -677,3 +660,4 @@ BEGIN:VCALENDAR VERSION:2.0 CALSCALE:GREGORIAN BEGIN:VEVENT SUMMARY:Boda Ana & D
         document.body.removeChild(link);
     }
 </script>
+
