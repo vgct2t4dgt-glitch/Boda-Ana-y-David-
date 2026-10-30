@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
@@ -50,6 +50,11 @@
 
         details > summary::-webkit-details-marker {
             display: none;
+        }
+        
+        /* Ajuste de z-index para los popups del mapa */
+        .map-tooltip {
+            z-index: 30;
         }
     </style>
 </head>
@@ -294,7 +299,7 @@
             </div>
 
             <!-- SERVICIO DE AUTOBUSES -->
-            <div class="max-w-3xl mx-auto text-center">
+            <div class="max-w-3xl mx-auto text-center mb-24">
                 <h3 class="text-3xl md:text-4xl font-serif font-light text-zinc-900 mb-6">Servicio de Autobuses</h3>
                 <p class="text-zinc-600 font-light text-base leading-relaxed mb-10">
                     Para que podáis disfrutar al máximo sin preocupaciones, pondremos a vuestra disposición un servicio de transporte que realizará el trayecto hacia la ceremonia, posteriormente al pazo, y viajes de vuelta. <strong class="text-zinc-800 font-normal">Habrá servicio de autobuses de vuelta escalonado hacia la Plaza de Galicia, pensando tanto en los que prefieran retirarse antes como en los que quieran aguantar hasta el final de la fiesta.</strong>
@@ -309,6 +314,57 @@
                     <span class="text-2xl md:text-3xl font-serif text-zinc-900 block mb-4">Plaza de Galicia, Santiago</span>
                     <div class="w-12 h-[1px] bg-zinc-200 mx-auto my-4"></div>
                     <span class="text-xs text-zinc-500 uppercase tracking-wider block font-light">Horarios exactos por confirmar</span>
+                </div>
+            </div>
+
+            <!-- MAPA ILUSTRADO INTERACTIVO -->
+            <div class="pt-10 border-t border-zinc-300/60" data-aos="fade-up" data-aos-duration="1500">
+                <div class="text-center mb-10">
+                    <h3 class="text-3xl md:text-4xl font-serif font-light text-zinc-900 mb-3">El Recorrido</h3>
+                    <p class="text-xs uppercase tracking-widest text-zinc-500 font-medium">Haz clic en los puntos del mapa</p>
+                </div>
+                
+                <!-- Contenedor del Mapa (Posicionamiento Relativo) -->
+                <div class="relative w-full max-w-2xl mx-auto rounded-3xl overflow-hidden shadow-xl border border-zinc-200 bg-white">
+                    <img src="Gemini_Generated_Image_2yp0ju2yp0ju2yp0.jpg" alt="Mapa Ilustrado de la Boda" class="w-full h-auto block select-none" />
+
+                    <!-- HOTSPOT 01: SANTIAGO -->
+                    <div class="absolute map-pin-container" style="top: 26.5%; left: 46.5%;">
+                        <button class="relative w-10 h-10 -ml-5 -mt-5 rounded-full focus:outline-none group z-10 cursor-pointer" onclick="toggleMapTooltip('tt-01')">
+                            <!-- Anillo animado -->
+                            <span class="absolute inset-0 rounded-full bg-white/20 animate-ping border border-zinc-800/20"></span>
+                            <span class="absolute inset-0 rounded-full border-2 border-white/40 scale-100 group-hover:scale-110 transition-transform"></span>
+                        </button>
+                        <!-- Tarjeta Tooltip -->
+                        <div id="tt-01" class="map-tooltip absolute top-full left-1/2 transform -translate-x-1/2 mt-3 w-48 sm:w-56 p-4 bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl border border-zinc-200 text-center transition-all duration-300 opacity-0 pointer-events-none origin-top scale-95">
+                            <h4 class="font-serif text-lg text-zinc-900 mb-1 leading-tight">Santiago de Compostela</h4>
+                            <p class="text-zinc-600 font-light text-[11px] sm:text-xs">Punto de partida y de llegada: Plaza de Galicia.</p>
+                        </div>
+                    </div>
+
+                    <!-- HOTSPOT 02: IGLESIA -->
+                    <div class="absolute map-pin-container" style="top: 62.5%; left: 17.5%;">
+                        <button class="relative w-10 h-10 -ml-5 -mt-5 rounded-full focus:outline-none group z-10 cursor-pointer" onclick="toggleMapTooltip('tt-02')">
+                            <span class="absolute inset-0 rounded-full bg-white/20 animate-ping border border-zinc-800/20"></span>
+                            <span class="absolute inset-0 rounded-full border-2 border-white/40 scale-100 group-hover:scale-110 transition-transform"></span>
+                        </button>
+                        <div id="tt-02" class="map-tooltip absolute top-full left-0 mt-3 w-48 sm:w-56 p-4 bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl border border-zinc-200 text-left transition-all duration-300 opacity-0 pointer-events-none origin-top-left scale-95">
+                            <h4 class="font-serif text-lg text-zinc-900 mb-1 leading-tight">Iglesia de San Julián de Bastavales</h4>
+                            <p class="text-zinc-600 font-light text-[11px] sm:text-xs">La Ceremonia.</p>
+                        </div>
+                    </div>
+
+                    <!-- HOTSPOT 03: PAZO -->
+                    <div class="absolute map-pin-container" style="top: 53.5%; left: 84.5%;">
+                        <button class="relative w-10 h-10 -ml-5 -mt-5 rounded-full focus:outline-none group z-10 cursor-pointer" onclick="toggleMapTooltip('tt-03')">
+                            <span class="absolute inset-0 rounded-full bg-white/20 animate-ping border border-zinc-800/20"></span>
+                            <span class="absolute inset-0 rounded-full border-2 border-white/40 scale-100 group-hover:scale-110 transition-transform"></span>
+                        </button>
+                        <div id="tt-03" class="map-tooltip absolute top-full right-0 mt-3 w-56 sm:w-64 p-4 bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl border border-zinc-200 text-right transition-all duration-300 opacity-0 pointer-events-none origin-top-right scale-95">
+                            <h4 class="font-serif text-lg text-zinc-900 mb-1 leading-tight">Pazo Vista Alegre</h4>
+                            <p class="text-zinc-600 font-light text-[11px] sm:text-xs">Banquete y fiesta. Habrá dos horarios de autobuses de vuelta: uno para los que prefieran volver antes y otro para los que aguanten hasta el final.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -430,7 +486,7 @@
         </div>
     </section>
 
-    <!-- 05 / RECOMENDACIONES: GUÍA Y BELLEZA (CON ICONOS Y SÍMBOLOS ELEGANTES) -->
+    <!-- 05 / RECOMENDACIONES: GUÍA Y BELLEZA -->
     <section id="recomendaciones" class="py-24 md:py-32 px-6 max-w-7xl mx-auto border-t border-zinc-300/60">
         <div class="text-center mb-16" data-aos="fade-up" data-aos-duration="1200">
             <span class="text-[10px] tracking-[0.3em] text-zinc-400 uppercase font-medium block mb-3">05 / Recomendaciones</span>
@@ -514,7 +570,7 @@
         </div>
     </section>
 
-    <!-- 06 / DETALLES: LISTA DE BODAS (DESPLEGABLE CON BOTÓN COPIAR IBAN Y AVISO VISUAL) -->
+    <!-- 06 / DETALLES: LISTA DE BODAS (DESPLEGABLE) -->
     <section id="detalles" class="py-24 md:py-32 px-6 max-w-3xl mx-auto text-center" data-aos="fade-up" data-aos-duration="1200">
         <span class="text-[10px] tracking-[0.3em] text-zinc-400 uppercase font-medium block mb-3">06 / Detalles</span>
         
@@ -644,6 +700,37 @@
             }
         });
 
+        // FUNCIONALIDAD DEL MAPA INTERACTIVO
+        function toggleMapTooltip(id) {
+            // Cierra el resto de pop-ups primero
+            document.querySelectorAll('.map-tooltip').forEach(tt => {
+                if(tt.id !== id) {
+                    tt.classList.remove('opacity-100', 'scale-100', 'pointer-events-auto');
+                    tt.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+                }
+            });
+
+            // Alterna el pop-up seleccionado
+            const el = document.getElementById(id);
+            if(el.classList.contains('opacity-0')) {
+                el.classList.remove('opacity-0', 'scale-95', 'pointer-events-none');
+                el.classList.add('opacity-100', 'scale-100', 'pointer-events-auto');
+            } else {
+                el.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+                el.classList.remove('opacity-100', 'scale-100', 'pointer-events-auto');
+            }
+        }
+
+        // Cierra los pop-ups si se hace clic fuera del mapa
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.map-pin-container')) {
+                 document.querySelectorAll('.map-tooltip').forEach(tt => {
+                    tt.classList.remove('opacity-100', 'scale-100', 'pointer-events-auto');
+                    tt.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+                });
+            }
+        });
+
         function copyPromo() {
             const code = "BODASEP27";
             if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -667,7 +754,6 @@
             if (navigator.clipboard && navigator.clipboard.writeText) {
                 navigator.clipboard.writeText(iban);
             } else {
-                // Fallback para navegadores antiguos
                 const tempInput = document.createElement("input");
                 tempInput.value = iban;
                 document.body.appendChild(tempInput);
