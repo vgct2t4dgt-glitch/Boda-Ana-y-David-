@@ -167,23 +167,21 @@
                     </p>
                 </div>
 
-                <!-- Galería Asimétrica de Recuerdos (incluyendo la foto de la antigua preboda) -->
-                <div class="grid grid-cols-2 gap-6 md:gap-8 mb-10">
-                    <div class="aspect-[4/5] overflow-hidden bg-white shadow-md rounded-lg border border-zinc-200/50" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300">
+                <!-- Galería perfectamente alineada -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 mb-10">
+                    <div class="aspect-[4/5] overflow-hidden bg-white shadow-md rounded-lg border border-zinc-200/50 flex flex-col justify-between" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300">
                         <img src="e03ee37b-33d0-44b7-92b5-24f7016059b4.jpeg" alt="Detalle historia 1" loading="lazy" class="w-full h-full object-cover transition-transform duration-1000 hover:scale-105" />
-                        <p class="text-[10px] tracking-[0.2em] text-zinc-500 uppercase mt-3 px-3 pb-2">Fig. 02 — Santiago</p>
+                        <p class="text-[10px] tracking-[0.2em] text-zinc-500 uppercase p-3 bg-white">Fig. 02 — Santiago</p>
                     </div>
                     
-                    <div class="flex flex-col gap-6 md:gap-8 mt-12 md:mt-16">
-                        <div class="aspect-square overflow-hidden bg-white shadow-md rounded-lg border border-zinc-200/50" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="400">
-                            <img src="0bc43841-20d7-41fd-9195-4c4755079096.jpeg" alt="Detalle historia 2" loading="lazy" class="w-full h-full object-cover transition-transform duration-1000 hover:scale-105" />
-                            <p class="text-[10px] tracking-[0.2em] text-zinc-500 uppercase mt-3 px-3 pb-2">Fig. 03 — Noche</p>
-                        </div>
-                        
-                        <div class="aspect-square overflow-hidden bg-white shadow-md rounded-lg border border-zinc-200/50" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="500">
-                            <img src="a53b8f0b-54df-46f6-b757-edcdd771693f.jpeg" alt="Recuerdo de Preboda" loading="lazy" class="w-full h-full object-cover transition-transform duration-1000 hover:scale-105" />
-                            <p class="text-[10px] tracking-[0.2em] text-zinc-500 uppercase mt-3 px-3 pb-2">Fig. 04 — Preboda</p>
-                        </div>
+                    <div class="aspect-[4/5] overflow-hidden bg-white shadow-md rounded-lg border border-zinc-200/50 flex flex-col justify-between" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="400">
+                        <img src="0bc43841-20d7-41fd-9195-4c4755079096.jpeg" alt="Detalle historia 2" loading="lazy" class="w-full h-full object-cover transition-transform duration-1000 hover:scale-105" />
+                        <p class="text-[10px] tracking-[0.2em] text-zinc-500 uppercase p-3 bg-white">Fig. 03 — Noche</p>
+                    </div>
+                    
+                    <div class="aspect-[4/5] overflow-hidden bg-white shadow-md rounded-lg border border-zinc-200/50 flex flex-col justify-between" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="500">
+                        <img src="a53b8f0b-54df-46f6-b757-edcdd771693f.jpeg" alt="Recuerdo de Preboda" loading="lazy" class="w-full h-full object-cover transition-transform duration-1000 hover:scale-105" />
+                        <p class="text-[10px] tracking-[0.2em] text-zinc-500 uppercase p-3 bg-white">Fig. 04 — Preboda</p>
                     </div>
                 </div>
             </div>
@@ -252,10 +250,10 @@
             <!-- Columna Derecha: Sistema de Paneles Dinámicos con Todo el Contenido -->
             <div class="lg:col-span-5 relative w-full flex flex-col">
                 
-                <!-- Panel 01: Preboda y Salida de Autobuses -->
+                <!-- Panel 01: Santiago y Preboda con Santiago de Compostela_ Fotos antiguas.jpg -->
                 <div id="panel-1" class="map-panel active bg-white rounded-3xl shadow-sm border border-zinc-200 overflow-hidden">
                     <div class="relative aspect-[4/3] w-full">
-                        <img src="https://images.unsplash.com/photo-1555881400-74d7acaacd8b?auto=format&fit=crop&w=800&q=80" alt="Ambiente en Santiago" class="w-full h-full object-cover" />
+                        <img src="Santiago de Compostela_ Fotos antiguas.jpg" alt="Santiago de Compostela Fotos antiguas" class="w-full h-full object-cover" />
                         <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full border border-zinc-200/50 shadow-sm flex items-center gap-2">
                             <span class="flex items-center justify-center w-5 h-5 rounded-full bg-zinc-900 text-white font-serif text-[10px]">01</span>
                             <span class="text-[9px] uppercase tracking-[0.2em] text-zinc-800 font-medium">Punto de Encuentro</span>
@@ -840,7 +838,7 @@ END:VCALENDAR`;
             document.body.removeChild(link);
         }
 
-        // Fake Submit RSVP (Reemplazar por fetch a Google Sheets en producción)
+        // Fake Submit RSVP
         function submitRSVP() {
             const btn = document.getElementById('rsvpBtn');
             const original = btn.innerText;
