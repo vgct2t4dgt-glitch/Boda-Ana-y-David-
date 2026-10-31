@@ -241,7 +241,7 @@
       transform:scale(1.05);
     }
 
-    /* === Secciones alternadas: verde oscuro intercalado con papel === */
+    /* === Sección alternada en verde oscuro === */
     .section--dark{
       background:var(--green-dark);
       color:var(--paper);
@@ -286,30 +286,6 @@
       text-decoration-color:rgba(255,255,255,.55);
     }
     .section--dark .text-link:hover{color:#fff}
-
-    /* La promo destaca sobre fondo oscuro con el verde medio */
-    .section--dark .promo{background:var(--green)}
-
-    /* Tarjetas claras (hoteles) legibles dentro de sección oscura */
-    .section--dark .hotel-grid{
-      background:rgba(255,255,255,.14);
-      border-color:rgba(255,255,255,.14);
-    }
-    .section--dark .hotel{color:var(--ink)}
-    .section--dark .hotel .eyebrow{color:var(--muted)}
-    .section--dark .hotel-foot a,
-    .section--dark .hotel .hotel-price{color:var(--ink)}
-
-    /* Caja de regalo se mantiene en papel para contrastar */
-    .section--dark .gift-box{
-      background:var(--paper);
-      color:var(--ink);
-    }
-    .section--dark .gift-box h3{color:var(--green-dark)}
-    .section--dark .gift-box .iban{color:var(--ink)}
-    .section--dark .gift-box p,
-    .section--dark .gift-box .eyebrow,
-    .section--dark .gift-box .fineprint{color:var(--muted)}
 
     @media(max-width:900px){
       .nav-inner{height:68px}.nav-links{gap:12px}.nav-links a{font-size:8px}
@@ -512,7 +488,7 @@
     </section>
 
     <section class="stay-banner" id="estancia"><div class="wrap reveal" data-reveal="zoom"><span class="eyebrow">03 — Para vuestra estancia</span><h2>Quedaos<br><em>un poquito más.</em></h2><p>Una selección de alojamientos en Santiago para que podáis disfrutar del fin de semana con tranquilidad. Los cuatro primeros están junto a Plaza de Galicia, punto de salida de los autobuses.</p></div></section>
-    <section class="section section--dark" style="padding-top:65px">
+    <section class="section" style="padding-top:65px">
       <div class="wrap">
         <div class="hotel-grid">
           <article class="hotel reveal" data-reveal="scale-up"><div><span class="eyebrow">Junto a Plaza de Galicia</span><h3>Hotel Compostela <small style="font:300 15px var(--sans)">★★★★</small></h3><p>4 habitaciones dobles con desayuno · 487 €<br>2 habitaciones triples con desayuno · 567 €</p></div><div class="hotel-foot"><span class="hotel-price">2 noches</span><a href="https://www.hotelcompostela.es/" target="_blank" rel="noopener">Web oficial ↗</a></div></article>
