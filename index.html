@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ana & David — 11.09.2027</title>
-    
-    <!-- Fuentes Editoriales: Cormorant Garamond y Plus Jakarta Sans -->
+    <!-- FIX: & escapado como &amp; en el title -->
+    <title>Ana &amp; David — 11.09.2027</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Plus+Jakarta+Sans:wght@200;300;400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- AOS CSS (Animate On Scroll) -->
+    <!-- FIX: añadido peso 200 a Cormorant Garamond (usado por font-extralight) -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,200;0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Plus+Jakarta+Sans:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -19,7 +19,7 @@
             theme: {
                 extend: {
                     colors: {
-                        leaf: '#e3ece4', /* Verde hoja cálido original */
+                        leaf: '#e3ece4',
                     },
                     fontFamily: {
                         serif: ['"Cormorant Garamond"', 'serif'],
@@ -31,15 +31,13 @@
     </script>
 
     <style>
-        /* Fondo cálido global */
         body {
-            background-color: #e3ece4; 
+            background-color: #e3ece4;
             color: #18181B;
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
         }
 
-        /* Botones píldora para el RSVP */
         .pill-radio input[type="radio"] {
             display: none;
         }
@@ -49,12 +47,10 @@
             border-color: #18181B;
         }
 
-        /* Scrollbar */
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: #e3ece4; }
         ::-webkit-scrollbar-thumb { background: #18181B; }
 
-        /* Transiciones para los paneles del mapa interactivo */
         .map-panel {
             display: none;
             opacity: 0;
@@ -66,7 +62,7 @@
             opacity: 1;
             transform: translateY(0);
         }
-        
+
         details > summary::-webkit-details-marker {
             display: none;
         }
@@ -93,8 +89,8 @@
         </div>
     </nav>
 
-    <!-- PORTADA HERO -->
-    <header class="relative h-screen w-full flex flex-col items-center justify-center bg-cover bg-center overflow-hidden" style="background-image: url('36eb7cba-a6dc-4fa6-80b8-b8c29400c547.jpeg');">
+    <!-- PORTADA HERO — FIX: h-screen -> min-h-screen para móviles con barra del navegador -->
+    <header class="relative min-h-screen w-full flex flex-col items-center justify-center bg-cover bg-center overflow-hidden py-24" style="background-image: url('36eb7cba-a6dc-4fa6-80b8-b8c29400c547.jpeg');">
         <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/80 z-0"></div>
         <div class="relative z-10 text-center text-white px-6 mt-10 w-full" data-aos="fade-up" data-aos-duration="1500">
             <h1 class="text-6xl md:text-8xl lg:text-9xl font-serif font-extralight tracking-tight mb-8 leading-none">
@@ -106,7 +102,6 @@
                 </span>
             </div>
 
-            <!-- CUENTA ATRÁS -->
             <div class="flex justify-center items-center gap-5 md:gap-8 mb-10 text-white/80">
                 <div class="flex flex-col items-center">
                     <span id="cd-days" class="text-2xl md:text-3xl font-serif font-light tracking-wider">00</span>
@@ -124,7 +119,6 @@
                 </div>
             </div>
 
-            <!-- BOTÓN AÑADIR AL CALENDARIO -->
             <button onclick="downloadICS()" class="group inline-flex items-center gap-3 bg-white/10 hover:bg-white text-white hover:text-zinc-900 border border-white/30 hover:border-white px-7 py-3 rounded-full text-[10px] tracking-[0.25em] uppercase transition-all duration-500 font-medium backdrop-blur-sm shadow-sm">
                 <svg class="w-3.5 h-3.5 transition-transform duration-500 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z"></path></svg>
                 Añadir al Calendario
@@ -152,9 +146,8 @@
                 </div>
                 <p class="text-[10px] tracking-[0.2em] text-zinc-500 uppercase mt-4">Fig. 01 — Ana &amp; David</p>
             </div>
-            
+
             <div class="lg:col-span-7 flex flex-col justify-between h-full pt-6 lg:pt-12" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">
-                <!-- Caja de texto cálida -->
                 <div class="max-w-xl mb-16 lg:mb-24 bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-zinc-200">
                     <p class="text-2xl md:text-3xl font-serif font-light text-zinc-800 leading-relaxed mb-8 italic">
                         "Un viaje lleno de risas, aventuras improvisadas y recuerdos para toda la vida."
@@ -167,20 +160,26 @@
                     </p>
                 </div>
 
-                <!-- Galería perfectamente alineada -->
+                <!-- FIX: galería — imagen envuelta en flex-1 para que el caption no se corte -->
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 mb-10">
-                    <div class="aspect-[4/5] overflow-hidden bg-white shadow-md rounded-lg border border-zinc-200/50 flex flex-col justify-between" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300">
-                        <img src="e03ee37b-33d0-44b7-92b5-24f7016059b4.jpeg" alt="Detalle historia 1" loading="lazy" class="w-full h-full object-cover transition-transform duration-1000 hover:scale-105" />
+                    <div class="aspect-[4/5] overflow-hidden bg-white shadow-md rounded-lg border border-zinc-200/50 flex flex-col" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300">
+                        <div class="flex-1 overflow-hidden">
+                            <img src="e03ee37b-33d0-44b7-92b5-24f7016059b4.jpeg" alt="Detalle historia 1" loading="lazy" class="w-full h-full object-cover transition-transform duration-1000 hover:scale-105" />
+                        </div>
                         <p class="text-[10px] tracking-[0.2em] text-zinc-500 uppercase p-3 bg-white">Fig. 02 — Santiago</p>
                     </div>
-                    
-                    <div class="aspect-[4/5] overflow-hidden bg-white shadow-md rounded-lg border border-zinc-200/50 flex flex-col justify-between" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="400">
-                        <img src="0bc43841-20d7-41fd-9195-4c4755079096.jpeg" alt="Detalle historia 2" loading="lazy" class="w-full h-full object-cover transition-transform duration-1000 hover:scale-105" />
+
+                    <div class="aspect-[4/5] overflow-hidden bg-white shadow-md rounded-lg border border-zinc-200/50 flex flex-col" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="400">
+                        <div class="flex-1 overflow-hidden">
+                            <img src="0bc43841-20d7-41fd-9195-4c4755079096.jpeg" alt="Detalle historia 2" loading="lazy" class="w-full h-full object-cover transition-transform duration-1000 hover:scale-105" />
+                        </div>
                         <p class="text-[10px] tracking-[0.2em] text-zinc-500 uppercase p-3 bg-white">Fig. 03 — Noche</p>
                     </div>
-                    
-                    <div class="aspect-[4/5] overflow-hidden bg-white shadow-md rounded-lg border border-zinc-200/50 flex flex-col justify-between" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="500">
-                        <img src="a53b8f0b-54df-46f6-b757-edcdd771693f.jpeg" alt="Recuerdo de Preboda" loading="lazy" class="w-full h-full object-cover transition-transform duration-1000 hover:scale-105" />
+
+                    <div class="aspect-[4/5] overflow-hidden bg-white shadow-md rounded-lg border border-zinc-200/50 flex flex-col" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="500">
+                        <div class="flex-1 overflow-hidden">
+                            <img src="a53b8f0b-54df-46f6-b757-edcdd771693f.jpeg" alt="Recuerdo de Preboda" loading="lazy" class="w-full h-full object-cover transition-transform duration-1000 hover:scale-105" />
+                        </div>
                         <p class="text-[10px] tracking-[0.2em] text-zinc-500 uppercase p-3 bg-white">Fig. 04 — Preboda</p>
                     </div>
                 </div>
@@ -215,7 +214,7 @@
         </div>
     </section>
 
-    <!-- 02 / PROGRAMA (MAPA INTERACTIVO Y DETALLES DEL EVENTO INTEGRADOS) -->
+    <!-- 02 / PROGRAMA -->
     <section id="programa" class="py-24 md:py-32 px-6 max-w-7xl mx-auto border-b border-zinc-300/30">
         <div data-aos="fade-up" data-aos-duration="1200" class="mb-16 md:mb-24 text-center">
             <span class="text-[10px] tracking-[0.3em] text-zinc-500 uppercase font-medium block mb-3">02 / El Programa</span>
@@ -226,34 +225,30 @@
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start max-w-6xl mx-auto relative" data-aos="fade-up" data-aos-duration="1500">
-            
-            <!-- Columna Izquierda: Mapa Interactivo (Fijo en desktop) -->
+
             <div class="lg:col-span-7 relative w-full rounded-2xl overflow-hidden bg-white shadow-md border border-zinc-200 lg:sticky lg:top-32">
                 <img src="Gemini_Generated_Image_2yp0ju2yp0ju2yp0.jpg" alt="Mapa Ilustrado de la Boda" class="w-full h-auto block select-none" />
 
-                <!-- Pin 01 (Activo por defecto) -->
-                <button id="pin-1" class="map-pin absolute flex items-center justify-center w-8 h-8 md:w-10 md:h-10 -ml-4 -mt-4 md:-ml-5 md:-mt-5 rounded-full bg-zinc-900 text-white font-serif text-sm md:text-base transition-all duration-300 ring-4 ring-white/50 scale-110 shadow-lg cursor-pointer" style="top: 26.5%; left: 46.5%;" onclick="showMapTab(1)">
+                <!-- FIX: pines unificados (clases base idénticas). Pin 1 arranca activo; el JS gestiona el resto. -->
+                <button id="pin-1" aria-label="Ver punto 1: Santiago y preboda" class="map-pin absolute flex items-center justify-center w-8 h-8 md:w-10 md:h-10 -ml-4 -mt-4 md:-ml-5 md:-mt-5 rounded-full bg-zinc-900 text-white font-serif text-sm md:text-base transition-all duration-300 scale-110 shadow-lg ring-4 ring-white/50 cursor-pointer" style="top: 26.5%; left: 46.5%;" onclick="showMapTab(1)">
                     01
                 </button>
-                
-                <!-- Pin 02 -->
-                <button id="pin-2" class="map-pin absolute flex items-center justify-center w-8 h-8 md:w-10 md:h-10 -ml-4 -mt-4 md:-ml-5 md:-mt-5 rounded-full bg-zinc-400 text-white font-serif text-sm md:text-base transition-all duration-300 hover:bg-zinc-700 hover:scale-110 shadow-md cursor-pointer" style="top: 62.5%; left: 17.5%;" onclick="showMapTab(2)">
+
+                <button id="pin-2" aria-label="Ver punto 2: La ceremonia" class="map-pin absolute flex items-center justify-center w-8 h-8 md:w-10 md:h-10 -ml-4 -mt-4 md:-ml-5 md:-mt-5 rounded-full bg-zinc-400 text-white font-serif text-sm md:text-base transition-all duration-300 hover:bg-zinc-700 hover:scale-110 shadow-md cursor-pointer" style="top: 62.5%; left: 17.5%;" onclick="showMapTab(2)">
                     02
                 </button>
-                
-                <!-- Pin 03 -->
-                <button id="pin-3" class="map-pin absolute flex items-center justify-center w-8 h-8 md:w-10 md:h-10 -ml-4 -mt-4 md:-ml-5 md:-mt-5 rounded-full bg-zinc-400 text-white font-serif text-sm md:text-base transition-all duration-300 hover:bg-zinc-700 hover:scale-110 shadow-md cursor-pointer" style="top: 53.5%; left: 84.5%;" onclick="showMapTab(3)">
+
+                <button id="pin-3" aria-label="Ver punto 3: El Pazo" class="map-pin absolute flex items-center justify-center w-8 h-8 md:w-10 md:h-10 -ml-4 -mt-4 md:-ml-5 md:-mt-5 rounded-full bg-zinc-400 text-white font-serif text-sm md:text-base transition-all duration-300 hover:bg-zinc-700 hover:scale-110 shadow-md cursor-pointer" style="top: 53.5%; left: 84.5%;" onclick="showMapTab(3)">
                     03
                 </button>
             </div>
 
-            <!-- Columna Derecha: Sistema de Paneles Dinámicos con Todo el Contenido -->
             <div class="lg:col-span-5 relative w-full flex flex-col">
-                
-                <!-- Panel 01: Santiago y Preboda con Santiago de Compostela_ Fotos antiguas.jpg -->
+
                 <div id="panel-1" class="map-panel active bg-white rounded-3xl shadow-sm border border-zinc-200 overflow-hidden">
                     <div class="relative aspect-[4/3] w-full">
-                        <img src="Santiago de Compostela_ Fotos antiguas.jpg" alt="Santiago de Compostela Fotos antiguas" class="w-full h-full object-cover" />
+                        <!-- FIX: nombre de archivo con espacios URL-encoded (%20) -->
+                        <img src="Santiago%20de%20Compostela_%20Fotos%20antiguas.jpg" alt="Santiago de Compostela Fotos antiguas" class="w-full h-full object-cover" />
                         <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full border border-zinc-200/50 shadow-sm flex items-center gap-2">
                             <span class="flex items-center justify-center w-5 h-5 rounded-full bg-zinc-900 text-white font-serif text-[10px]">01</span>
                             <span class="text-[9px] uppercase tracking-[0.2em] text-zinc-800 font-medium">Punto de Encuentro</span>
@@ -277,7 +272,6 @@
                     </div>
                 </div>
 
-                <!-- Panel 02: La Ceremonia -->
                 <div id="panel-2" class="map-panel bg-white rounded-3xl shadow-sm border border-zinc-200 overflow-hidden">
                     <div class="relative aspect-[4/3] w-full">
                         <img src="IMG_0967.jpeg" alt="Ceremonia en Bastavales" class="w-full h-full object-cover" />
@@ -304,7 +298,6 @@
                     </div>
                 </div>
 
-                <!-- Panel 03: Banquete y Fiesta -->
                 <div id="panel-3" class="map-panel bg-white rounded-3xl shadow-sm border border-zinc-200 overflow-hidden">
                     <div class="relative aspect-[4/3] w-full">
                         <img src="IMG_0966.jpeg" alt="Banquete en Pazo de Vista Alegre" class="w-full h-full object-cover" />
@@ -322,8 +315,7 @@
                                 Continuaremos la celebración por todo lo alto en los espectaculares jardines y salones del pazo. Disfrutaremos de la gastronomía tradicional gallega, brindis inolvidables y, por supuesto, barra libre y música.
                             </p>
                         </div>
-                        
-                        <!-- Desglose de Autobuses integrado -->
+
                         <div class="bg-[#e3ece4]/50 border border-zinc-200/50 p-5 rounded-2xl mb-8">
                             <span class="text-[10px] uppercase tracking-[0.25em] text-zinc-500 font-medium block mb-4 border-b border-zinc-200 pb-2">Regreso a Santiago (Autobuses)</span>
                             <ul class="space-y-4">
@@ -357,7 +349,7 @@
         </div>
     </section>
 
-    <!-- 03 / ESTANCIA EXCLUSIVA PARA HOTELES -->
+    <!-- 03 / ESTANCIA -->
     <div id="estancia" class="relative w-full min-h-[60vh] flex items-center justify-center overflow-hidden bg-cover bg-center bg-scroll md:bg-fixed" style="background-image: url('IMG_0963.jpeg');">
         <div class="absolute inset-0 bg-black/50 z-0"></div>
         <div class="relative z-10 text-center text-white px-6 max-w-3xl flex flex-col items-center" data-aos="fade-up" data-aos-duration="1500">
@@ -391,7 +383,7 @@
                     Web oficial &rarr;
                 </a>
             </div>
-            
+
             <div class="bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-zinc-200 flex flex-col justify-between" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">
                 <div>
                     <span class="text-[10px] tracking-[0.2em] text-zinc-500 uppercase font-medium block mb-2">Junto a Plaza de Galicia</span>
@@ -473,7 +465,7 @@
         </div>
     </section>
 
-    <!-- 04 / RECOMENDACIONES: GUÍA Y BELLEZA -->
+    <!-- 04 / RECOMENDACIONES -->
     <section id="recomendaciones" class="py-24 md:py-32 px-6 max-w-7xl mx-auto border-b border-zinc-300/30">
         <div class="text-center mb-16" data-aos="fade-up" data-aos-duration="1200">
             <span class="text-[10px] tracking-[0.3em] text-zinc-500 uppercase font-medium block mb-3">04 / Recomendaciones</span>
@@ -484,7 +476,6 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10" data-aos="fade-up" data-aos-duration="1500">
-            <!-- Bloque 1 (Guía) -->
             <div class="bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-zinc-200 flex flex-col justify-start">
                 <h3 class="text-2xl md:text-3xl font-serif font-light text-zinc-900 mb-8">Por si llegas antes a Santiago (o te quieres perder un rato)</h3>
                 <ul class="text-zinc-600 font-light text-sm space-y-6 leading-relaxed">
@@ -517,8 +508,7 @@
                     </li>
                 </ul>
             </div>
-            
-            <!-- Bloque 2 (Peluquería) -->
+
             <div class="bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-zinc-200 flex flex-col justify-start">
                 <h3 class="text-2xl md:text-3xl font-serif font-light text-zinc-900 mb-4">Peluquería y Maquillaje</h3>
                 <p class="text-sm italic text-zinc-500 font-serif mb-8 border-b border-zinc-100 pb-4">
@@ -590,10 +580,10 @@
         </div>
     </section>
 
-    <!-- 06 / DETALLES: LISTA DE BODAS -->
+    <!-- 06 / DETALLES -->
     <section id="detalles" class="py-24 md:py-32 px-6 max-w-3xl mx-auto text-center" data-aos="fade-up" data-aos-duration="1200">
         <span class="text-[10px] tracking-[0.3em] text-zinc-500 uppercase font-medium block mb-3">06 / Detalles</span>
-        
+
         <details class="group bg-white border border-zinc-200 rounded-3xl p-6 md:p-10 shadow-sm transition-all duration-300 text-left cursor-pointer">
             <summary class="flex justify-between items-center list-none font-serif text-2xl md:text-3xl font-light text-zinc-900 select-none outline-none">
                 <span>¿Quieres hacernos un detalle?</span>
@@ -601,7 +591,7 @@
                     &darr;
                 </span>
             </summary>
-            
+
             <div class="mt-6 pt-8 border-t border-zinc-100 text-zinc-600 font-light text-sm md:text-base leading-relaxed cursor-auto">
                 <p class="mb-8">
                     Para nosotros, el regalo más grande es que hagáis las maletas y os vengáis a Galicia a celebrar con nosotros. De verdad, vuestra presencia lo es todo. Sin embargo, si además de vuestra compañía queréis tener un detalle con nosotros para ayudarnos a arrancar esta nueva aventura, os dejamos nuestro número de cuenta.
@@ -611,7 +601,7 @@
                     <div id="iban-text" class="font-serif text-lg md:text-xl tracking-widest text-zinc-800 mb-5 select-all font-medium">
                         ESXX XXXX XXXX XXXX XXXX
                     </div>
-                    
+
                     <button onclick="copyIban()" id="copyIbanBtn" class="inline-flex items-center gap-2 bg-white text-zinc-900 border border-zinc-300 hover:border-zinc-900 px-5 py-2.5 rounded-full text-[11px] uppercase tracking-[0.2em] font-medium transition-all duration-300 shadow-sm hover:shadow">
                         <svg class="w-3.5 h-3.5 text-zinc-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-.446-.13-.858-.355-1.205L16.205 6.355A2.25 2.25 0 0014.625 5.625H12c-.621 0-1.125.504-1.125 1.125v10.5c0 .621.504 1.125 1.125 1.125z"></path></svg>
                         <span id="copyIbanText">Copiar Número de Cuenta</span>
@@ -634,11 +624,12 @@
             </p>
 
             <form id="rsvp-form" onsubmit="event.preventDefault(); submitRSVP();" class="flex flex-col gap-10 text-left max-w-lg mx-auto">
+                <!-- FIX: label con for + input con id y name -->
                 <div>
-                    <label class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 block mb-2">Nombre completo</label>
-                    <input type="text" placeholder="Nombre y Apellidos" required class="w-full bg-transparent border-b border-zinc-700 py-3 text-sm focus:outline-none focus:border-white transition-colors text-white font-light">
+                    <label for="rsvp-nombre" class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 block mb-2">Nombre completo</label>
+                    <input id="rsvp-nombre" name="nombre" type="text" placeholder="Nombre y Apellidos" required autocomplete="name" class="w-full bg-transparent border-b border-zinc-700 py-3 text-sm focus:outline-none focus:border-white transition-colors text-white font-light">
                 </div>
-                
+
                 <div>
                     <label class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 block mb-4">¿Asistirás a la boda?</label>
                     <div class="flex gap-4">
@@ -668,8 +659,8 @@
                 </div>
 
                 <div>
-                    <label class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 block mb-2">Observaciones / Alergias</label>
-                    <input type="text" placeholder="Alergias o necesidades dietéticas..." class="w-full bg-transparent border-b border-zinc-700 py-3 text-sm focus:outline-none focus:border-white transition-colors text-white font-light">
+                    <label for="rsvp-obs" class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 block mb-2">Observaciones / Alergias</label>
+                    <input id="rsvp-obs" name="observaciones" type="text" placeholder="Alergias o necesidades dietéticas..." class="w-full bg-transparent border-b border-zinc-700 py-3 text-sm focus:outline-none focus:border-white transition-colors text-white font-light">
                 </div>
 
                 <button type="submit" id="rsvpBtn" class="mt-6 w-full bg-white text-zinc-900 py-4 rounded-full text-xs uppercase tracking-[0.25em] font-medium hover:bg-zinc-200 transition-all duration-300">
@@ -686,25 +677,21 @@
         </div>
     </footer>
 
-    <!-- AOS JS Library & SCRIPTS -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 1400, once: true, offset: 100 });
 
-        // LÓGICA DE NAVEGACIÓN MAPA TIPO APP (TABS)
+        // FIX: cambio de tab del mapa con gestión completa de clases (incluye shadow y hover:scale)
         function showMapTab(tabId) {
-            // 1. Resetear todos los pines
             document.querySelectorAll('.map-pin').forEach(pin => {
-                pin.classList.remove('bg-zinc-900', 'ring-4', 'ring-white/50', 'scale-110');
-                pin.classList.add('bg-zinc-400', 'hover:bg-zinc-700');
+                pin.classList.remove('bg-zinc-900', 'ring-4', 'ring-white/50', 'scale-110', 'shadow-lg');
+                pin.classList.add('bg-zinc-400', 'hover:bg-zinc-700', 'hover:scale-110', 'shadow-md');
             });
 
-            // 2. Activar el pin seleccionado
             const activePin = document.getElementById('pin-' + tabId);
-            activePin.classList.remove('bg-zinc-400', 'hover:bg-zinc-700');
-            activePin.classList.add('bg-zinc-900', 'ring-4', 'ring-white/50', 'scale-110');
+            activePin.classList.remove('bg-zinc-400', 'hover:bg-zinc-700', 'hover:scale-110', 'shadow-md');
+            activePin.classList.add('bg-zinc-900', 'ring-4', 'ring-white/50', 'scale-110', 'shadow-lg');
 
-            // 3. Ocultar todos los paneles con transición
             document.querySelectorAll('.map-panel').forEach(panel => {
                 panel.style.display = 'none';
                 panel.style.opacity = '0';
@@ -712,10 +699,9 @@
                 panel.classList.remove('active');
             });
 
-            // 4. Mostrar el panel activo con reflujo para activar la animación
             const activePanel = document.getElementById('panel-' + tabId);
             activePanel.style.display = 'block';
-            void activePanel.offsetWidth; // Force reflow
+            void activePanel.offsetWidth;
             activePanel.style.opacity = '1';
             activePanel.style.transform = 'translateY(0)';
             activePanel.classList.add('active');
@@ -741,12 +727,20 @@
             }
         });
 
-        // Copiar Promo
+        // FIX: copyPromo con fallback para navegadores sin clipboard API
         function copyPromo() {
             const code = "BODASEP27";
             if (navigator.clipboard && navigator.clipboard.writeText) {
                 navigator.clipboard.writeText(code);
+            } else {
+                const tempInput = document.createElement("input");
+                tempInput.value = code;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                document.execCommand("copy");
+                document.body.removeChild(tempInput);
             }
+
             const btn = document.getElementById('copyBtn');
             const originalText = btn.innerText;
             btn.innerText = "¡Código Copiado!";
@@ -757,11 +751,11 @@
             }, 2500);
         }
 
-        // Copiar IBAN
+        // FIX: copyIban — elimina bg-white antes de añadir bg-emerald-50 para evitar conflicto
         function copyIban() {
             const ibanElement = document.getElementById('iban-text');
             const iban = ibanElement.innerText.trim();
-            
+
             if (navigator.clipboard && navigator.clipboard.writeText) {
                 navigator.clipboard.writeText(iban);
             } else {
@@ -778,11 +772,13 @@
             const originalText = textSpan.innerText;
 
             textSpan.innerText = "¡Copiado!";
+            btn.classList.remove('bg-white');
             btn.classList.add('bg-emerald-50', 'border-emerald-600', 'text-emerald-800');
 
             setTimeout(() => {
                 textSpan.innerText = originalText;
                 btn.classList.remove('bg-emerald-50', 'border-emerald-600', 'text-emerald-800');
+                btn.classList.add('bg-white');
             }, 2000);
         }
 
@@ -809,26 +805,51 @@
         }
         initCountdown();
 
-        // Descargar ICS
+        // FIX: ICS con CRLF (\r\n), VTIMEZONE Europe/Madrid y UID/DTSTAMP
         function downloadICS() {
-            const icsContent = 
-`BEGIN:VCALENDAR
-VERSION:2.0
-CALSCALE:GREGORIAN
-BEGIN:VEVENT
-SUMMARY:Boda Ana & David
-DTSTART;TZID=Europe/Madrid:20270911T120000
-DTEND;TZID=Europe/Madrid:20270911T235900
-LOCATION:Pazo de Vista Alegre
-DESCRIPTION:¡Nos casamos! Acompañanos en nuestro gran día.
-STATUS:CONFIRMED
-BEGIN:VALARM
-TRIGGER:-PT24H
-ACTION:DISPLAY
-DESCRIPTION:Recordatorio de la Boda
-END:VALARM
-END:VEVENT
-END:VCALENDAR`;
+            const icsLines = [
+                'BEGIN:VCALENDAR',
+                'VERSION:2.0',
+                'PRODID:-//Ana y David//Boda//ES',
+                'CALSCALE:GREGORIAN',
+                'METHOD:PUBLISH',
+                'BEGIN:VTIMEZONE',
+                'TZID:Europe/Madrid',
+                'X-LIC-LOCATION:Europe/Madrid',
+                'BEGIN:DAYLIGHT',
+                'TZOFFSETFROM:+0100',
+                'TZOFFSETTO:+0200',
+                'TZNAME:CEST',
+                'DTSTART:19700329T020000',
+                'RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU',
+                'END:DAYLIGHT',
+                'BEGIN:STANDARD',
+                'TZOFFSETFROM:+0200',
+                'TZOFFSETTO:+0100',
+                'TZNAME:CET',
+                'DTSTART:19701025T030000',
+                'RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU',
+                'END:STANDARD',
+                'END:VTIMEZONE',
+                'BEGIN:VEVENT',
+                'UID:boda-ana-david-20270911@ana-david.local',
+                'DTSTAMP:' + new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z',
+                'SUMMARY:Boda Ana y David',
+                'DTSTART;TZID=Europe/Madrid:20270911T120000',
+                'DTEND;TZID=Europe/Madrid:20270911T235900',
+                'LOCATION:Pazo de Vista Alegre',
+                'DESCRIPTION:¡Nos casamos! Acompáñanos en nuestro gran día.',
+                'STATUS:CONFIRMED',
+                'BEGIN:VALARM',
+                'TRIGGER:-PT24H',
+                'ACTION:DISPLAY',
+                'DESCRIPTION:Recordatorio de la Boda',
+                'END:VALARM',
+                'END:VEVENT',
+                'END:VCALENDAR'
+            ];
+            const icsContent = icsLines.join('\r\n') + '\r\n';
+
             const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
             const link = document.createElement('a');
             link.href = window.URL.createObjectURL(blob);
@@ -836,6 +857,7 @@ END:VCALENDAR`;
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
+            window.URL.revokeObjectURL(link.href);
         }
 
         // Fake Submit RSVP
