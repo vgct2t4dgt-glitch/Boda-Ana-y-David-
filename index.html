@@ -7,6 +7,7 @@
   <meta name="description" content="Ana y David se casan el 11 de septiembre de 2027. Toda la información para compartir con nosotros ese fin de semana en Galicia.">
   <title>Ana &amp; David — 11 septiembre 2027</title>
 
+  <!-- Open Graph / Twitter -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Ana &amp; David — 11 septiembre 2027">
   <meta property="og:description" content="Nos casamos. Toda la información del fin de semana en Galicia.">
@@ -210,7 +211,7 @@
     .footer-bottom span{font-size:9px;letter-spacing:.28em;color:#c1cbbd}
     .backtop{display:inline-block;margin-top:24px;color:#d4ddd1;font-size:9px;text-transform:uppercase;letter-spacing:.15em}
 
-    /* Reveal con dinamismo */
+    /* Reveal con dinamismo (solo si JS está activo) */
     html.js .reveal{
       opacity:0;
       transform:translateY(42px);
@@ -223,6 +224,7 @@
     html.js .reveal[data-reveal="scale-up"]{transform:translateY(24px) scale(.94)}
     html.js .reveal.in{opacity:1;transform:none;will-change:auto}
 
+    /* Entrada del hero al cargar (no depende del scroll) */
     .hero-kicker,.hero h1,.hero-date,.countdown,.hero-actions{opacity:0;animation:heroIn 1.4s cubic-bezier(.16,1,.3,1) forwards}
     .hero-kicker{animation-delay:.15s}
     .hero h1{animation-delay:.4s}
@@ -231,6 +233,7 @@
     .hero-actions{animation-delay:1.05s}
     @keyframes heroIn{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
 
+    /* Zoom suave al pasar el ratón por las fotos */
     .photo-main img,.photo-small img,.dog-photo img,.panel-image img{
       transition:transform 1.2s cubic-bezier(.16,1,.3,1),filter .8s;
     }
@@ -238,43 +241,75 @@
       transform:scale(1.05);
     }
 
-    /* =====================================================
-       SECCIONES OSCURAS ALTERNADAS
-       ===================================================== */
+    /* === Secciones alternadas: verde oscuro intercalado con papel === */
     .section--dark{
       background:var(--green-dark);
-      color:#d7ded5;
-      border-bottom:1px solid rgba(255,255,255,.08);
+      color:var(--paper);
+      border-bottom-color:rgba(255,255,255,.14);
     }
-    .section--dark .eyebrow{color:#a8b5a5}
+
+    /* Textos secundarios en oscuro */
+    .section--dark .eyebrow,
+    .section--dark .intro,
+    .section--dark .photo-caption,
+    .section--dark .fineprint,
+    .section--dark .story-copy p:not(.pullquote),
+    .section--dark .dog-copy p,
+    .section--dark .guide-list li,
+    .section--dark .answer,
+    .section--dark .travel-item p{
+      color:#c5d0c2;
+    }
+
+    /* Títulos y textos principales en oscuro */
     .section--dark h2,
-    .section--dark h3{color:#f4f1e9}
-    .section--dark h2 em,
-    .section--dark h3 em{color:#e0e3d9}
-    .section--dark .intro{color:#b4c0b1}
-    .section--dark .fineprint{color:#899886}
-    .section--dark .text-link{color:#f4f1e9}
+    .section--dark h3,
+    .section--dark .pullquote,
+    .section--dark summary,
+    .section--dark .guide-list strong,
+    .section--dark .travel-item h3,
+    .section--dark .travel-item .number{
+      color:var(--paper);
+    }
 
-    /* Hoteles en dark: cards quedan en paper (contraste) */
-    .section--dark .hotel-grid{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.12)}
-    .section--dark .hotel{background:var(--paper);color:var(--ink)}
-    .section--dark .hotel:hover{background:#faf8f1}
-    .section--dark .hotel h3{color:var(--ink)}
-    .section--dark .hotel p{color:var(--muted)}
+    /* Bordes y detalles en oscuro */
+    .section--dark .guide-list li,
+    .section--dark .dog-feature,
+    .section--dark details,
+    .section--dark details:last-child,
+    .section--dark .travel-item{
+      border-color:rgba(255,255,255,.16);
+    }
+    .section--dark summary:after{color:#c5d0c2}
+    .section--dark .text-link{
+      color:var(--paper);
+      text-decoration-color:rgba(255,255,255,.55);
+    }
+    .section--dark .text-link:hover{color:#fff}
+
+    /* La promo destaca sobre fondo oscuro con el verde medio */
+    .section--dark .promo{background:var(--green)}
+
+    /* Tarjetas claras (hoteles) legibles dentro de sección oscura */
+    .section--dark .hotel-grid{
+      background:rgba(255,255,255,.14);
+      border-color:rgba(255,255,255,.14);
+    }
+    .section--dark .hotel{color:var(--ink)}
     .section--dark .hotel .eyebrow{color:var(--muted)}
-    .section--dark .hotel-price{color:var(--ink)}
-    .section--dark .hotel-foot a{color:var(--ink)}
-    .section--dark .promo{background:#4a5d4c}
-    .section--dark .promo h3{color:white}
-    .section--dark .promo p{color:#d9ded5}
-    .section--dark .promo .eyebrow{color:#cbd5c8}
+    .section--dark .hotel-foot a,
+    .section--dark .hotel .hotel-price{color:var(--ink)}
 
-    /* Viaje en dark */
-    .section--dark .travel-item{border-color:rgba(255,255,255,.15)}
-    .section--dark .travel-item .number{color:#93a68f}
-    .section--dark .travel-item h3{color:#f4f1e9}
-    .section--dark .travel-item p{color:#b4c0b1}
-    .section--dark .travel-item .text-link{color:#f4f1e9}
+    /* Caja de regalo se mantiene en papel para contrastar */
+    .section--dark .gift-box{
+      background:var(--paper);
+      color:var(--ink);
+    }
+    .section--dark .gift-box h3{color:var(--green-dark)}
+    .section--dark .gift-box .iban{color:var(--ink)}
+    .section--dark .gift-box p,
+    .section--dark .gift-box .eyebrow,
+    .section--dark .gift-box .fineprint{color:var(--muted)}
 
     @media(max-width:900px){
       .nav-inner{height:68px}.nav-links{gap:12px}.nav-links a{font-size:8px}
@@ -307,7 +342,7 @@
       .photo-main{height:480px}
       .story-copy{padding-top:0}
 
-      /* Galería móvil: 1 columna con ritmo editorial alternado */
+      /* Galería móvil: 1 columna, fotos grandes y ritmo editorial alternado */
       .gallery{grid-template-columns:1fr;gap:28px;margin-top:52px}
       .photo-small{height:auto;aspect-ratio:4/5}
       .gallery figure{margin:0}
@@ -348,12 +383,11 @@
       .hero-kicker,.hero h1,.hero-date,.countdown,.hero-actions{animation:none;opacity:1}
     }
 
+    /* Print: guardar la web como "save the date" */
     @media print{
       .nav,.menu-toggle,.hero-actions,.map-tabs,.rsvp form,.backtop,.promo button,.gift-box .btn{display:none!important}
       body{background:white;color:black}
       .section{padding:24px 0;border-color:#ccc}
-      .section--dark{background:white;color:black}
-      .section--dark h2,.section--dark h3,.section--dark .eyebrow,.section--dark .intro,.section--dark .travel-item h3,.section--dark .travel-item p,.section--dark .travel-item .number,.section--dark .text-link{color:black}
       .hero{min-height:auto;padding:40px 0;color:black;background:white}
       .hero-bg,.hero:before,.interlude:before,.stay-banner{background:none!important;filter:none!important}
       .hero-bg{display:none}
@@ -367,7 +401,7 @@
 </head>
 <body>
   <script>
-    const RSVP_ENDPOINT = "";
+    const RSVP_ENDPOINT = ""; // Ejemplo: https://formspree.io/f/xxxxxxxx
     const WEDDING_DATE = "2027-09-11";
     if (typeof document !== 'undefined') document.documentElement.classList.add('js');
   </script>
@@ -406,7 +440,7 @@
   </header>
 
   <main>
-    <section class="section" id="historia">
+    <section class="section section--dark" id="historia">
       <div class="wrap">
         <div class="section-head reveal"><span class="eyebrow">01 — Nuestro relato</span><h2>Una historia que<br><em>nos ha traído hasta aquí.</em></h2></div>
         <div class="story-grid">
@@ -477,4 +511,221 @@
       </div>
     </section>
 
-    <section class="stay-banner" id="estancia"><div class="wrap reveal" data-reveal="zoom
+    <section class="stay-banner" id="estancia"><div class="wrap reveal" data-reveal="zoom"><span class="eyebrow">03 — Para vuestra estancia</span><h2>Quedaos<br><em>un poquito más.</em></h2><p>Una selección de alojamientos en Santiago para que podáis disfrutar del fin de semana con tranquilidad. Los cuatro primeros están junto a Plaza de Galicia, punto de salida de los autobuses.</p></div></section>
+    <section class="section section--dark" style="padding-top:65px">
+      <div class="wrap">
+        <div class="hotel-grid">
+          <article class="hotel reveal" data-reveal="scale-up"><div><span class="eyebrow">Junto a Plaza de Galicia</span><h3>Hotel Compostela <small style="font:300 15px var(--sans)">★★★★</small></h3><p>4 habitaciones dobles con desayuno · 487 €<br>2 habitaciones triples con desayuno · 567 €</p></div><div class="hotel-foot"><span class="hotel-price">2 noches</span><a href="https://www.hotelcompostela.es/" target="_blank" rel="noopener">Web oficial ↗</a></div></article>
+          <article class="hotel reveal" data-reveal="scale-up" style="--reveal-delay:.08s"><div><span class="eyebrow">Junto a Plaza de Galicia</span><h3>Hotel Gelmírez <small style="font:300 15px var(--sans)">★★★</small></h3><p>5 habitaciones dobles con desayuno · 414 €</p></div><div class="hotel-foot"><span class="hotel-price">2 noches</span><a href="https://www.hotelgelmirez.com/" target="_blank" rel="noopener">Web oficial ↗</a></div></article>
+          <article class="hotel reveal" data-reveal="scale-up" style="--reveal-delay:.16s"><div><span class="eyebrow">Junto a Plaza de Galicia</span><h3>Hotel Universal <small style="font:300 15px var(--sans)">★★</small></h3><p>2 habitaciones dobles · 380 €<br>2 habitaciones triples · 440 €</p></div><div class="hotel-foot"><span class="hotel-price">2 noches</span><a href="https://www.hoteluniversalsantiago.com/" target="_blank" rel="noopener">Web oficial ↗</a></div></article>
+          <article class="hotel reveal" data-reveal="scale-up" style="--reveal-delay:.24s"><div><span class="eyebrow">Junto a Plaza de Galicia</span><h3>Nest Style Santiago</h3><p>5 habitaciones dobles con desayuno · 442 €</p></div><div class="hotel-foot"><span class="hotel-price">2 noches</span><a href="https://neststylehotels.com/alojamiento/nest-style-santiago/" target="_blank" rel="noopener">Web oficial ↗</a></div></article>
+        </div>
+        <p class="fineprint">Precios facilitados para el total de dos noches y según las habitaciones indicadas. Confirmad disponibilidad, condiciones, desayuno y política de cancelación directamente con cada alojamiento. Precios sujetos a cambios.</p>
+        <div class="promo reveal" data-reveal="scale-up"><div><span class="eyebrow" style="color:#cbd5c8">Una opción más · A 15 min caminando</span><h3>Eurostars Gran Hotel Santiago</h3><p>Reservando desde su página web oficial, disponéis de un 15 % de descuento con el código promocional de nuestra boda. Comprobad las condiciones y fechas aplicables antes de reservar.</p><a class="btn light" href="https://www.eurostarshotels.com/eurostars-gran-hotel-santiago.html" target="_blank" rel="noopener">Visitar hotel ↗</a></div><div style="text-align:center"><div class="eyebrow" style="color:#cbd5c8">Código promocional</div><div class="promo-code" id="promoCode">BODASEP27</div><button type="button" id="copyPromo">Copiar código</button><div id="promoStatus" role="status" style="font-size:10px;margin-top:8px"></div></div></div>
+      </div>
+    </section>
+
+    <section class="section" id="guia">
+      <div class="wrap">
+        <div class="section-head reveal"><span class="eyebrow">04 — Unos días en Galicia</span><h2>La pequeña<br><em>guía de Santiago.</em></h2><p class="intro" style="margin-top:22px">Por si llegáis antes, os quedáis el domingo o simplemente os apetece perderos un rato por la ciudad.</p></div>
+        <div class="two-columns">
+          <div class="reveal"><span class="eyebrow">Pasear y descubrir</span><h3>La ciudad, sin prisa.</h3><ul class="guide-list">
+            <li><strong>Vinos y tapas</strong>Rúa do Franco y Rúa da Raíña son dos clásicos para disfrutar del ambiente del casco histórico.</li>
+            <li><strong>Un paseo con vistas</strong>El Parque de la Alameda ofrece algunas de las vistas más bonitas de la Catedral.</li>
+            <li><strong>Un dulce para llevar</strong>Pastas de té y Tarta de Santiago: un recuerdo muy nuestro.</li>
+          </ul></div>
+          <div class="reveal" style="--reveal-delay:.12s"><span class="eyebrow">Peluquería y maquillaje</span><h3>Un ratito para<br><em>ponerse guapos.</em></h3><p class="intro" style="font-family:var(--serif);font-style:italic">"Para cuando quieras ser la segunda persona más guapa de la boda (la primera ya sabemos quién es)."</p><ul class="guide-list">
+            <li><strong>Loida · Rúa de Fernando III O Santo</strong>Una opción que teníamos apuntada para peluquería y eventos.</li>
+            <li><strong>Tania Barreiro · Rúa Nova de Abaixo</strong>Otra referencia para consultar recogidos y maquillaje de invitada.</li>
+          </ul><p class="fineprint">Os recomendamos contactar directamente para confirmar servicios, disponibilidad y citas para el fin de semana.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--dark" id="viaje">
+      <div class="wrap">
+        <div class="section-head center reveal"><span class="eyebrow">05 — Cómo llegar</span><h2>Todos los caminos<br><em>llevan a Santiago.</em></h2><p class="intro" style="margin:22px auto 0">Si venís desde fuera, estas son algunas opciones para llegar al centro de la ciudad.</p></div>
+        <div class="travel-grid">
+          <article class="travel-item reveal"><span class="number">01</span><h3>En tren</h3><p>La estación de Santiago conecta con servicios AVE y Alvia. Desde allí podéis llegar a Plaza de Galicia caminando o en taxi. <a class="text-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Estacion+de+tren+Santiago+de+Compostela">Ver estación ↗</a></p></article>
+          <article class="travel-item reveal" style="--reveal-delay:.1s"><span class="number">02</span><h3>En avión</h3><p>El aeropuerto Rosalía de Castro (SCQ) está conectado con el centro mediante transporte público y taxi. Consultad horarios actualizados del autobús 6A. <a class="text-link" target="_blank" rel="noopener" href="https://www.aena.es/es/santiago-rosalia-de-castro.html">Información aeropuerto ↗</a></p></article>
+          <article class="travel-item reveal" style="--reveal-delay:.2s"><span class="number">03</span><h3>En coche</h3><p>El centro histórico tiene calles peatonales y accesos restringidos. Consultad con vuestro alojamiento las opciones de aparcamiento antes de viajar.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="detalles">
+      <div class="wrap">
+        <div class="section-head reveal"><span class="eyebrow">06 — Antes de venir</span><h2>Algunos<br><em>detalles prácticos.</em></h2></div>
+        <div class="details-grid">
+          <div class="reveal">
+            <details><summary>¿Hasta cuándo puedo confirmar?</summary><div class="answer">Os pedimos que confirméis vuestra asistencia antes del 1 de agosto de 2027 para poder organizarlo todo con el mayor cariño.</div></details>
+            <details><summary>¿Habrá autobús?</summary><div class="answer">Sí. La salida hacia la ceremonia será desde Plaza de Galicia. También habrá dos opciones de regreso desde el pazo: un turno temprano y otro al final de la fiesta. Indicad en el formulario si necesitáis plaza.</div></details>
+            <details><summary>¿A qué hora empieza la ceremonia?</summary><div class="answer">La ceremonia será el sábado 11 de septiembre por la mañana. Publicaremos la hora exacta y el horario completo cuando estén confirmados.</div></details>
+            <details><summary>¿Puedo comunicar alergias o necesidades alimentarias?</summary><div class="answer">Por supuesto. Indicadlo en el formulario de asistencia para que podamos trasladarlo al equipo de catering.</div></details>
+            <details><summary>¿Qué ropa me pongo?</summary><div class="answer">No hemos fijado aquí un código de vestimenta. Como la celebración incluye jardines y espacios exteriores, os recomendamos tener en cuenta el terreno y el tiempo de Galicia.</div></details>
+          </div>
+          <div class="gift-box reveal" style="--reveal-delay:.12s"><span class="eyebrow">Un detalle, si os apetece</span><h3>Lo importante<br><em>es compartirlo.</em></h3><p>Para nosotros, el regalo más grande es que hagáis las maletas y os vengáis a Galicia a celebrar con nosotros. Vuestra presencia lo es todo. Si además queréis tener un detalle para ayudarnos a empezar esta nueva aventura, os dejamos nuestro número de cuenta.</p><p class="eyebrow" style="margin-top:26px">Cuenta bancaria · Titulares: Ana y David</p><div class="iban" id="ibanText">ESXX XXXX XXXX XXXX XXXX</div><button class="btn" id="copyIban" type="button">Copiar número de cuenta</button><p class="fineprint">Antes de publicar la web, sustituid este texto por el IBAN definitivo. Valorad compartirlo solo con invitados y no indexarlo públicamente.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="rsvp" id="rsvp">
+      <div class="wrap">
+        <div style="text-align:center" class="reveal" data-reveal="zoom"><span class="eyebrow">07 — Nos encantará veros</span><h2>¿Contamos<br><em>contigo?</em></h2><p class="rsvp-intro">Nos haría muchísima ilusión compartir este día con vosotros. Por favor, confirmad vuestra asistencia antes del <strong>1 de agosto de 2027</strong>.</p></div>
+        <form class="form" id="rsvpForm">
+          <div class="form-grid">
+            <div class="field full"><label for="guestName">Nombre y apellidos *</label><input id="guestName" name="nombre" type="text" autocomplete="name" placeholder="Nombre y apellidos" required></div>
+            <fieldset class="field full"><legend>¿Nos acompañarás? *</legend><div class="choices">
+              <label class="choice"><input type="radio" name="asistencia" value="Sí, asistiré" required><span>Sí, allí estaré</span></label>
+              <label class="choice"><input type="radio" name="asistencia" value="No podré asistir" required><span>No podré asistir</span></label>
+            </div></fieldset>
+            <div class="field conditional full" id="attendanceFields">
+              <label for="bus">¿Necesitarás autobús?</label><select id="bus" name="autobus"><option value="">Selecciona una opción</option><option value="Ida y vuelta">Sí, ida y vuelta</option><option value="Solo ida">Solo ida</option><option value="Solo vuelta">Solo vuelta</option><option value="No necesito">No lo necesito</option></select>
+            </div>
+            <div class="field conditional" id="returnField"><label for="returnBus">Preferencia de regreso</label><select id="returnBus" name="regreso"><option value="">Selecciona si lo sabes</option><option value="Turno temprano">Turno temprano</option><option value="Fin de fiesta">Fin de fiesta</option><option value="Me da igual">Me da igual</option></select></div>
+            <div class="field conditional" id="dietField"><label for="diet">Alergias / necesidades alimentarias</label><input id="diet" name="alergias_dieta" type="text" placeholder="Indícanos cualquier detalle importante"></div>
+            <div class="field conditional full" id="notesField"><label for="notes">Otra información</label><textarea id="notes" name="observaciones" rows="3" placeholder="Cualquier cosa que debamos saber…"></textarea></div>
+          </div>
+          <p class="privacy">Usaremos estos datos únicamente para organizar la celebración y gestionar vuestra asistencia. Los datos sobre alergias o necesidades alimentarias pueden revelar información de salud: comunicad solo lo imprescindible. Para publicar el formulario, añadid una política de privacidad con el contacto de los responsables, finalidad, base jurídica, destinatarios y plazo de conservación.</p>
+          <button class="btn" type="submit" id="submitRsvp">Enviar confirmación</button>
+          <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+        </form>
+        <div class="footer-bottom"><strong>Ana &amp; David</strong><span>11 · 09 · 2027 — GALICIA</span><br><a class="backtop" href="#inicio">Volver al principio ↑</a></div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Menú móvil
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      menuToggle.classList.toggle('open', open);
+      menuToggle.setAttribute('aria-expanded', String(open));
+      menuToggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    });
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuToggle.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded','false');
+      menuToggle.setAttribute('aria-label','Abrir menú');
+    }));
+    window.addEventListener('scroll', () => document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20), {passive:true});
+
+    // Mapa: pines y tabs sincronizados
+    function showMapTab(id) {
+      document.querySelectorAll('.map-panel').forEach(panel => panel.classList.toggle('active', panel.id === `panel-${id}`));
+      document.querySelectorAll('[data-tab]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.tab === String(id))));
+    }
+    document.querySelectorAll('[data-tab]').forEach(button => button.addEventListener('click', () => showMapTab(button.dataset.tab)));
+
+    // Cuenta atrás
+    function updateCountdown() {
+      const target = new Date(`${WEDDING_DATE}T00:00:00`);
+      const now = new Date();
+      let distance = target.getTime() - now.getTime();
+      if (distance < 0) distance = 0;
+      const days = Math.floor(distance / 86400000);
+      const hours = Math.floor((distance % 86400000) / 3600000);
+      const mins = Math.floor((distance % 3600000) / 60000);
+      document.getElementById('cd-days').textContent = String(days).padStart(2,'0');
+      document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
+      document.getElementById('cd-mins').textContent = String(mins).padStart(2,'0');
+    }
+    updateCountdown(); setInterval(updateCountdown, 60000);
+
+    // Reveal con IntersectionObserver
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) { entry.target.classList.add('in'); observer.unobserve(entry.target); }
+        });
+      }, { threshold: 0, rootMargin: '0px 0px -60px 0px' });
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    } else {
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+    }
+
+    // Copiar texto
+    async function copyText(value, statusElement, successMessage) {
+      try {
+        if (!navigator.clipboard || !navigator.clipboard.writeText) throw new Error('Clipboard no disponible');
+        await navigator.clipboard.writeText(value);
+        statusElement.textContent = successMessage;
+      } catch (error) {
+        statusElement.textContent = 'No se ha podido copiar automáticamente. Selecciona y copia el texto manualmente.';
+      }
+    }
+    document.getElementById('copyPromo').addEventListener('click', () => copyText(
+      document.getElementById('promoCode').textContent.trim(), document.getElementById('promoStatus'), 'Código copiado.'
+    ));
+    document.getElementById('copyIban').addEventListener('click', () => {
+      const button = document.getElementById('copyIban');
+      let existing = document.getElementById('ibanStatus');
+      if (!existing) { existing = document.createElement('span'); existing.id='ibanStatus'; existing.className='fineprint'; button.insertAdjacentElement('afterend', existing); }
+      copyText(document.getElementById('ibanText').textContent.trim(), existing, 'Número de cuenta copiado.');
+    });
+
+    // RSVP: campos condicionales y envío
+    const form = document.getElementById('rsvpForm');
+    const attendanceFields = document.getElementById('attendanceFields');
+    const returnField = document.getElementById('returnField');
+    const dietField = document.getElementById('dietField');
+    const notesField = document.getElementById('notesField');
+    const busSelect = document.getElementById('bus');
+    function updateAttendanceFields() {
+      const attendance = form.querySelector('input[name="asistencia"]:checked')?.value || '';
+      const attending = attendance === 'Sí, asistiré';
+      [attendanceFields, returnField, dietField, notesField].forEach(el => el.classList.toggle('visible', attending));
+      busSelect.required = attending;
+      if (!attending) { busSelect.value=''; document.getElementById('returnBus').value=''; document.getElementById('diet').value=''; document.getElementById('notes').value=''; }
+      if (attending) returnField.classList.toggle('visible', busSelect.value !== 'No necesito' && busSelect.value !== 'Solo ida' && busSelect.value !== '');
+    }
+    form.querySelectorAll('input[name="asistencia"]').forEach(input => input.addEventListener('change', updateAttendanceFields));
+    busSelect.addEventListener('change', () => {
+      const needsReturn = ['Ida y vuelta','Solo vuelta'].includes(busSelect.value);
+      returnField.classList.toggle('visible', needsReturn);
+    });
+    form.addEventListener('submit', async event => {
+      event.preventDefault();
+      const status = document.getElementById('formStatus');
+      const submit = document.getElementById('submitRsvp');
+      if (!RSVP_ENDPOINT) {
+        status.textContent = 'El formulario aún no está conectado. Contactad con Ana y David para confirmar; configurad RSVP_ENDPOINT para activar los envíos.';
+        return;
+      }
+      submit.disabled = true; submit.textContent = 'Enviando…'; status.textContent = '';
+      try {
+        const response = await fetch(RSVP_ENDPOINT, {
+          method:'POST', body:new FormData(form), headers:{'Accept':'application/json'}
+        });
+        if (!response.ok) throw new Error('El servicio no ha aceptado la respuesta');
+        status.textContent = '¡Gracias! Hemos recibido vuestra respuesta.';
+        form.reset(); updateAttendanceFields();
+      } catch (error) {
+        status.textContent = 'No hemos podido enviar la respuesta. Por favor, inténtalo de nuevo o contacta directamente con Ana y David.';
+      } finally {
+        submit.disabled = false; submit.textContent = 'Enviar confirmación';
+      }
+    });
+
+    // Calendario: evento de día completo
+    function downloadICS() {
+      const content = [
+        'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Ana y David//Boda 2027//ES',
+        'CALSCALE:GREGORIAN','BEGIN:VEVENT','UID:anaydavid-20270911@boda',
+        'DTSTAMP:20261031T120000Z','DTSTART;VALUE=DATE:20270911',
+        'DTEND;VALUE=DATE:20270912','SUMMARY:Boda de Ana y David',
+        'LOCATION:Galicia - Santiago de Compostela y Bastavales',
+        'DESCRIPTION:Celebración de la boda de Ana y David. Consultad la web para horarios y ubicaciones actualizadas.',
+        'END:VEVENT','END:VCALENDAR'
+      ].join('\r\n');
+      const blob = new Blob([content], {type:'text/calendar;charset=utf-8'});
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a'); link.href=url; link.download='Boda_Ana_y_David.ics';
+      document.body.appendChild(link); link.click(); link.remove(); URL.revokeObjectURL(url);
+    }
+  </script>
+</body>
+</html>
