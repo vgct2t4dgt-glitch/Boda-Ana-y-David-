@@ -29,7 +29,7 @@
     </script>
     <style>
         body {
-            background-color: #e3ece4; /* Verde hoja suave */
+            background-color: #e3ece4;
             color: #18181B; /* text-zinc-900 */
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
@@ -50,11 +50,6 @@
 
         details > summary::-webkit-details-marker {
             display: none;
-        }
-        
-        /* Ajuste de z-index para los popups del mapa */
-        .map-tooltip {
-            z-index: 30;
         }
     </style>
 </head>
@@ -256,8 +251,8 @@
         </div>
     </div>
 
-    <!-- NUEVO BLOQUE: SERVICIO DE AUTOBUSES (Movido tras el banquete) -->
-    <section class="py-20 md:py-28 px-6 max-w-7xl mx-auto">
+    <!-- SERVICIO DE AUTOBUSES -->
+    <section class="py-20 md:py-28 px-6 max-w-7xl mx-auto border-b border-zinc-300/60">
         <div class="max-w-4xl mx-auto text-center mb-16" data-aos="fade-up" data-aos-duration="1200">
             <span class="text-[10px] tracking-[0.3em] text-zinc-400 uppercase font-medium block mb-3">Transporte Oficial</span>
             <h3 class="text-3xl md:text-5xl font-serif font-light text-zinc-900 mb-6">Servicio de Autobuses</h3>
@@ -316,7 +311,7 @@
         </div>
     </section>
 
-    <!-- 03 / VIAJE Y LOGÍSTICA (Ahora solo contiene llegadas y mapa) -->
+    <!-- 03 / VIAJE Y LOGÍSTICA Y MAPA EDITORIAL -->
     <section id="viaje" class="py-24 md:py-32 px-6 max-w-7xl mx-auto border-t border-zinc-300/60">
         <div data-aos="fade-up" data-aos-duration="1200">
             <div class="text-center mb-20">
@@ -358,50 +353,68 @@
                 </div>
             </div>
 
-            <!-- MAPA ILUSTRADO INTERACTIVO -->
-            <div class="pt-10" data-aos="fade-up" data-aos-duration="1500">
-                <div class="text-center mb-10">
-                    <h3 class="text-3xl md:text-4xl font-serif font-light text-zinc-900 mb-3">El Recorrido</h3>
-                    <p class="text-xs uppercase tracking-widest text-zinc-500 font-medium">Haz clic en los puntos del mapa</p>
+            <!-- MAPA ILUSTRADO INTERACTIVO: REDISEÑO EDITORIAL A DOS COLUMNAS -->
+            <div class="pt-20 border-t border-zinc-300/60" data-aos="fade-up" data-aos-duration="1500">
+                <div class="text-center mb-16">
+                    <h3 class="text-3xl md:text-5xl font-serif font-light text-zinc-900 mb-3">El Recorrido</h3>
+                    <p class="text-xs uppercase tracking-widest text-zinc-500 font-medium">Selecciona un punto en el mapa o en la lista</p>
                 </div>
                 
-                <div class="relative w-full max-w-2xl mx-auto rounded-3xl overflow-hidden shadow-xl border border-zinc-200 bg-white">
-                    <img src="Gemini_Generated_Image_2yp0ju2yp0ju2yp0.jpg" alt="Mapa Ilustrado de la Boda" class="w-full h-auto block select-none" />
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center max-w-6xl mx-auto">
+                    
+                    <!-- Columna Izquierda: Mapa con Pines -->
+                    <div class="lg:col-span-7 relative w-full rounded-2xl overflow-hidden shadow-lg border border-zinc-200 bg-white">
+                        <img src="Gemini_Generated_Image_2yp0ju2yp0ju2yp0.jpg" alt="Mapa Ilustrado de la Boda" class="w-full h-auto block select-none" />
 
-                    <!-- HOTSPOT 01 -->
-                    <div class="absolute map-pin-container" style="top: 26.5%; left: 46.5%;">
-                        <button class="relative w-10 h-10 -ml-5 -mt-5 rounded-full focus:outline-none group z-10 cursor-pointer" onclick="toggleMapTooltip('tt-01')">
-                            <span class="absolute inset-0 rounded-full bg-white/20 animate-ping border border-zinc-800/20"></span>
-                            <span class="absolute inset-0 rounded-full border-2 border-white/40 scale-100 group-hover:scale-110 transition-transform"></span>
+                        <!-- Pin 01 -->
+                        <button id="pin-1" class="map-pin absolute flex items-center justify-center w-8 h-8 md:w-10 md:h-10 -ml-4 -mt-4 md:-ml-5 md:-mt-5 rounded-full bg-zinc-900 text-white font-serif text-sm md:text-base transition-all duration-500 hover:scale-110 z-10 shadow-md ring-4 ring-white/50 cursor-pointer" style="top: 26.5%; left: 46.5%;" onclick="activateMapPoint(1)">
+                            01
                         </button>
-                        <div id="tt-01" class="map-tooltip absolute top-full left-1/2 transform -translate-x-1/2 mt-3 w-48 sm:w-56 p-4 bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl border border-zinc-200 text-center transition-all duration-300 opacity-0 pointer-events-none origin-top scale-95">
-                            <h4 class="font-serif text-lg text-zinc-900 mb-1 leading-tight">Santiago de Compostela</h4>
-                            <p class="text-zinc-600 font-light text-[11px] sm:text-xs">Punto de partida y de llegada: Plaza de Galicia.</p>
-                        </div>
+                        
+                        <!-- Pin 02 -->
+                        <button id="pin-2" class="map-pin absolute flex items-center justify-center w-8 h-8 md:w-10 md:h-10 -ml-4 -mt-4 md:-ml-5 md:-mt-5 rounded-full bg-zinc-400 text-white font-serif text-sm md:text-base transition-all duration-500 hover:scale-110 z-10 shadow-md cursor-pointer hover:bg-zinc-700" style="top: 62.5%; left: 17.5%;" onclick="activateMapPoint(2)">
+                            02
+                        </button>
+                        
+                        <!-- Pin 03 -->
+                        <button id="pin-3" class="map-pin absolute flex items-center justify-center w-8 h-8 md:w-10 md:h-10 -ml-4 -mt-4 md:-ml-5 md:-mt-5 rounded-full bg-zinc-400 text-white font-serif text-sm md:text-base transition-all duration-500 hover:scale-110 z-10 shadow-md cursor-pointer hover:bg-zinc-700" style="top: 53.5%; left: 84.5%;" onclick="activateMapPoint(3)">
+                            03
+                        </button>
                     </div>
 
-                    <!-- HOTSPOT 02 -->
-                    <div class="absolute map-pin-container" style="top: 62.5%; left: 17.5%;">
-                        <button class="relative w-10 h-10 -ml-5 -mt-5 rounded-full focus:outline-none group z-10 cursor-pointer" onclick="toggleMapTooltip('tt-02')">
-                            <span class="absolute inset-0 rounded-full bg-white/20 animate-ping border border-zinc-800/20"></span>
-                            <span class="absolute inset-0 rounded-full border-2 border-white/40 scale-100 group-hover:scale-110 transition-transform"></span>
-                        </button>
-                        <div id="tt-02" class="map-tooltip absolute top-full left-0 mt-3 w-48 sm:w-56 p-4 bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl border border-zinc-200 text-left transition-all duration-300 opacity-0 pointer-events-none origin-top-left scale-95">
-                            <h4 class="font-serif text-lg text-zinc-900 mb-1 leading-tight">Iglesia de San Julián de Bastavales</h4>
-                            <p class="text-zinc-600 font-light text-[11px] sm:text-xs">La Ceremonia.</p>
+                    <!-- Columna Derecha: Panel Interactivo -->
+                    <div class="lg:col-span-5 flex flex-col justify-center space-y-6">
+                        
+                        <!-- Tarjeta 01 -->
+                        <div id="card-1" class="map-card cursor-pointer border-l-2 border-zinc-900 pl-6 py-2 transition-all duration-500 hover:opacity-100 opacity-100" onclick="activateMapPoint(1)">
+                            <h4 class="font-serif text-2xl md:text-3xl text-zinc-900 mb-1 transition-colors duration-300">Santiago de Compostela</h4>
+                            <div class="card-content overflow-hidden transition-all duration-500 max-h-40 opacity-100">
+                                <p class="text-zinc-600 font-light text-sm md:text-base leading-relaxed mt-3">
+                                    Punto de partida y de llegada: Plaza de Galicia.
+                                </p>
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- HOTSPOT 03 -->
-                    <div class="absolute map-pin-container" style="top: 53.5%; left: 84.5%;">
-                        <button class="relative w-10 h-10 -ml-5 -mt-5 rounded-full focus:outline-none group z-10 cursor-pointer" onclick="toggleMapTooltip('tt-03')">
-                            <span class="absolute inset-0 rounded-full bg-white/20 animate-ping border border-zinc-800/20"></span>
-                            <span class="absolute inset-0 rounded-full border-2 border-white/40 scale-100 group-hover:scale-110 transition-transform"></span>
-                        </button>
-                        <div id="tt-03" class="map-tooltip absolute top-full right-0 mt-3 w-56 sm:w-64 p-4 bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl border border-zinc-200 text-right transition-all duration-300 opacity-0 pointer-events-none origin-top-right scale-95">
-                            <h4 class="font-serif text-lg text-zinc-900 mb-1 leading-tight">Pazo Vista Alegre</h4>
-                            <p class="text-zinc-600 font-light text-[11px] sm:text-xs">Banquete y fiesta con diferentes turnos de vuelta al centro.</p>
+                        <!-- Tarjeta 02 -->
+                        <div id="card-2" class="map-card cursor-pointer border-l-2 border-zinc-200 pl-6 py-2 transition-all duration-500 hover:opacity-100 opacity-50" onclick="activateMapPoint(2)">
+                            <h4 class="font-serif text-2xl md:text-3xl text-zinc-500 transition-colors duration-300">Iglesia de San Julián de Bastavales</h4>
+                            <div class="card-content overflow-hidden transition-all duration-500 max-h-0 opacity-0">
+                                <p class="text-zinc-600 font-light text-sm md:text-base leading-relaxed mt-3">
+                                    La Ceremonia.
+                                </p>
+                            </div>
                         </div>
+
+                        <!-- Tarjeta 03 -->
+                        <div id="card-3" class="map-card cursor-pointer border-l-2 border-zinc-200 pl-6 py-2 transition-all duration-500 hover:opacity-100 opacity-50" onclick="activateMapPoint(3)">
+                            <h4 class="font-serif text-2xl md:text-3xl text-zinc-500 transition-colors duration-300">Pazo Vista Alegre</h4>
+                            <div class="card-content overflow-hidden transition-all duration-500 max-h-0 opacity-0">
+                                <p class="text-zinc-600 font-light text-sm md:text-base leading-relaxed mt-3">
+                                    Banquete y fiesta. Habrá dos horarios de autobuses de vuelta: uno para los que prefieran volver antes y otro para los que aguanten hasta el final.
+                                </p>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -737,33 +750,40 @@
             }
         });
 
-        // MAPA INTERACTIVO
-        function toggleMapTooltip(id) {
-            document.querySelectorAll('.map-tooltip').forEach(tt => {
-                if(tt.id !== id) {
-                    tt.classList.remove('opacity-100', 'scale-100', 'pointer-events-auto');
-                    tt.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
-                }
-            });
-
-            const el = document.getElementById(id);
-            if(el.classList.contains('opacity-0')) {
-                el.classList.remove('opacity-0', 'scale-95', 'pointer-events-none');
-                el.classList.add('opacity-100', 'scale-100', 'pointer-events-auto');
-            } else {
-                el.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
-                el.classList.remove('opacity-100', 'scale-100', 'pointer-events-auto');
+        // NUEVO SCRIPT MAPA INTERACTIVO EDITORIAL
+        function activateMapPoint(pointId) {
+            // Reiniciar todos los pines y tarjetas
+            for(let i=1; i<=3; i++) {
+                const pin = document.getElementById(`pin-${i}`);
+                pin.classList.remove('bg-zinc-900', 'ring-4', 'ring-white/50', 'scale-110');
+                pin.classList.add('bg-zinc-400');
+                
+                const card = document.getElementById(`card-${i}`);
+                card.classList.remove('border-zinc-900', 'opacity-100');
+                card.classList.add('border-zinc-200', 'opacity-50');
+                card.querySelector('h4').classList.remove('text-zinc-900');
+                card.querySelector('h4').classList.add('text-zinc-500');
+                
+                const content = card.querySelector('.card-content');
+                content.classList.remove('max-h-40', 'opacity-100');
+                content.classList.add('max-h-0', 'opacity-0');
             }
+
+            // Activar el pin y la tarjeta seleccionados
+            const activePin = document.getElementById(`pin-${pointId}`);
+            activePin.classList.remove('bg-zinc-400');
+            activePin.classList.add('bg-zinc-900', 'ring-4', 'ring-white/50', 'scale-110');
+
+            const activeCard = document.getElementById(`card-${pointId}`);
+            activeCard.classList.remove('border-zinc-200', 'opacity-50');
+            activeCard.classList.add('border-zinc-900', 'opacity-100');
+            activeCard.querySelector('h4').classList.remove('text-zinc-500');
+            activeCard.querySelector('h4').classList.add('text-zinc-900');
+            
+            const activeContent = activeCard.querySelector('.card-content');
+            activeContent.classList.remove('max-h-0', 'opacity-0');
+            activeContent.classList.add('max-h-40', 'opacity-100');
         }
-
-        document.addEventListener('click', function(event) {
-            if (!event.target.closest('.map-pin-container')) {
-                 document.querySelectorAll('.map-tooltip').forEach(tt => {
-                    tt.classList.remove('opacity-100', 'scale-100', 'pointer-events-auto');
-                    tt.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
-                });
-            }
-        });
 
         // COPIAR PROMO
         function copyPromo() {
