@@ -3,12 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- FIX: & escapado como &amp; en el title -->
     <title>Ana &amp; David — 11.09.2027</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- FIX: añadido peso 200 a Cormorant Garamond (usado por font-extralight) -->
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,200;0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Plus+Jakarta+Sans:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
@@ -38,6 +36,11 @@
             overflow-x: hidden;
         }
 
+        /* Mobile menu: bloquea scroll cuando está abierto */
+        body.menu-open {
+            overflow: hidden;
+        }
+
         .pill-radio input[type="radio"] {
             display: none;
         }
@@ -51,20 +54,40 @@
         ::-webkit-scrollbar-track { background: #e3ece4; }
         ::-webkit-scrollbar-thumb { background: #18181B; }
 
+        /* Paneles del mapa: animación real con keyframes (display no anima) */
         .map-panel {
             display: none;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 0.4s ease-out, transform 0.4s ease-out;
         }
         .map-panel.active {
             display: block;
-            opacity: 1;
-            transform: translateY(0);
+            animation: panelFadeIn 0.45s ease-out forwards;
+        }
+        @keyframes panelFadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         details > summary::-webkit-details-marker {
             display: none;
+        }
+
+        /* Coherencia fotográfica global: unifica temperatura y saturación */
+        .img-coherent {
+            filter: saturate(0.92) contrast(1.02);
+        }
+
+        /* Inputs RSVP con focus visible */
+        #rsvp-form input:focus {
+            outline: none;
+        }
+
+        /* Animación sutil del pin activo */
+        @keyframes pinPulse {
+            0%   { box-shadow: 0 0 0 0 rgba(24, 24, 27, 0.25); }
+            100% { box-shadow: 0 0 0 12px rgba(24, 24, 27, 0); }
+        }
+        .map-pin.active-pin {
+            animation: pinPulse 1.8s ease-out infinite;
         }
     </style>
 </head>
@@ -73,8 +96,8 @@
     <!-- MENÚ DE NAVEGACIÓN -->
     <nav class="fixed w-full z-50 transition-all duration-700 py-6" id="navbar">
         <div class="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
-            <a href="#" class="text-xl md:text-2xl font-serif text-white tracking-widest transition-colors duration-500 font-light" id="nav-logo">
-                A &amp; D
+            <a href="#" class="text-xl md:text-2xl font-serif text-white tracking-wider transition-colors duration-500 font-light" id="nav-logo">
+                A<span class="mx-0.5">&amp;</span>D
             </a>
             <div class="hidden md:flex space-x-6 lg:space-x-10 text-[11px] tracking-[0.2em] text-white/90 font-light uppercase transition-colors duration-500" id="nav-links">
                 <a href="#historia" class="hover:opacity-50 transition-opacity">Historia</a>
@@ -83,17 +106,37 @@
                 <a href="#recomendaciones" class="hover:opacity-50 transition-opacity">Guía</a>
                 <a href="#detalles" class="hover:opacity-50 transition-opacity">Detalles</a>
             </div>
-            <a href="#rsvp" class="border border-white text-white px-6 py-2 rounded-full text-[10px] tracking-[0.2em] uppercase hover:bg-white hover:text-zinc-900 transition-all duration-500 font-medium" id="nav-btn">
-                RSVP
-            </a>
+            <div class="flex items-center gap-3 md:gap-4">
+                <a href="#rsvp" class="border border-white text-white px-6 py-2 rounded-full text-[10px] tracking-[0.2em] uppercase hover:bg-white hover:text-zinc-900 transition-all duration-500 font-medium" id="nav-btn">
+                    RSVP
+                </a>
+                <button id="menu-toggle" onclick="toggleMenu()" aria-label="Abrir menú de navegación" aria-expanded="false" class="md:hidden text-white p-2 -mr-2 transition-colors duration-500">
+                    <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 7.5h16.5M3.75 12h16.5M3.75 16.5h16.5"></path>
+                    </svg>
+                    <svg id="menu-close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
         </div>
     </nav>
 
-    <!-- PORTADA HERO — FIX: h-screen -> min-h-screen para móviles con barra del navegador -->
-    <header class="relative min-h-screen w-full flex flex-col items-center justify-center bg-cover bg-center overflow-hidden py-24" style="background-image: url('36eb7cba-a6dc-4fa6-80b8-b8c29400c547.jpeg');">
+    <!-- MENÚ MÓVIL (overlay) -->
+    <div id="mobile-menu" class="fixed inset-0 bg-zinc-950/97 backdrop-blur-xl z-40 hidden md:hidden flex-col items-center justify-center gap-8 px-6">
+        <a href="#historia" class="mobile-link text-3xl font-serif font-light text-white hover:opacity-60 transition-opacity">Historia</a>
+        <a href="#programa" class="mobile-link text-3xl font-serif font-light text-white hover:opacity-60 transition-opacity">Programa</a>
+        <a href="#estancia" class="mobile-link text-3xl font-serif font-light text-white hover:opacity-60 transition-opacity">Estancia</a>
+        <a href="#recomendaciones" class="mobile-link text-3xl font-serif font-light text-white hover:opacity-60 transition-opacity">Guía</a>
+        <a href="#detalles" class="mobile-link text-3xl font-serif font-light text-white hover:opacity-60 transition-opacity">Detalles</a>
+        <a href="#rsvp" class="mobile-link mt-6 border border-white text-white px-8 py-3 rounded-full text-[11px] tracking-[0.25em] uppercase hover:bg-white hover:text-zinc-900 transition-all">RSVP</a>
+    </div>
+
+    <!-- PORTADA HERO — más compacta en móvil -->
+    <header class="relative min-h-screen w-full flex flex-col items-center justify-center bg-cover bg-center overflow-hidden py-16 md:py-24" style="background-image: url('36eb7cba-a6dc-4fa6-80b8-b8c29400c547.jpeg');">
         <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/80 z-0"></div>
-        <div class="relative z-10 text-center text-white px-6 mt-10 w-full" data-aos="fade-up" data-aos-duration="1500">
-            <h1 class="text-6xl md:text-8xl lg:text-9xl font-serif font-extralight tracking-tight mb-8 leading-none">
+        <div class="relative z-10 text-center text-white px-6 mt-6 md:mt-10 w-full" data-aos="fade-up" data-aos-duration="1500">
+            <h1 class="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-serif font-extralight tracking-tight mb-8 leading-none">
                 ANA <span class="italic font-normal mx-2 md:mx-4 font-serif text-zinc-300">&amp;</span> DAVID
             </h1>
             <div class="inline-block border-y border-white/20 py-3 px-8 mb-8">
@@ -102,25 +145,25 @@
                 </span>
             </div>
 
-            <div class="flex justify-center items-center gap-5 md:gap-8 mb-10 text-white/80">
+            <div class="flex justify-center items-center gap-5 md:gap-8 mb-10 text-white/90">
                 <div class="flex flex-col items-center">
-                    <span id="cd-days" class="text-2xl md:text-3xl font-serif font-light tracking-wider">00</span>
-                    <span class="text-[8px] uppercase tracking-[0.3em] text-zinc-400 mt-1">Días</span>
+                    <span id="cd-days" class="text-3xl md:text-4xl font-serif font-light tracking-wider">00</span>
+                    <span class="text-[10px] uppercase tracking-[0.3em] text-zinc-300 mt-1">Días</span>
                 </div>
-                <span class="text-xl font-serif font-light text-white/30">:</span>
+                <span class="text-2xl font-serif font-light text-white/40">:</span>
                 <div class="flex flex-col items-center">
-                    <span id="cd-hours" class="text-2xl md:text-3xl font-serif font-light tracking-wider">00</span>
-                    <span class="text-[8px] uppercase tracking-[0.3em] text-zinc-400 mt-1">Horas</span>
+                    <span id="cd-hours" class="text-3xl md:text-4xl font-serif font-light tracking-wider">00</span>
+                    <span class="text-[10px] uppercase tracking-[0.3em] text-zinc-300 mt-1">Horas</span>
                 </div>
-                <span class="text-xl font-serif font-light text-white/30">:</span>
+                <span class="text-2xl font-serif font-light text-white/40">:</span>
                 <div class="flex flex-col items-center">
-                    <span id="cd-mins" class="text-2xl md:text-3xl font-serif font-light tracking-wider">00</span>
-                    <span class="text-[8px] uppercase tracking-[0.3em] text-zinc-400 mt-1">Min</span>
+                    <span id="cd-mins" class="text-3xl md:text-4xl font-serif font-light tracking-wider">00</span>
+                    <span class="text-[10px] uppercase tracking-[0.3em] text-zinc-300 mt-1">Min</span>
                 </div>
             </div>
 
             <button onclick="downloadICS()" class="group inline-flex items-center gap-3 bg-white/10 hover:bg-white text-white hover:text-zinc-900 border border-white/30 hover:border-white px-7 py-3 rounded-full text-[10px] tracking-[0.25em] uppercase transition-all duration-500 font-medium backdrop-blur-sm shadow-sm">
-                <svg class="w-3.5 h-3.5 transition-transform duration-500 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z"></path></svg>
+                <svg class="w-3.5 h-3.5 transition-transform duration-500 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"></path></svg>
                 Añadir al Calendario
             </button>
         </div>
@@ -134,7 +177,7 @@
     <!-- 01 / RELATO: NUESTRA HISTORIA -->
     <section id="historia" class="py-32 md:py-48 px-6 max-w-7xl mx-auto border-b border-zinc-300/30">
         <div class="mb-20 md:mb-32" data-aos="fade-up" data-aos-duration="1200">
-            <span class="text-[10px] tracking-[0.3em] text-zinc-500 uppercase font-medium block mb-3">01 / Relato</span>
+            <span class="text-[10px] tracking-[0.3em] text-zinc-600 uppercase font-medium block mb-3">01 / Relato</span>
             <h2 class="text-4xl md:text-6xl lg:text-7xl font-serif font-light text-zinc-900 leading-tight">
                 Nuestra <span class="italic font-normal">Historia</span>
             </h2>
@@ -142,9 +185,9 @@
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
             <div class="lg:col-span-5 relative" data-aos="fade-up" data-aos-duration="1500">
                 <div class="aspect-[3/4] overflow-hidden bg-white shadow-md rounded-lg border border-zinc-200/50">
-                    <img src="cd37910e-3054-4c19-aba2-c7a64ed6a9f4.jpeg" alt="Ana y David" loading="lazy" class="w-full h-full object-cover transition-transform duration-1000 scale-100 hover:scale-105" />
+                    <img src="cd37910e-3054-4c19-aba2-c7a64ed6a9f4.jpeg" alt="Ana y David" loading="lazy" class="img-coherent w-full h-full object-cover transition-transform duration-1000 scale-100 hover:scale-105" />
                 </div>
-                <p class="text-[10px] tracking-[0.2em] text-zinc-500 uppercase mt-4">Fig. 01 — Ana &amp; David</p>
+                <p class="text-[10px] tracking-[0.2em] text-zinc-600 uppercase mt-4">Fig. 01 — Ana &amp; David</p>
             </div>
 
             <div class="lg:col-span-7 flex flex-col justify-between h-full pt-6 lg:pt-12" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">
@@ -160,27 +203,27 @@
                     </p>
                 </div>
 
-                <!-- FIX: galería — imagen envuelta en flex-1 para que el caption no se corte -->
+                <!-- Galería con captions de altura uniforme -->
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 mb-10">
                     <div class="aspect-[4/5] overflow-hidden bg-white shadow-md rounded-lg border border-zinc-200/50 flex flex-col" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300">
                         <div class="flex-1 overflow-hidden">
-                            <img src="e03ee37b-33d0-44b7-92b5-24f7016059b4.jpeg" alt="Detalle historia 1" loading="lazy" class="w-full h-full object-cover transition-transform duration-1000 hover:scale-105" />
+                            <img src="e03ee37b-33d0-44b7-92b5-24f7016059b4.jpeg" alt="Detalle historia 1" loading="lazy" class="img-coherent w-full h-full object-cover transition-transform duration-1000 hover:scale-105" />
                         </div>
-                        <p class="text-[10px] tracking-[0.2em] text-zinc-500 uppercase p-3 bg-white">Fig. 02 — Santiago</p>
+                        <p class="text-[10px] tracking-[0.2em] text-zinc-600 uppercase px-3 py-3 bg-white min-h-[42px] flex items-center">Fig. 02 — Santiago</p>
                     </div>
 
                     <div class="aspect-[4/5] overflow-hidden bg-white shadow-md rounded-lg border border-zinc-200/50 flex flex-col" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="400">
                         <div class="flex-1 overflow-hidden">
-                            <img src="0bc43841-20d7-41fd-9195-4c4755079096.jpeg" alt="Detalle historia 2" loading="lazy" class="w-full h-full object-cover transition-transform duration-1000 hover:scale-105" />
+                            <img src="0bc43841-20d7-41fd-9195-4c4755079096.jpeg" alt="Detalle historia 2" loading="lazy" class="img-coherent w-full h-full object-cover transition-transform duration-1000 hover:scale-105" />
                         </div>
-                        <p class="text-[10px] tracking-[0.2em] text-zinc-500 uppercase p-3 bg-white">Fig. 03 — Noche</p>
+                        <p class="text-[10px] tracking-[0.2em] text-zinc-600 uppercase px-3 py-3 bg-white min-h-[42px] flex items-center">Fig. 03 — Noche</p>
                     </div>
 
                     <div class="aspect-[4/5] overflow-hidden bg-white shadow-md rounded-lg border border-zinc-200/50 flex flex-col" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="500">
                         <div class="flex-1 overflow-hidden">
-                            <img src="a53b8f0b-54df-46f6-b757-edcdd771693f.jpeg" alt="Recuerdo de Preboda" loading="lazy" class="w-full h-full object-cover transition-transform duration-1000 hover:scale-105" />
+                            <img src="a53b8f0b-54df-46f6-b757-edcdd771693f.jpeg" alt="Recuerdo de Preboda" loading="lazy" class="img-coherent w-full h-full object-cover transition-transform duration-1000 hover:scale-105" />
                         </div>
-                        <p class="text-[10px] tracking-[0.2em] text-zinc-500 uppercase p-3 bg-white">Fig. 04 — Preboda</p>
+                        <p class="text-[10px] tracking-[0.2em] text-zinc-600 uppercase px-3 py-3 bg-white min-h-[42px] flex items-center">Fig. 04 — Preboda</p>
                     </div>
                 </div>
             </div>
@@ -190,10 +233,10 @@
         <div class="mt-24 pt-20 border-t border-zinc-300/60" data-aos="fade-up" data-aos-duration="1500">
             <div class="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
                 <div class="lg:col-span-5 relative aspect-[4/3] overflow-hidden rounded-2xl bg-white shadow-md border border-zinc-200">
-                    <img src="3d9635e1-6a29-4485-a211-041fcf3b2ec6.jpeg" alt="El Invitado de Honor" loading="lazy" class="w-full h-full object-cover" />
+                    <img src="3d9635e1-6a29-4485-a211-041fcf3b2ec6.jpeg" alt="El Invitado de Honor" loading="lazy" class="img-coherent w-full h-full object-cover" />
                 </div>
                 <div class="lg:col-span-7 lg:pl-6 bg-white p-8 rounded-3xl shadow-sm border border-zinc-200">
-                    <span class="text-[10px] tracking-[0.3em] text-zinc-400 uppercase font-medium block mb-2">Capítulo Especial</span>
+                    <span class="text-[10px] tracking-[0.3em] text-zinc-500 uppercase font-medium block mb-2">Capítulo Especial</span>
                     <h3 class="text-3xl md:text-4xl font-serif font-light text-zinc-900 mb-4">El Invitado de Honor</h3>
                     <p class="text-zinc-600 font-light text-sm md:text-base leading-relaxed">
                         Sabéis de sobra que nuestra familia no está completa sin nuestro Gordon Setter. Él también se está preparando para el gran día y, aunque no sabemos si se comportará durante los discursos o si intentará comerse los canapés, no podíamos imaginar este fin de semana sin que estuviera correteando por los jardines del pazo. ¡Id preparando los mimos!
@@ -203,13 +246,16 @@
         </div>
     </section>
 
-    <!-- EL ANILLO -->
-    <section class="relative w-full h-80 sm:h-96 min-h-[50vh] flex items-center justify-center overflow-hidden bg-cover bg-center bg-scroll md:bg-fixed" style="background-image: url('a7e19930-b57c-409d-8447-af1dfc59f3ac.jpeg');" data-aos="fade-in" data-aos-duration="1500">
-        <div class="absolute inset-0 bg-black/50"></div>
+    <!-- EL ANILLO — más altura, overlay más ligero y subtítulo -->
+    <section class="relative w-full min-h-[70vh] flex items-center justify-center overflow-hidden bg-cover bg-center bg-scroll md:bg-fixed" style="background-image: url('a7e19930-b57c-409d-8447-af1dfc59f3ac.jpeg');" data-aos="fade-in" data-aos-duration="1500">
+        <div class="absolute inset-0 bg-black/35"></div>
         <div class="relative z-10 text-center text-white px-6 max-w-4xl" data-aos="zoom-in" data-aos-duration="1500">
             <h2 class="font-serif italic font-extralight text-4xl md:text-6xl lg:text-7xl tracking-wide leading-tight drop-shadow-md text-white">
                 Y ella dijo sí...
             </h2>
+            <p class="font-serif italic font-light text-base md:text-xl tracking-wide text-white/80 mt-6">
+                El comienzo de nuestra nueva aventura
+            </p>
             <div class="w-12 h-[1px] bg-white/40 mx-auto mt-8"></div>
         </div>
     </section>
@@ -217,7 +263,7 @@
     <!-- 02 / PROGRAMA -->
     <section id="programa" class="py-24 md:py-32 px-6 max-w-7xl mx-auto border-b border-zinc-300/30">
         <div data-aos="fade-up" data-aos-duration="1200" class="mb-16 md:mb-24 text-center">
-            <span class="text-[10px] tracking-[0.3em] text-zinc-500 uppercase font-medium block mb-3">02 / El Programa</span>
+            <span class="text-[10px] tracking-[0.3em] text-zinc-600 uppercase font-medium block mb-3">02 / El Programa</span>
             <h2 class="text-4xl md:text-6xl font-serif font-light text-zinc-900 mb-6">El Fin de Semana</h2>
             <p class="text-zinc-600 font-light text-sm md:text-base leading-relaxed max-w-2xl mx-auto">
                 Haz clic en los puntos del mapa interactivo para descubrir la fotografía, los detalles, horarios y ubicaciones exactas de cada momento de nuestra celebración.
@@ -229,16 +275,15 @@
             <div class="lg:col-span-7 relative w-full rounded-2xl overflow-hidden bg-white shadow-md border border-zinc-200 lg:sticky lg:top-32">
                 <img src="Gemini_Generated_Image_2yp0ju2yp0ju2yp0.jpg" alt="Mapa Ilustrado de la Boda" class="w-full h-auto block select-none" />
 
-                <!-- FIX: pines unificados (clases base idénticas). Pin 1 arranca activo; el JS gestiona el resto. -->
-                <button id="pin-1" aria-label="Ver punto 1: Santiago y preboda" class="map-pin absolute flex items-center justify-center w-8 h-8 md:w-10 md:h-10 -ml-4 -mt-4 md:-ml-5 md:-mt-5 rounded-full bg-zinc-900 text-white font-serif text-sm md:text-base transition-all duration-300 scale-110 shadow-lg ring-4 ring-white/50 cursor-pointer" style="top: 26.5%; left: 46.5%;" onclick="showMapTab(1)">
+                <button id="pin-1" aria-label="Ver punto 1: Santiago y preboda" aria-pressed="true" class="map-pin active-pin absolute flex items-center justify-center w-8 h-8 md:w-10 md:h-10 -ml-4 -mt-4 md:-ml-5 md:-mt-5 rounded-full bg-zinc-900 text-white font-serif text-sm md:text-base transition-all duration-300 scale-110 shadow-lg ring-4 ring-white/50 cursor-pointer" style="top: 26.5%; left: 46.5%;" onclick="showMapTab(1)">
                     01
                 </button>
 
-                <button id="pin-2" aria-label="Ver punto 2: La ceremonia" class="map-pin absolute flex items-center justify-center w-8 h-8 md:w-10 md:h-10 -ml-4 -mt-4 md:-ml-5 md:-mt-5 rounded-full bg-zinc-400 text-white font-serif text-sm md:text-base transition-all duration-300 hover:bg-zinc-700 hover:scale-110 shadow-md cursor-pointer" style="top: 62.5%; left: 17.5%;" onclick="showMapTab(2)">
+                <button id="pin-2" aria-label="Ver punto 2: La ceremonia" aria-pressed="false" class="map-pin absolute flex items-center justify-center w-8 h-8 md:w-10 md:h-10 -ml-4 -mt-4 md:-ml-5 md:-mt-5 rounded-full bg-zinc-400 text-white font-serif text-sm md:text-base transition-all duration-300 hover:bg-zinc-700 hover:scale-110 shadow-md cursor-pointer" style="top: 62.5%; left: 17.5%;" onclick="showMapTab(2)">
                     02
                 </button>
 
-                <button id="pin-3" aria-label="Ver punto 3: El Pazo" class="map-pin absolute flex items-center justify-center w-8 h-8 md:w-10 md:h-10 -ml-4 -mt-4 md:-ml-5 md:-mt-5 rounded-full bg-zinc-400 text-white font-serif text-sm md:text-base transition-all duration-300 hover:bg-zinc-700 hover:scale-110 shadow-md cursor-pointer" style="top: 53.5%; left: 84.5%;" onclick="showMapTab(3)">
+                <button id="pin-3" aria-label="Ver punto 3: El Pazo" aria-pressed="false" class="map-pin absolute flex items-center justify-center w-8 h-8 md:w-10 md:h-10 -ml-4 -mt-4 md:-ml-5 md:-mt-5 rounded-full bg-zinc-400 text-white font-serif text-sm md:text-base transition-all duration-300 hover:bg-zinc-700 hover:scale-110 shadow-md cursor-pointer" style="top: 53.5%; left: 84.5%;" onclick="showMapTab(3)">
                     03
                 </button>
             </div>
@@ -247,8 +292,7 @@
 
                 <div id="panel-1" class="map-panel active bg-white rounded-3xl shadow-sm border border-zinc-200 overflow-hidden">
                     <div class="relative aspect-[4/3] w-full">
-                        <!-- FIX: nombre de archivo con espacios URL-encoded (%20) -->
-                        <img src="Santiago%20de%20Compostela_%20Fotos%20antiguas.jpg" alt="Santiago de Compostela Fotos antiguas" class="w-full h-full object-cover" />
+                        <img src="Santiago%20de%20Compostela_%20Fotos%20antiguas.jpg" alt="Santiago de Compostela Fotos antiguas" class="img-coherent w-full h-full object-cover" />
                         <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full border border-zinc-200/50 shadow-sm flex items-center gap-2">
                             <span class="flex items-center justify-center w-5 h-5 rounded-full bg-zinc-900 text-white font-serif text-[10px]">01</span>
                             <span class="text-[9px] uppercase tracking-[0.2em] text-zinc-800 font-medium">Punto de Encuentro</span>
@@ -258,13 +302,13 @@
                         <h3 class="text-3xl md:text-4xl font-serif font-light text-zinc-900 mb-6">Santiago: Donde empieza todo</h3>
                         <div class="text-zinc-600 font-light text-sm leading-relaxed space-y-6">
                             <div>
-                                <span class="text-[10px] uppercase tracking-widest text-zinc-400 block mb-1">Viernes, 10 de Septiembre</span>
+                                <span class="text-[10px] uppercase tracking-widest text-zinc-500 block mb-1">Viernes, 10 de Septiembre</span>
                                 <strong class="font-medium text-zinc-900 block mb-2">La Preboda</strong>
                                 <p>Para empezar a calentar motores, nos encantaría veros la tarde anterior. Una ocasión perfecta para tomar algo, charlar en un ambiente distendido y conocernos entre todos antes del gran día en el centro de la ciudad.</p>
                             </div>
                             <div class="w-10 h-[1px] bg-zinc-200"></div>
                             <div>
-                                <span class="text-[10px] uppercase tracking-widest text-zinc-400 block mb-1">Sábado, 11 de Septiembre</span>
+                                <span class="text-[10px] uppercase tracking-widest text-zinc-500 block mb-1">Sábado, 11 de Septiembre</span>
                                 <strong class="font-medium text-zinc-900 block mb-2">Punto Neurálgico: Los Autobuses</strong>
                                 <p>Este será nuestro punto de partida oficial. Todos los autobuses saldrán desde la céntrica <span class="italic text-zinc-800 font-medium">Plaza de Galicia</span> para llevaros sin complicaciones directos a la ceremonia. Dejando atrás la ciudad, nos dirigiremos a la historia de Bastavales.</p>
                             </div>
@@ -274,7 +318,7 @@
 
                 <div id="panel-2" class="map-panel bg-white rounded-3xl shadow-sm border border-zinc-200 overflow-hidden">
                     <div class="relative aspect-[4/3] w-full">
-                        <img src="IMG_0967.jpeg" alt="Ceremonia en Bastavales" class="w-full h-full object-cover" />
+                        <img src="IMG_0967.jpeg" alt="Ceremonia en Bastavales" class="img-coherent w-full h-full object-cover" />
                         <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full border border-zinc-200/50 shadow-sm flex items-center gap-2">
                             <span class="flex items-center justify-center w-5 h-5 rounded-full bg-zinc-900 text-white font-serif text-[10px]">02</span>
                             <span class="text-[9px] uppercase tracking-[0.2em] text-zinc-800 font-medium">La Ceremonia</span>
@@ -284,7 +328,7 @@
                         <h3 class="text-3xl md:text-4xl font-serif font-light text-zinc-900 mb-6">El "Sí, quiero"</h3>
                         <div class="text-zinc-600 font-light text-sm leading-relaxed space-y-6 mb-8">
                             <div>
-                                <span class="text-[10px] uppercase tracking-widest text-zinc-400 block mb-1">Sábado, 11 de Septiembre — Mañana</span>
+                                <span class="text-[10px] uppercase tracking-widest text-zinc-500 block mb-1">Sábado, 11 de Septiembre — Mañana</span>
                                 <strong class="font-medium text-zinc-900 block mb-2">Parroquia de San Xulián de Bastavales</strong>
                                 <p>
                                     Celebraremos la ceremonia en esta hermosa e histórica iglesia. Un entorno mágico rodeado de la tradicional piedra gallega donde compartiremos el momento más especial del fin de semana.
@@ -300,7 +344,7 @@
 
                 <div id="panel-3" class="map-panel bg-white rounded-3xl shadow-sm border border-zinc-200 overflow-hidden">
                     <div class="relative aspect-[4/3] w-full">
-                        <img src="IMG_0966.jpeg" alt="Banquete en Pazo de Vista Alegre" class="w-full h-full object-cover" />
+                        <img src="IMG_0966.jpeg" alt="Banquete en Pazo de Vista Alegre" class="img-coherent w-full h-full object-cover" />
                         <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full border border-zinc-200/50 shadow-sm flex items-center gap-2">
                             <span class="flex items-center justify-center w-5 h-5 rounded-full bg-zinc-900 text-white font-serif text-[10px]">03</span>
                             <span class="text-[9px] uppercase tracking-[0.2em] text-zinc-800 font-medium">El Pazo</span>
@@ -309,7 +353,7 @@
                     <div class="p-8 md:p-10">
                         <h3 class="text-3xl md:text-4xl font-serif font-light text-zinc-900 mb-6">Banquete &amp; Fiesta</h3>
                         <div class="text-zinc-600 font-light text-sm leading-relaxed mb-8">
-                            <span class="text-[10px] uppercase tracking-widest text-zinc-400 block mb-1">Sábado, 11 de Septiembre — Mediodía</span>
+                            <span class="text-[10px] uppercase tracking-widest text-zinc-500 block mb-1">Sábado, 11 de Septiembre — Mediodía</span>
                             <strong class="font-medium text-zinc-900 block mb-2">Pazo de Vista Alegre</strong>
                             <p>
                                 Continuaremos la celebración por todo lo alto en los espectaculares jardines y salones del pazo. Disfrutaremos de la gastronomía tradicional gallega, brindis inolvidables y, por supuesto, barra libre y música.
@@ -317,11 +361,11 @@
                         </div>
 
                         <div class="bg-[#e3ece4]/50 border border-zinc-200/50 p-5 rounded-2xl mb-8">
-                            <span class="text-[10px] uppercase tracking-[0.25em] text-zinc-500 font-medium block mb-4 border-b border-zinc-200 pb-2">Regreso a Santiago (Autobuses)</span>
+                            <span class="text-[10px] uppercase tracking-[0.25em] text-zinc-600 font-medium block mb-4 border-b border-zinc-200 pb-2">Regreso a Santiago (Autobuses)</span>
                             <ul class="space-y-4">
                                 <li class="flex gap-4 items-start">
                                     <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center shrink-0 shadow-sm">
-                                        <svg class="w-4 h-4 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"></path></svg>
+                                        <svg class="w-4 h-4 text-zinc-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"></path></svg>
                                     </div>
                                     <div>
                                         <strong class="text-zinc-900 font-medium block text-xs">Turno Temprano</strong>
@@ -330,7 +374,7 @@
                                 </li>
                                 <li class="flex gap-4 items-start">
                                     <div class="w-8 h-8 rounded-full bg-zinc-900 flex items-center justify-center shrink-0 shadow-sm">
-                                        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z"></path></svg>
+                                        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"></path></svg>
                                     </div>
                                     <div>
                                         <strong class="text-zinc-900 font-medium block text-xs">Fin de Fiesta</strong>
@@ -361,106 +405,108 @@
         </div>
     </div>
 
-    <!-- HOTELES -->
-    <section class="py-16 md:py-24 px-6 max-w-7xl mx-auto border-b border-zinc-300/30">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 mb-16">
-            <div class="bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-zinc-200 flex flex-col justify-between" data-aos="fade-up" data-aos-duration="1500">
-                <div>
-                    <span class="text-[10px] tracking-[0.2em] text-zinc-500 uppercase font-medium block mb-2">Junto a Plaza de Galicia</span>
-                    <h3 class="text-2xl font-serif font-light text-zinc-900 mb-6">Hotel Compostela ****</h3>
-                    <ul class="text-sm font-light text-zinc-600 space-y-3 mb-8">
-                        <li class="flex flex-col sm:flex-row sm:justify-between border-b border-zinc-100 pb-2 gap-1">
-                            <span>4 Hab. dobles (con desayuno)</span>
-                            <span class="font-normal text-zinc-900">487€ / 2 noches</span>
-                        </li>
-                        <li class="flex flex-col sm:flex-row sm:justify-between border-b border-zinc-100 pb-2 gap-1">
-                            <span>2 Hab. triples (con desayuno)</span>
-                            <span class="font-normal text-zinc-900">567€ / 2 noches</span>
-                        </li>
-                    </ul>
+    <!-- HOTELES sobre fondo blanco para romper monotonía -->
+    <section class="py-16 md:py-24 px-6 bg-white border-b border-zinc-200">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 mb-16 items-stretch">
+                <div class="bg-[#e3ece4]/40 p-8 md:p-10 rounded-3xl shadow-sm border border-zinc-200 flex flex-col" data-aos="fade-up" data-aos-duration="1500">
+                    <div class="flex-1">
+                        <span class="text-[10px] tracking-[0.2em] text-zinc-600 uppercase font-medium block mb-2">Junto a Plaza de Galicia</span>
+                        <h3 class="text-2xl font-serif font-light text-zinc-900 mb-6">Hotel Compostela ****</h3>
+                        <ul class="text-sm font-light text-zinc-600 space-y-3 mb-8">
+                            <li class="flex flex-col sm:flex-row sm:justify-between border-b border-zinc-100 pb-2 gap-1">
+                                <span>4 Hab. dobles (con desayuno)</span>
+                                <span class="font-normal text-zinc-900">487€ / 2 noches</span>
+                            </li>
+                            <li class="flex flex-col sm:flex-row sm:justify-between border-b border-zinc-100 pb-2 gap-1">
+                                <span>2 Hab. triples (con desayuno)</span>
+                                <span class="font-normal text-zinc-900">567€ / 2 noches</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="https://www.hotelcompostela.es/" target="_blank" rel="noopener noreferrer" class="text-xs text-zinc-900 uppercase tracking-widest font-medium underline underline-offset-8 hover:opacity-50 transition-opacity self-start">
+                        Web oficial &rarr;
+                    </a>
                 </div>
-                <a href="https://www.hotelcompostela.es/" target="_blank" rel="noopener noreferrer" class="text-xs text-zinc-900 uppercase tracking-widest font-medium underline underline-offset-8 hover:opacity-50 transition-opacity self-start">
-                    Web oficial &rarr;
-                </a>
+
+                <div class="bg-[#e3ece4]/40 p-8 md:p-10 rounded-3xl shadow-sm border border-zinc-200 flex flex-col" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">
+                    <div class="flex-1">
+                        <span class="text-[10px] tracking-[0.2em] text-zinc-600 uppercase font-medium block mb-2">Junto a Plaza de Galicia</span>
+                        <h3 class="text-2xl font-serif font-light text-zinc-900 mb-6">Hotel Gelmírez ***</h3>
+                        <ul class="text-sm font-light text-zinc-600 space-y-3 mb-8">
+                            <li class="flex flex-col sm:flex-row sm:justify-between border-b border-zinc-100 pb-2 gap-1">
+                                <span>5 Hab. dobles (con desayuno)</span>
+                                <span class="font-normal text-zinc-900">414€ / 2 noches</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="https://www.hotelgelmirez.com/" target="_blank" rel="noopener noreferrer" class="text-xs text-zinc-900 uppercase tracking-widest font-medium underline underline-offset-8 hover:opacity-50 transition-opacity self-start">
+                        Web oficial &rarr;
+                    </a>
+                </div>
+
+                <div class="bg-[#e3ece4]/40 p-8 md:p-10 rounded-3xl shadow-sm border border-zinc-200 flex flex-col" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">
+                    <div class="flex-1">
+                        <span class="text-[10px] tracking-[0.2em] text-zinc-600 uppercase font-medium block mb-2">Junto a Plaza de Galicia</span>
+                        <h3 class="text-2xl font-serif font-light text-zinc-900 mb-6">Hotel Universal **</h3>
+                        <ul class="text-sm font-light text-zinc-600 space-y-3 mb-8">
+                            <li class="flex flex-col sm:flex-row sm:justify-between border-b border-zinc-100 pb-2 gap-1">
+                                <span>2 Hab. dobles</span>
+                                <span class="font-normal text-zinc-900">380€ / 2 noches</span>
+                            </li>
+                            <li class="flex flex-col sm:flex-row sm:justify-between border-b border-zinc-100 pb-2 gap-1">
+                                <span>2 Hab. triples</span>
+                                <span class="font-normal text-zinc-900">440€ / 2 noches</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="https://www.hoteluniversalsantiago.com/" target="_blank" rel="noopener noreferrer" class="text-xs text-zinc-900 uppercase tracking-widest font-medium underline underline-offset-8 hover:opacity-50 transition-opacity self-start">
+                        Web oficial &rarr;
+                    </a>
+                </div>
+
+                <div class="bg-[#e3ece4]/40 p-8 md:p-10 rounded-3xl shadow-sm border border-zinc-200 flex flex-col" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300">
+                    <div class="flex-1">
+                        <span class="text-[10px] tracking-[0.2em] text-zinc-600 uppercase font-medium block mb-2">Junto a Plaza de Galicia</span>
+                        <h3 class="text-2xl font-serif font-light text-zinc-900 mb-6">Nest Style Santiago</h3>
+                        <ul class="text-sm font-light text-zinc-600 space-y-3 mb-8">
+                            <li class="flex flex-col sm:flex-row sm:justify-between border-b border-zinc-100 pb-2 gap-1">
+                                <span>5 Hab. dobles (con desayuno)</span>
+                                <span class="font-normal text-zinc-900">442€ / 2 noches</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="https://neststylehotels.com/alojamiento/nest-style-santiago/" target="_blank" rel="noopener noreferrer" class="text-xs text-zinc-900 uppercase tracking-widest font-medium underline underline-offset-8 hover:opacity-50 transition-opacity self-start">
+                        Web oficial &rarr;
+                    </a>
+                </div>
             </div>
 
-            <div class="bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-zinc-200 flex flex-col justify-between" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">
-                <div>
-                    <span class="text-[10px] tracking-[0.2em] text-zinc-500 uppercase font-medium block mb-2">Junto a Plaza de Galicia</span>
-                    <h3 class="text-2xl font-serif font-light text-zinc-900 mb-6">Hotel Gelmírez ***</h3>
-                    <ul class="text-sm font-light text-zinc-600 space-y-3 mb-8">
-                        <li class="flex flex-col sm:flex-row sm:justify-between border-b border-zinc-100 pb-2 gap-1">
-                            <span>5 Hab. dobles (con desayuno)</span>
-                            <span class="font-normal text-zinc-900">414€ / 2 noches</span>
-                        </li>
-                    </ul>
-                </div>
-                <a href="https://www.hotelgelmirez.com/" target="_blank" rel="noopener noreferrer" class="text-xs text-zinc-900 uppercase tracking-widest font-medium underline underline-offset-8 hover:opacity-50 transition-opacity self-start">
-                    Web oficial &rarr;
-                </a>
-            </div>
-
-            <div class="bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-zinc-200 flex flex-col justify-between" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">
-                <div>
-                    <span class="text-[10px] tracking-[0.2em] text-zinc-500 uppercase font-medium block mb-2">Junto a Plaza de Galicia</span>
-                    <h3 class="text-2xl font-serif font-light text-zinc-900 mb-6">Hotel Universal **</h3>
-                    <ul class="text-sm font-light text-zinc-600 space-y-3 mb-8">
-                        <li class="flex flex-col sm:flex-row sm:justify-between border-b border-zinc-100 pb-2 gap-1">
-                            <span>2 Hab. dobles</span>
-                            <span class="font-normal text-zinc-900">380€ / 2 noches</span>
-                        </li>
-                        <li class="flex flex-col sm:flex-row sm:justify-between border-b border-zinc-100 pb-2 gap-1">
-                            <span>2 Hab. triples</span>
-                            <span class="font-normal text-zinc-900">440€ / 2 noches</span>
-                        </li>
-                    </ul>
-                </div>
-                <a href="https://www.hoteluniversalsantiago.com/" target="_blank" rel="noopener noreferrer" class="text-xs text-zinc-900 uppercase tracking-widest font-medium underline underline-offset-8 hover:opacity-50 transition-opacity self-start">
-                    Web oficial &rarr;
-                </a>
-            </div>
-
-            <div class="bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-zinc-200 flex flex-col justify-between" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300">
-                <div>
-                    <span class="text-[10px] tracking-[0.2em] text-zinc-500 uppercase font-medium block mb-2">Junto a Plaza de Galicia</span>
-                    <h3 class="text-2xl font-serif font-light text-zinc-900 mb-6">Nest Style Santiago</h3>
-                    <ul class="text-sm font-light text-zinc-600 space-y-3 mb-8">
-                        <li class="flex flex-col sm:flex-row sm:justify-between border-b border-zinc-100 pb-2 gap-1">
-                            <span>5 Hab. dobles (con desayuno)</span>
-                            <span class="font-normal text-zinc-900">442€ / 2 noches</span>
-                        </li>
-                    </ul>
-                </div>
-                <a href="https://neststylehotels.com/alojamiento/nest-style-santiago/" target="_blank" rel="noopener noreferrer" class="text-xs text-zinc-900 uppercase tracking-widest font-medium underline underline-offset-8 hover:opacity-50 transition-opacity self-start">
-                    Web oficial &rarr;
-                </a>
-            </div>
-        </div>
-
-        <!-- Bloque Especial Descuento -->
-        <div class="bg-zinc-900 text-white p-10 md:p-16 rounded-3xl flex flex-col md:flex-row justify-between items-center gap-10 shadow-xl" data-aos="fade-up" data-aos-duration="1500">
-            <div class="max-w-xl">
-                <span class="inline-block border border-white/20 text-zinc-300 text-[10px] uppercase tracking-[0.25em] font-medium px-4 py-1.5 rounded-full mb-4">
-                    A 15 min caminando
-                </span>
-                <h3 class="text-3xl md:text-4xl font-serif font-light mb-4 text-white">Eurostars Gran Hotel Santiago ****</h3>
-                <p class="text-zinc-400 text-sm font-light leading-relaxed mb-6">
-                    Reservando a través de su página web oficial tenéis un <strong class="text-white font-medium">15% de descuento</strong> con nuestro código promocional exclusivo.
-                </p>
-                <a href="https://www.eurostarshotels.com/eurostars-gran-hotel-santiago.html" target="_blank" rel="noopener noreferrer" class="inline-block border border-white text-white px-8 py-3 rounded-full text-xs uppercase tracking-[0.2em] hover:bg-white hover:text-zinc-900 transition-all font-medium">
-                    Visitar web oficial &rarr;
-                </a>
-            </div>
-            <div class="bg-zinc-800/80 border border-zinc-700/60 p-8 rounded-2xl text-center min-w-[280px] w-full md:w-auto">
-                <p class="text-[10px] uppercase tracking-[0.25em] text-zinc-400 mb-3 font-medium">Código Promocional</p>
-                <div onclick="copyPromo()" title="Haz clic para copiar" class="bg-zinc-900 border border-dashed border-zinc-600 rounded-xl py-3 px-6 mb-4 cursor-pointer hover:border-white transition-all group">
-                    <span class="text-2xl font-serif tracking-widest font-normal text-white group-hover:scale-105 inline-block transition-transform">
-                        BODASEP27
+            <!-- Bloque Especial Descuento -->
+            <div class="bg-zinc-900 text-white p-10 md:p-16 rounded-3xl flex flex-col md:flex-row justify-between items-center gap-10 shadow-xl" data-aos="fade-up" data-aos-duration="1500">
+                <div class="max-w-xl">
+                    <span class="inline-block border border-white/20 text-zinc-300 text-[10px] uppercase tracking-[0.25em] font-medium px-4 py-1.5 rounded-full mb-4">
+                        A 15 min caminando
                     </span>
+                    <h3 class="text-3xl md:text-4xl font-serif font-light mb-4 text-white">Eurostars Gran Hotel Santiago ****</h3>
+                    <p class="text-zinc-400 text-sm font-light leading-relaxed mb-6">
+                        Reservando a través de su página web oficial tenéis un <strong class="text-white font-medium">15% de descuento</strong> con nuestro código promocional exclusivo.
+                    </p>
+                    <a href="https://www.eurostarshotels.com/eurostars-gran-hotel-santiago.html" target="_blank" rel="noopener noreferrer" class="inline-block border border-white text-white px-8 py-3 rounded-full text-xs uppercase tracking-[0.2em] hover:bg-white hover:text-zinc-900 transition-all font-medium">
+                        Visitar web oficial &rarr;
+                    </a>
                 </div>
-                <button onclick="copyPromo()" id="copyBtn" class="w-full bg-white text-zinc-900 py-3 px-6 rounded-full text-xs uppercase tracking-[0.2em] font-medium hover:bg-zinc-200 transition-all">
-                    Copiar Código
-                </button>
+                <div class="bg-zinc-800/80 border border-zinc-700/60 p-8 rounded-2xl text-center w-full md:min-w-[280px] md:w-auto">
+                    <p class="text-[10px] uppercase tracking-[0.25em] text-zinc-400 mb-3 font-medium">Código Promocional</p>
+                    <div onclick="copyPromo()" title="Haz clic para copiar" class="bg-zinc-900 border border-dashed border-zinc-600 rounded-xl py-3 px-6 mb-4 cursor-pointer hover:border-white transition-all group">
+                        <span class="text-2xl font-serif tracking-widest font-normal text-white group-hover:scale-105 inline-block transition-transform">
+                            BODASEP27
+                        </span>
+                    </div>
+                    <button onclick="copyPromo()" id="copyBtn" class="w-full bg-white text-zinc-900 py-3 px-6 rounded-full text-xs uppercase tracking-[0.2em] font-medium hover:bg-zinc-200 transition-all">
+                        Copiar Código
+                    </button>
+                </div>
             </div>
         </div>
     </section>
@@ -468,7 +514,7 @@
     <!-- 04 / RECOMENDACIONES -->
     <section id="recomendaciones" class="py-24 md:py-32 px-6 max-w-7xl mx-auto border-b border-zinc-300/30">
         <div class="text-center mb-16" data-aos="fade-up" data-aos-duration="1200">
-            <span class="text-[10px] tracking-[0.3em] text-zinc-500 uppercase font-medium block mb-3">04 / Recomendaciones</span>
+            <span class="text-[10px] tracking-[0.3em] text-zinc-600 uppercase font-medium block mb-3">04 / Recomendaciones</span>
             <h2 class="text-4xl md:text-6xl font-serif font-light text-zinc-900 mb-6">Guía &amp; Belleza</h2>
             <p class="text-zinc-600 font-light text-base leading-relaxed max-w-2xl mx-auto">
                 Sugerencias para aprovechar al máximo vuestra visita a Santiago de Compostela y prepararos para la celebración.
@@ -526,7 +572,7 @@
                     </li>
                     <li class="flex items-start gap-4">
                         <div class="w-8 h-8 rounded-full bg-[#e3ece4] flex items-center justify-center shrink-0 text-zinc-800">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z"></path></svg>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"></path></svg>
                         </div>
                         <div class="pt-1">
                             <strong class="font-medium text-zinc-800 block mb-0.5">Tania Barreiro (Rúa Nova de Abaixo):</strong>
@@ -538,19 +584,19 @@
         </div>
     </section>
 
-    <!-- 05 / VIAJE -->
-    <section class="py-24 md:py-32 px-6 max-w-7xl mx-auto border-b border-zinc-300/30">
-        <div data-aos="fade-up" data-aos-duration="1200">
+    <!-- 05 / VIAJE sobre fondo blanco -->
+    <section class="py-24 md:py-32 px-6 bg-white border-b border-zinc-200">
+        <div class="max-w-7xl mx-auto" data-aos="fade-up" data-aos-duration="1200">
             <div class="text-center mb-16">
-                <span class="text-[10px] tracking-[0.3em] text-zinc-500 uppercase font-medium block mb-3">05 / Viaje</span>
+                <span class="text-[10px] tracking-[0.3em] text-zinc-600 uppercase font-medium block mb-3">05 / Viaje</span>
                 <h2 class="text-4xl md:text-6xl font-serif font-light text-zinc-900 mb-6">Cómo llegar a Santiago</h2>
                 <p class="text-zinc-600 font-light text-base leading-relaxed max-w-2xl mx-auto">
                     Si venís desde fuera, estas son las mejores opciones para llegar al centro de la ciudad:
                 </p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
-                <div class="bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-zinc-200 text-center flex flex-col items-center">
-                    <div class="w-12 h-12 rounded-full bg-[#e3ece4] flex items-center justify-center text-zinc-700 mb-6">
+                <div class="bg-[#e3ece4]/40 p-8 md:p-10 rounded-3xl shadow-sm border border-zinc-200 text-center flex flex-col items-center">
+                    <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-zinc-700 mb-6">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 01-1.125-1.125M3.375 19.5h1.5C5.496 19.5 6 18.996 6 18.375m-3.75 0V5.625m0 12.75v-1.5c0-.621.504-1.125 1.125-1.125m18.375 2.625V5.625m0 12.75c0 .621-.504 1.125-1.125 1.125m1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125m0 3.75h-1.5A1.125 1.125 0 0118 18.375M20.625 4.5H3.375m17.25 0c.621 0 1.125.504 1.125 1.125M20.625 4.5h-1.5C18.504 4.5 18 5.004 18 5.625m3.75 0v1.5c0 .621-.504 1.125-1.125 1.125M3.375 4.5c-.621 0-1.125.504-1.125 1.125M3.375 4.5h1.5C5.496 4.5 6 5.004 6 5.625m-3.75 0v1.5c0 .621.504 1.125 1.125 1.125m0 0h1.5m-1.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125m1.5-3.75C5.496 8.25 6 7.746 6 7.125v-1.5M4.875 8.25C5.496 8.25 6 8.754 6 9.375v1.5m0-5.25v5.25m0-5.25C6 5.004 6.504 4.5 7.125 4.5h9.75c.621 0 1.125.504 1.125 1.125m1.125 2.625h1.5m-1.5 0A1.125 1.125 0 0118 7.125v-1.5m1.125 2.625c-.621 0-1.125.504-1.125 1.125v1.5m2.625-2.625c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125M18 5.625v5.25m0-5.25v5.25M7.125 18.375h9.75c.621 0 1.125-.504 1.125-1.125v-5.25c0-.621-.504-1.125-1.125-1.125H7.125c-.621 0-1.125.504-1.125 1.125v5.25c0 .621.504 1.125 1.125 1.125z"></path></svg>
                     </div>
                     <h4 class="font-serif text-xl mb-3 text-zinc-900">En Tren (AVE/Alvia)</h4>
@@ -558,8 +604,8 @@
                         El tren rápido os deja en la Estación de Santiago. Desde allí hasta la Plaza de Galicia hay solo 10 minutos caminando.
                     </p>
                 </div>
-                <div class="bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-zinc-200 text-center flex flex-col items-center">
-                    <div class="w-12 h-12 rounded-full bg-[#e3ece4] flex items-center justify-center text-zinc-700 mb-6">
+                <div class="bg-[#e3ece4]/40 p-8 md:p-10 rounded-3xl shadow-sm border border-zinc-200 text-center flex flex-col items-center">
+                    <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-zinc-700 mb-6">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"></path></svg>
                     </div>
                     <h4 class="font-serif text-xl mb-3 text-zinc-900">En Avión</h4>
@@ -567,8 +613,8 @@
                         El Aeropuerto Rosalía de Castro (SCQ) tiene vuelos directos. Podéis coger el autobús 6A o un taxi hasta el centro (15 min).
                     </p>
                 </div>
-                <div class="bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-zinc-200 text-center flex flex-col items-center">
-                    <div class="w-12 h-12 rounded-full bg-[#e3ece4] flex items-center justify-center text-zinc-700 mb-6">
+                <div class="bg-[#e3ece4]/40 p-8 md:p-10 rounded-3xl shadow-sm border border-zinc-200 text-center flex flex-col items-center">
+                    <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-zinc-700 mb-6">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"></path></svg>
                     </div>
                     <h4 class="font-serif text-xl mb-3 text-zinc-900">En Coche</h4>
@@ -582,10 +628,10 @@
 
     <!-- 06 / DETALLES -->
     <section id="detalles" class="py-24 md:py-32 px-6 max-w-3xl mx-auto text-center" data-aos="fade-up" data-aos-duration="1200">
-        <span class="text-[10px] tracking-[0.3em] text-zinc-500 uppercase font-medium block mb-3">06 / Detalles</span>
+        <span class="text-[10px] tracking-[0.3em] text-zinc-600 uppercase font-medium block mb-3">06 / Detalles</span>
 
-        <details class="group bg-white border border-zinc-200 rounded-3xl p-6 md:p-10 shadow-sm transition-all duration-300 text-left cursor-pointer">
-            <summary class="flex justify-between items-center list-none font-serif text-2xl md:text-3xl font-light text-zinc-900 select-none outline-none">
+        <details class="group bg-white border border-zinc-200 rounded-3xl p-6 md:p-10 shadow-sm transition-all duration-300 text-left">
+            <summary class="flex justify-between items-center list-none font-serif text-2xl md:text-3xl font-light text-zinc-900 select-none outline-none cursor-pointer">
                 <span>¿Quieres hacernos un detalle?</span>
                 <span class="transition-transform duration-300 group-open:rotate-180 text-zinc-400 text-xl font-sans">
                     &darr;
@@ -624,14 +670,13 @@
             </p>
 
             <form id="rsvp-form" onsubmit="event.preventDefault(); submitRSVP();" class="flex flex-col gap-10 text-left max-w-lg mx-auto">
-                <!-- FIX: label con for + input con id y name -->
                 <div>
-                    <label for="rsvp-nombre" class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 block mb-2">Nombre completo</label>
+                    <label for="rsvp-nombre" class="text-[10px] uppercase tracking-[0.2em] text-zinc-400 block mb-2">Nombre completo</label>
                     <input id="rsvp-nombre" name="nombre" type="text" placeholder="Nombre y Apellidos" required autocomplete="name" class="w-full bg-transparent border-b border-zinc-700 py-3 text-sm focus:outline-none focus:border-white transition-colors text-white font-light">
                 </div>
 
                 <div>
-                    <label class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 block mb-4">¿Asistirás a la boda?</label>
+                    <label class="text-[10px] uppercase tracking-[0.2em] text-zinc-400 block mb-4">¿Asistirás a la boda?</label>
                     <div class="flex gap-4">
                         <label class="pill-radio flex-1 cursor-pointer">
                             <input type="radio" name="attendance" value="yes" required>
@@ -645,7 +690,7 @@
                 </div>
 
                 <div>
-                    <label class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 block mb-4">¿Necesitarás servicio de autobús?</label>
+                    <label class="text-[10px] uppercase tracking-[0.2em] text-zinc-400 block mb-4">¿Necesitarás servicio de autobús?</label>
                     <div class="flex gap-4">
                         <label class="pill-radio flex-1 cursor-pointer">
                             <input type="radio" name="bus" value="yes" required>
@@ -659,7 +704,7 @@
                 </div>
 
                 <div>
-                    <label for="rsvp-obs" class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 block mb-2">Observaciones / Alergias</label>
+                    <label for="rsvp-obs" class="text-[10px] uppercase tracking-[0.2em] text-zinc-400 block mb-2">Observaciones / Alergias</label>
                     <input id="rsvp-obs" name="observaciones" type="text" placeholder="Alergias o necesidades dietéticas..." class="w-full bg-transparent border-b border-zinc-700 py-3 text-sm focus:outline-none focus:border-white transition-colors text-white font-light">
                 </div>
 
@@ -670,7 +715,7 @@
 
             <div class="mt-32 pt-16 border-t border-zinc-900">
                 <p class="font-serif text-4xl mb-3 font-light italic text-white">Ana &amp; David</p>
-                <p class="text-[10px] font-sans uppercase tracking-[0.4em] text-zinc-600 whitespace-nowrap">
+                <p class="text-[10px] font-sans uppercase tracking-[0.4em] text-zinc-500 whitespace-nowrap">
                     11 . 09 . 2027
                 </p>
             </div>
@@ -681,53 +726,108 @@
     <script>
         AOS.init({ duration: 1400, once: true, offset: 100 });
 
-        // FIX: cambio de tab del mapa con gestión completa de clases (incluye shadow y hover:scale)
+        // ----- MENÚ MÓVIL -----
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            const closeIcon = document.getElementById('menu-close-icon');
+            const btn = document.getElementById('menu-toggle');
+            const isOpen = !menu.classList.contains('hidden');
+
+            if (isOpen) {
+                menu.classList.add('hidden');
+                menu.classList.remove('flex');
+                icon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+                btn.setAttribute('aria-expanded', 'false');
+                document.body.classList.remove('menu-open');
+            } else {
+                menu.classList.remove('hidden');
+                menu.classList.add('flex');
+                icon.classList.add('hidden');
+                closeIcon.classList.remove('hidden');
+                btn.setAttribute('aria-expanded', 'true');
+                document.body.classList.add('menu-open');
+            }
+        }
+
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                const menu = document.getElementById('mobile-menu');
+                if (!menu.classList.contains('hidden')) toggleMenu();
+            });
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) {
+                const menu = document.getElementById('mobile-menu');
+                if (!menu.classList.contains('hidden')) {
+                    menu.classList.add('hidden');
+                    menu.classList.remove('flex');
+                    document.body.classList.remove('menu-open');
+                    document.getElementById('menu-icon').classList.remove('hidden');
+                    document.getElementById('menu-close-icon').classList.add('hidden');
+                    document.getElementById('menu-toggle').setAttribute('aria-expanded', 'false');
+                }
+            }
+        });
+
+        // ----- MAPA: cambio de tab con animación real -----
         function showMapTab(tabId) {
             document.querySelectorAll('.map-pin').forEach(pin => {
-                pin.classList.remove('bg-zinc-900', 'ring-4', 'ring-white/50', 'scale-110', 'shadow-lg');
+                pin.classList.remove('bg-zinc-900', 'ring-4', 'ring-white/50', 'scale-110', 'shadow-lg', 'active-pin');
                 pin.classList.add('bg-zinc-400', 'hover:bg-zinc-700', 'hover:scale-110', 'shadow-md');
+                pin.setAttribute('aria-pressed', 'false');
             });
 
             const activePin = document.getElementById('pin-' + tabId);
             activePin.classList.remove('bg-zinc-400', 'hover:bg-zinc-700', 'hover:scale-110', 'shadow-md');
-            activePin.classList.add('bg-zinc-900', 'ring-4', 'ring-white/50', 'scale-110', 'shadow-lg');
+            activePin.classList.add('bg-zinc-900', 'ring-4', 'ring-white/50', 'scale-110', 'shadow-lg', 'active-pin');
+            activePin.setAttribute('aria-pressed', 'true');
 
             document.querySelectorAll('.map-panel').forEach(panel => {
-                panel.style.display = 'none';
-                panel.style.opacity = '0';
-                panel.style.transform = 'translateY(10px)';
                 panel.classList.remove('active');
             });
 
             const activePanel = document.getElementById('panel-' + tabId);
-            activePanel.style.display = 'block';
-            void activePanel.offsetWidth;
-            activePanel.style.opacity = '1';
-            activePanel.style.transform = 'translateY(0)';
+            void activePanel.offsetWidth; // reflow para reiniciar la animación
             activePanel.classList.add('active');
         }
 
-        // Efecto del menú al hacer scroll
+        // ----- NAVBAR: efecto scroll (incluye botón menú móvil) -----
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
+            const logo = document.getElementById('nav-logo');
+            const links = document.getElementById('nav-links');
+            const btn = document.getElementById('nav-btn');
+            const menuBtn = document.getElementById('menu-toggle');
+
             if (window.scrollY > 80) {
-                nav.classList.add('bg-[#e3ece4]/95', 'backdrop-blur-md', 'py-4', 'border-b', 'border-zinc-200/60');
+                nav.classList.add('bg-[#e3ece4]/95', 'backdrop-blur-md', 'py-4', 'border-b', 'border-zinc-200/60', 'shadow-sm');
                 nav.classList.remove('py-6');
-                document.getElementById('nav-logo').classList.replace('text-white', 'text-zinc-900');
-                document.getElementById('nav-links').classList.replace('text-white/90', 'text-zinc-800');
-                document.getElementById('nav-btn').classList.add('border-zinc-900', 'text-zinc-900', 'hover:bg-zinc-900', 'hover:text-white');
-                document.getElementById('nav-btn').classList.remove('border-white', 'text-white', 'hover:bg-white', 'hover:text-zinc-900');
+                logo.classList.replace('text-white', 'text-zinc-900');
+                links.classList.replace('text-white/90', 'text-zinc-800');
+                btn.classList.add('border-zinc-900', 'text-zinc-900', 'hover:bg-zinc-900', 'hover:text-white');
+                btn.classList.remove('border-white', 'text-white', 'hover:bg-white', 'hover:text-zinc-900');
+                if (menuBtn) {
+                    menuBtn.classList.remove('text-white');
+                    menuBtn.classList.add('text-zinc-900');
+                }
             } else {
-                nav.classList.remove('bg-[#e3ece4]/95', 'backdrop-blur-md', 'py-4', 'border-b', 'border-zinc-200/60');
+                nav.classList.remove('bg-[#e3ece4]/95', 'backdrop-blur-md', 'py-4', 'border-b', 'border-zinc-200/60', 'shadow-sm');
                 nav.classList.add('py-6');
-                document.getElementById('nav-logo').classList.replace('text-zinc-900', 'text-white');
-                document.getElementById('nav-links').classList.replace('text-zinc-800', 'text-white/90');
-                document.getElementById('nav-btn').classList.remove('border-zinc-900', 'text-zinc-900', 'hover:bg-zinc-900', 'hover:text-white');
-                document.getElementById('nav-btn').classList.add('border-white', 'text-white', 'hover:bg-white', 'hover:text-zinc-900');
+                logo.classList.replace('text-zinc-900', 'text-white');
+                links.classList.replace('text-zinc-800', 'text-white/90');
+                btn.classList.remove('border-zinc-900', 'text-zinc-900', 'hover:bg-zinc-900', 'hover:text-white');
+                btn.classList.add('border-white', 'text-white', 'hover:bg-white', 'hover:text-zinc-900');
+                if (menuBtn) {
+                    menuBtn.classList.remove('text-zinc-900');
+                    menuBtn.classList.add('text-white');
+                }
             }
         });
 
-        // FIX: copyPromo con fallback para navegadores sin clipboard API
+        // ----- COPiar código promocional (feedback más visible) -----
         function copyPromo() {
             const code = "BODASEP27";
             if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -743,15 +843,17 @@
 
             const btn = document.getElementById('copyBtn');
             const originalText = btn.innerText;
-            btn.innerText = "¡Código Copiado!";
-            btn.classList.replace('bg-white', 'bg-zinc-300');
+            btn.innerText = "✓ ¡Código Copiado!";
+            btn.classList.remove('bg-white', 'hover:bg-zinc-200');
+            btn.classList.add('bg-emerald-400', 'text-zinc-900');
             setTimeout(() => {
                 btn.innerText = originalText;
-                btn.classList.replace('bg-zinc-300', 'bg-white');
+                btn.classList.remove('bg-emerald-400');
+                btn.classList.add('bg-white', 'hover:bg-zinc-200');
             }, 2500);
         }
 
-        // FIX: copyIban — elimina bg-white antes de añadir bg-emerald-50 para evitar conflicto
+        // ----- Copiar IBAN -----
         function copyIban() {
             const ibanElement = document.getElementById('iban-text');
             const iban = ibanElement.innerText.trim();
@@ -771,18 +873,18 @@
             const textSpan = document.getElementById('copyIbanText');
             const originalText = textSpan.innerText;
 
-            textSpan.innerText = "¡Copiado!";
+            textSpan.innerText = "✓ ¡Copiado!";
             btn.classList.remove('bg-white');
-            btn.classList.add('bg-emerald-50', 'border-emerald-600', 'text-emerald-800');
+            btn.classList.add('bg-emerald-100', 'border-emerald-600', 'text-emerald-800');
 
             setTimeout(() => {
                 textSpan.innerText = originalText;
-                btn.classList.remove('bg-emerald-50', 'border-emerald-600', 'text-emerald-800');
+                btn.classList.remove('bg-emerald-100', 'border-emerald-600', 'text-emerald-800');
                 btn.classList.add('bg-white');
             }, 2000);
         }
 
-        // Cuenta Atrás
+        // ----- Cuenta atrás -----
         function initCountdown() {
             const weddingDate = new Date('2027-09-11T12:00:00').getTime();
             const x = setInterval(function() {
@@ -805,7 +907,7 @@
         }
         initCountdown();
 
-        // FIX: ICS con CRLF (\r\n), VTIMEZONE Europe/Madrid y UID/DTSTAMP
+        // ----- Descargar ICS -----
         function downloadICS() {
             const icsLines = [
                 'BEGIN:VCALENDAR',
@@ -860,15 +962,17 @@
             window.URL.revokeObjectURL(link.href);
         }
 
-        // Fake Submit RSVP
+        // ----- Envío RSVP con feedback verde visible -----
         function submitRSVP() {
             const btn = document.getElementById('rsvpBtn');
             const original = btn.innerText;
-            btn.innerText = "¡Confirmación Enviada!";
-            btn.classList.replace('bg-white', 'bg-zinc-300');
+            btn.innerText = "✓ ¡Confirmación Enviada!";
+            btn.classList.remove('bg-white', 'hover:bg-zinc-200');
+            btn.classList.add('bg-emerald-400', 'text-zinc-900');
             setTimeout(() => {
                 btn.innerText = original;
-                btn.classList.replace('bg-zinc-300', 'bg-white');
+                btn.classList.remove('bg-emerald-400', 'text-zinc-900');
+                btn.classList.add('bg-white', 'hover:bg-zinc-200', 'text-zinc-900');
                 document.getElementById('rsvp-form').reset();
             }, 3000);
         }
