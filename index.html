@@ -328,7 +328,6 @@
     .section--dark{background:var(--green-dark);color:var(--paper);border-bottom-color:rgba(255,255,255,.14)}
     .section--dark .eyebrow,
     .section--dark .intro,
-    .section--dark .photo-caption,
     .section--dark .fineprint,
     .section--dark .story-copy p:not(.pullquote),
     .section--dark .dog-copy p,
@@ -388,16 +387,13 @@
       .gallery figure:nth-child(2){margin-left:12%}
       .gallery figure:nth-child(3){margin-right:12%;margin-left:0}
       .gallery figure:nth-child(3) .photo-small{aspect-ratio:3/2}
-      .photo-caption{font-size:9px;letter-spacing:.16em;margin-top:12px}
 
-      /* Invitado especial: texto arriba, foto abajo en móvil */
       .dog-feature{margin-top:75px;padding-top:50px}
       .dog-copy{order:1}
       .dog-photo{order:2;height:300px}
 
       .interlude{height:350px}
 
-      /* Mapa en móvil */
       .map-pin{width:38px;height:38px;font-size:12px;border-width:2px}
       .map-tabs{margin-top:12px}
       .map-tabs button{padding:12px 4px;font-size:8px;gap:4px;letter-spacing:.06em}
@@ -413,7 +409,6 @@
       .hotel-grid{grid-template-columns:1fr}
       .hotel{padding:30px 25px;min-height:220px}
 
-      /* Promo Eurostars en móvil */
       .promo{display:flex;flex-direction:column;padding:32px 24px;gap:0;text-align:center}
       .promo > div:first-child{padding-bottom:26px;border-bottom:1px dashed rgba(255,255,255,.22);margin-bottom:26px}
       .promo h3{font-size:28px;line-height:1.1;margin:10px 0 14px}
@@ -511,9 +506,9 @@
           </div>
         </div>
         <div class="gallery" aria-label="Recuerdos de Ana y David">
-          <figure class="reveal" data-reveal="zoom"><div class="photo-small"><img src="e03ee37b-33d0-44b7-92b5-24f7016059b4.jpeg" alt="Un recuerdo de Santiago" loading="lazy"></div><figcaption class="photo-caption">Santiago</figcaption></figure>
-          <figure class="reveal" data-reveal="zoom" style="--reveal-delay:.12s"><div class="photo-small"><img src="0bc43841-20d7-41fd-9195-4c4755079096.jpeg" alt="Un recuerdo de una noche especial" loading="lazy"></div><figcaption class="photo-caption">Una noche especial</figcaption></figure>
-          <figure class="reveal" data-reveal="zoom" style="--reveal-delay:.24s"><div class="photo-small"><img src="a53b8f0b-54df-46f6-b757-edcdd771693f.jpeg" alt="Un recuerdo de nuestra preboda" loading="lazy"></div><figcaption class="photo-caption">Preboda</figcaption></figure>
+          <figure class="reveal" data-reveal="zoom"><div class="photo-small"><img src="e03ee37b-33d0-44b7-92b5-24f7016059b4.jpeg" alt="Un recuerdo de Santiago" loading="lazy"></div></figure>
+          <figure class="reveal" data-reveal="zoom" style="--reveal-delay:.12s"><div class="photo-small"><img src="0bc43841-20d7-41fd-9195-4c4755079096.jpeg" alt="Un recuerdo de una noche especial" loading="lazy"></div></figure>
+          <figure class="reveal" data-reveal="zoom" style="--reveal-delay:.24s"><div class="photo-small"><img src="a53b8f0b-54df-46f6-b757-edcdd771693f.jpeg" alt="Un recuerdo de nuestra preboda" loading="lazy"></div></figure>
         </div>
         <div class="dog-feature">
           <div class="dog-photo reveal" data-reveal="zoom"><img src="3d9635e1-6a29-4485-a211-041fcf3b2ec6.jpeg" alt="Nuestro Gordon Setter, invitado de honor" loading="lazy"></div>
