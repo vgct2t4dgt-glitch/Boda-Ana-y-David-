@@ -390,8 +390,11 @@
       .gallery figure:nth-child(3) .photo-small{aspect-ratio:3/2}
       .photo-caption{font-size:9px;letter-spacing:.16em;margin-top:12px}
 
+      /* Invitado especial: texto arriba, foto abajo en móvil */
       .dog-feature{margin-top:75px;padding-top:50px}
-      .dog-photo{height:300px}
+      .dog-copy{order:1}
+      .dog-photo{order:2;height:300px}
+
       .interlude{height:350px}
 
       /* Mapa en móvil */
@@ -456,7 +459,7 @@
 </head>
 <body>
   <script>
-    const RSVP_ENDPOINT = ""; // Ejemplo: https://formspree.io/f/xxxxxxxx
+    const RSVP_ENDPOINT = "";
     const WEDDING_DATE = "2027-09-11";
     if (typeof document !== 'undefined') document.documentElement.classList.add('js');
   </script>
@@ -523,7 +526,7 @@
 
     <section class="section" id="programa">
       <div class="wrap">
-        <div class="section-head center reveal"><span class="eyebrow">02 — Reservad la fecha</span><h2>El fin de<br><em>semana.</em></h2><p class="intro" style="margin:24px auto 0">Dos días para reencontrarnos, brindar y celebrar. Seleccionad cada punto del mapa para consultar la información.</p></div>
+        <div class="section-head center reveal"><span class="eyebrow">02 — Reservad la fecha</span><h2>El fin de<br><em>semana.</em></h2></div>
         <div class="program-grid">
           <div class="reveal">
             <div class="map-frame">
@@ -697,7 +700,6 @@
   </main>
 
   <script>
-    // Menú móvil
     const menuToggle = document.getElementById('menuToggle');
     const navLinks = document.getElementById('navLinks');
     menuToggle.addEventListener('click', () => {
@@ -714,14 +716,12 @@
     }));
     window.addEventListener('scroll', () => document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20), {passive:true});
 
-    // Mapa: pines y tabs sincronizados
     function showMapTab(id) {
       document.querySelectorAll('.map-panel').forEach(panel => panel.classList.toggle('active', panel.id === `panel-${id}`));
       document.querySelectorAll('[data-tab]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.tab === String(id))));
     }
     document.querySelectorAll('[data-tab]').forEach(button => button.addEventListener('click', () => showMapTab(button.dataset.tab)));
 
-    // Cuenta atrás
     function updateCountdown() {
       const target = new Date(`${WEDDING_DATE}T00:00:00`);
       const now = new Date();
@@ -736,7 +736,6 @@
     }
     updateCountdown(); setInterval(updateCountdown, 60000);
 
-    // Reveal
     if ('IntersectionObserver' in window) {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -748,7 +747,6 @@
       document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
     }
 
-    // Copiar texto con feedback visual
     async function copyText(value, statusElement, successMessage, button) {
       const originalText = button ? button.textContent : '';
       try {
@@ -784,7 +782,6 @@
       );
     });
 
-    // RSVP
     const form = document.getElementById('rsvpForm');
     const attendanceFields = document.getElementById('attendanceFields');
     const returnField = document.getElementById('returnField');
@@ -827,7 +824,6 @@
       }
     });
 
-    // Calendario
     function downloadICS() {
       const content = [
         'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Ana y David//Boda 2027//ES',
