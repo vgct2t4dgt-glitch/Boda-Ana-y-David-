@@ -356,8 +356,6 @@
     .choice span{display:block;border:1px solid #82917f;border-radius:99px;padding:11px 17px;font-size:10px;letter-spacing:.08em;cursor:pointer;transition:.2s}
     .choice input:checked+span{background:var(--paper);color:var(--green-dark);border-color:var(--paper)}
     .choice input:focus-visible+span{outline:2px solid white;outline-offset:3px}
-    .conditional{display:none}
-    .conditional.visible{display:block}
     .privacy{font-size:10px;line-height:1.7;color:#c4cec1;margin:8px 0 24px}
     .privacy a{color:white}
     .form .btn{width:100%;background:var(--paper);color:var(--green-dark);border-color:var(--paper);padding:17px}
@@ -844,38 +842,43 @@
               </div>
             </fieldset>
 
-            <!-- Nº asistentes -->
-            <div class="field conditional full">
-              <label for="guestCount">Número de asistentes (incluyéndote) *</label>
-              <input id="guestCount" name="asistentes" type="number" min="1" value="1">
-            </div>
-            
-            <!-- Nombres acompañantes -->
-            <div class="field conditional full">
-              <label for="guestNames">Nombres de los acompañantes (si vienen contigo)</label>
-              <input id="guestNames" name="acompanantes" type="text" placeholder="Ej. Juan Pérez, Ana López">
-            </div>
+            <!-- Campos condicionales (Ocultos por defecto) -->
+            <div id="conditionalFields" class="full" style="display: none; grid-column: 1 / -1;">
+              <div class="form-grid" style="margin-top: 10px;">
+                <!-- Nº asistentes -->
+                <div class="field full">
+                  <label for="guestCount">Número de asistentes (incluyéndote) *</label>
+                  <input id="guestCount" name="asistentes" type="number" min="1" value="1">
+                </div>
+                
+                <!-- Nombres acompañantes -->
+                <div class="field full">
+                  <label for="guestNames">Nombres de los acompañantes (si vienen contigo)</label>
+                  <input id="guestNames" name="acompanantes" type="text" placeholder="Ej. Juan Pérez, Ana López">
+                </div>
 
-            <!-- Alergias -->
-            <div class="field conditional full">
-              <label for="guestAllergies">Alergias o demandas alimenticias</label>
-              <input id="guestAllergies" name="alergias" type="text" placeholder="Ej. Celiaquía, vegetariano...">
-            </div>
-            
-            <!-- Transporte -->
-            <div class="field conditional full">
-              <label for="guestTransport">¿Necesitas transporte (autobús)? *</label>
-              <select id="guestTransport" name="transporte">
-                <option value="">Selecciona una opción</option>
-                <option value="Sí">Sí, lo necesito</option>
-                <option value="No">No, voy por mi cuenta</option>
-              </select>
-            </div>
-            
-            <!-- Canción -->
-            <div class="field conditional full">
-              <label for="guestSong">¿Qué canción no puede faltar? *</label>
-              <input id="guestSong" name="cancion" type="text" placeholder="Título y artista">
+                <!-- Alergias -->
+                <div class="field full">
+                  <label for="guestAllergies">Alergias o demandas alimenticias</label>
+                  <input id="guestAllergies" name="alergias" type="text" placeholder="Ej. Celiaquía, vegetariano...">
+                </div>
+                
+                <!-- Transporte -->
+                <div class="field full">
+                  <label for="guestTransport">¿Necesitas transporte (autobús)? *</label>
+                  <select id="guestTransport" name="transporte">
+                    <option value="">Selecciona una opción</option>
+                    <option value="Sí">Sí, lo necesito</option>
+                    <option value="No">No, voy por mi cuenta</option>
+                  </select>
+                </div>
+                
+                <!-- Canción -->
+                <div class="field full">
+                  <label for="guestSong">¿Qué canción no puede faltar? *</label>
+                  <input id="guestSong" name="cancion" type="text" placeholder="Título y artista">
+                </div>
+              </div>
             </div>
           </div>
           
@@ -891,6 +894,12 @@
   </main>
 
   <script>
+    // --- 1. Configuración Inicial ---
+    const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbwTdNWqqcYJCQHCit9glgqKMsaqEz7ZWCnFMqktIJBpWy4CYajA5Z21HR_hBoGR8hjy5A/exec";
+    const WEDDING_DATE = "2027-09-11";
+    if (typeof document !== 'undefined') document.documentElement.classList.add('js');
+
+    // --- 2. Navegación Móvil ---
     const menuToggle = document.getElementById('menuToggle');
     const navLinks = document.getElementById('navLinks');
     menuToggle.addEventListener('click', () => {
@@ -907,12 +916,14 @@
     }));
     window.addEventListener('scroll', () => document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20), {passive:true});
 
+    // --- 3. Interacción del Mapa ---
     function showMapTab(id) {
       document.querySelectorAll('.map-panel').forEach(panel => panel.classList.toggle('active', panel.id === `panel-${id}`));
       document.querySelectorAll('[data-tab]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.tab === String(id))));
     }
     document.querySelectorAll('[data-tab]').forEach(button => button.addEventListener('click', () => showMapTab(button.dataset.tab)));
 
+    // --- 4. Cuenta Atrás ---
     function updateCountdown() {
       const target = new Date(`${WEDDING_DATE}T00:00:00`);
       const now = new Date();
@@ -927,6 +938,7 @@
     }
     updateCountdown(); setInterval(updateCountdown, 60000);
 
+    // --- 5. Animaciones Reveal ---
     if ('IntersectionObserver' in window) {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -938,6 +950,7 @@
       document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
     }
 
+    // --- 6. Copiar al Portapapeles ---
     async function copyText(value, statusElement, successMessage, button) {
       const originalText = button ? button.textContent : '';
       try {
@@ -957,43 +970,43 @@
       }
     }
     document.getElementById('copyPromo').addEventListener('click', function() {
-      copyText(
-        document.getElementById('promoCode').textContent.trim(),
-        document.getElementById('promoStatus'),
-        'Código copiado.',
-        this
-      );
+      copyText(document.getElementById('promoCode').textContent.trim(), document.getElementById('promoStatus'), 'Código copiado.', this);
     });
     document.getElementById('copyIban').addEventListener('click', function() {
-      copyText(
-        document.getElementById('ibanText').textContent.trim(),
-        document.getElementById('ibanStatus'),
-        'Número de cuenta copiado.',
-        this
-      );
+      copyText(document.getElementById('ibanText').textContent.trim(), document.getElementById('ibanStatus'), 'Número de cuenta copiado.', this);
     });
 
-    // Lógica del formulario
+    // --- 7. Formulario RSVP ---
     const form = document.getElementById('rsvpForm');
-    const conditionalFields = form.querySelectorAll('.conditional');
+    const conditionalFields = document.getElementById('conditionalFields');
+    
+    // Elementos que se vuelven obligatorios si asisten
     const guestCount = document.getElementById('guestCount');
     const guestTransport = document.getElementById('guestTransport');
     const guestSong = document.getElementById('guestSong');
 
-    // Mostrar u ocultar campos según asistencia
+    function toggleConditionalFields() {
+      // Buscamos si el radio "Sí" está seleccionado
+      const selectedAttendance = form.querySelector('input[name="asistencia"]:checked');
+      const isAttending = selectedAttendance && selectedAttendance.value === 'Sí';
+      
+      if (isAttending) {
+        conditionalFields.style.display = 'block'; // Forzamos que se muestre
+        guestCount.required = true;
+        guestTransport.required = true;
+        guestSong.required = true;
+      } else {
+        conditionalFields.style.display = 'none'; // Ocultamos
+        guestCount.required = false;
+        guestTransport.required = false;
+        guestSong.required = false;
+      }
+    }
+
+    // Escuchamos los cambios en los botones de radio (change y click para asegurar compatibilidad móvil)
     form.querySelectorAll('input[name="asistencia"]').forEach(input => {
-      input.addEventListener('change', (e) => {
-        const isAttending = e.target.value === 'Sí';
-        
-        conditionalFields.forEach(el => {
-          el.classList.toggle('visible', isAttending);
-        });
-        
-        // Hacer campos requeridos solo si asiste
-        guestCount.required = isAttending;
-        guestTransport.required = isAttending;
-        guestSong.required = isAttending;
-      });
+      input.addEventListener('change', toggleConditionalFields);
+      input.addEventListener('click', toggleConditionalFields);
     });
 
     form.addEventListener('submit', async event => {
@@ -1001,7 +1014,6 @@
       const status = document.getElementById('formStatus');
       const submit = document.getElementById('submitRsvp');
       
-      // Validación básica (HTML5 ya hace gran parte)
       if (!form.checkValidity()) {
         form.reportValidity();
         return;
@@ -1016,28 +1028,20 @@
         const response = await fetch(RSVP_ENDPOINT, {
           method: 'POST',
           body: formData,
-          // No establecemos headers para evitar problemas de CORS. 
-          // Google Apps Script maneja FormData correctamente.
         });
 
-        if (!response.ok) {
-          throw new Error('El servicio no ha aceptado la respuesta');
-        }
+        if (!response.ok) throw new Error('Error en la red');
 
         status.textContent = '¡Gracias! Hemos recibido vuestra respuesta.';
         status.style.color = '#b8c4b5';
         form.reset(); 
-        
-        // Ocultar campos condicionales al reiniciar
-        conditionalFields.forEach(el => {
-          el.classList.remove('visible');
-        });
+        conditionalFields.style.display = 'none'; // Volver a ocultar
         guestCount.required = false;
         guestTransport.required = false;
         guestSong.required = false;
 
       } catch (error) {
-        status.textContent = 'No hemos podido enviar la respuesta. Por favor, inténtalo de nuevo o contacta directamente con Ana y David.';
+        status.textContent = 'No hemos podido enviar la respuesta. Por favor, inténtalo de nuevo.';
         status.style.color = '#ffb4b4';
       } finally {
         submit.disabled = false; 
@@ -1045,6 +1049,7 @@
       }
     });
 
+    // --- 8. Calendario ICS ---
     function downloadICS() {
       const content = [
         'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Ana y David//Boda 2027//ES',
