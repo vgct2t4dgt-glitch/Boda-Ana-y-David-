@@ -109,7 +109,7 @@
     .interlude:before{content:"";position:absolute;inset:0;background:rgba(25,34,26,.38)}
     .interlude blockquote{position:relative;margin:0;padding:24px;font:italic 300 clamp(42px,7vw,82px)/.95 var(--serif)}
 
-    /* === Nueva Cronología (Timeline) === */
+    /* === Cronología (Timeline) === */
     .timeline {
       position: relative;
       max-width: 800px;
@@ -189,7 +189,7 @@
       transform: scale(1.04);
     }
 
-    /* Programa — mapa simplificado */
+    /* Programa — mapa simplificado (Autobuses) */
     .program-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:start}
 
     .map-frame{
@@ -247,7 +247,6 @@
     .map-panel.active{display:block;animation:appear .45s cubic-bezier(.16,1,.3,1)}
     @keyframes appear{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 
-    /* El panel ahora sin imagen */
     .panel-body{padding:40px 36px}
     .panel-meta{
       font-size:9px;letter-spacing:.2em;text-transform:uppercase;
@@ -548,7 +547,7 @@
         <svg class="icon-close" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 6l12 12M6 18L18 6"/></svg>
       </button>
       <div class="nav-links" id="navLinks">
-        <a href="#historia">Nuestra historia</a><a href="#itinerario">El itinerario</a><a href="#programa">Ubicaciones</a><a href="#estancia">Alojamiento</a><a href="#detalles">Detalles</a>
+        <a href="#historia">Nuestra historia</a><a href="#itinerario">El itinerario</a><a href="#programa">El transporte</a><a href="#estancia">Alojamiento</a><a href="#detalles">Detalles</a>
       </div>
       <a class="btn nav-cta" href="#rsvp">Confirmar</a>
     </div>
@@ -600,12 +599,12 @@
 
     <section class="interlude" aria-label="Una nueva aventura"><blockquote class="reveal" data-reveal="zoom">Y ella dijo<br>"sí"…</blockquote></section>
 
-    <!-- NUEVA SECCIÓN: CRONOLOGÍA -->
+    <!-- SECCIÓN: CRONOLOGÍA -->
     <section class="section" id="itinerario">
       <div class="wrap">
         <div class="section-head center reveal">
           <span class="eyebrow">02 — El itinerario</span>
-          <h2>El día,<br><em>paso a paso.</em></h2>
+          <h2>El fin de semana<br><em>perfecto.</em></h2>
         </div>
         
         <div class="timeline">
@@ -617,7 +616,6 @@
               <h3 class="timeline-title">Santiago,<br><em>donde empieza todo.</em></h3>
               <div class="timeline-desc">
                 <p><strong>La preboda · Viernes 10</strong><br>Nos encantaría veros la tarde anterior para tomar algo, charlar en un ambiente distendido y conocernos entre todos antes del gran día.</p>
-                <p><strong>Punto de autobuses · Sábado 11</strong><br>Los autobuses saldrán desde la céntrica Plaza de Galicia para llevaros a la ceremonia y, después, al pazo.</p>
               </div>
               <div class="timeline-image">
                 <img src="Santiago de Compostela_ Fotos antiguas.jpg" alt="Santiago de Compostela" loading="lazy">
@@ -629,11 +627,11 @@
           <div class="timeline-item reveal">
             <div class="timeline-dot"></div>
             <div class="timeline-content">
-              <span class="timeline-time">Sábado, 11 de septiembre · Mañana</span>
+              <span class="timeline-time">Sábado, 11 de septiembre · 12:00</span>
               <h3 class="timeline-title">El momento<br><em>del sí, quiero.</em></h3>
               <div class="timeline-desc">
                 <p><strong>Parroquia de San Xulián de Bastavales</strong></p>
-                <p>Celebraremos la ceremonia en esta hermosa e histórica iglesia, rodeada de la tradicional piedra gallega. Será el momento más especial del fin de semana. La hora exacta se confirmará más adelante.</p>
+                <p>Celebraremos la ceremonia a las 12:00 en esta hermosa e histórica iglesia, rodeada de la tradicional piedra gallega. Será el momento más especial del fin de semana.</p>
                 <p>Al terminar, los autobuses estarán esperando para llevarnos directamente al pazo.</p>
               </div>
               <div class="timeline-image">
@@ -651,11 +649,6 @@
               <div class="timeline-desc">
                 <p><strong>Pazo de Vista Alegre</strong></p>
                 <p>Continuaremos la celebración en los jardines y salones del pazo. Disfrutaremos de la gastronomía gallega, brindis inolvidables y, por supuesto, barra libre y música.</p>
-                <div class="bus-note">
-                  <span class="eyebrow">Regreso a Santiago</span>
-                  <p><strong>Turno temprano:</strong> para quienes prefieran volver antes a la ciudad.</p>
-                  <p><strong>Fin de fiesta:</strong> último trayecto para quienes quieran darlo todo hasta el último baile.</p>
-                </div>
               </div>
               <div class="timeline-image">
                 <img src="IMG_0966.jpeg" alt="Pazo de Vista Alegre" loading="lazy">
@@ -666,16 +659,17 @@
       </div>
     </section>
 
+    <!-- SECCIÓN: MAPA (AUTOBUSES) -->
     <section class="section" id="programa">
       <div class="wrap">
-        <div class="section-head center reveal"><span class="eyebrow">03 — Las ubicaciones</span><h2>Dónde<br><em>nos vemos.</em></h2></div>
+        <div class="section-head center reveal"><span class="eyebrow">03 — El transporte</span><h2>Desde dónde<br><em>salimos.</em></h2></div>
         <div class="program-grid">
           <div class="reveal">
             <div class="map-frame">
               <img src="Gemini_Generated_Image_2yp0ju2yp0ju2yp0.jpg" alt="Mapa ilustrado con los lugares de la celebración" loading="lazy">
-              <button class="map-pin" style="top:26.5%;left:46.5%" data-tab="1" aria-label="Ver Santiago y preboda" aria-pressed="true">01</button>
-              <button class="map-pin" style="top:62.5%;left:17.5%" data-tab="2" aria-label="Ver la ceremonia" aria-pressed="false">02</button>
-              <button class="map-pin" style="top:53.5%;left:84.5%" data-tab="3" aria-label="Ver el pazo" aria-pressed="false">03</button>
+              <button class="map-pin" style="top:26.5%;left:46.5%" data-tab="1" aria-label="Ver Santiago y autobuses" aria-pressed="true">01</button>
+              <button class="map-pin" style="top:62.5%;left:17.5%" data-tab="2" aria-label="Ver la iglesia y autobuses" aria-pressed="false">02</button>
+              <button class="map-pin" style="top:53.5%;left:84.5%" data-tab="3" aria-label="Ver el pazo y autobuses" aria-pressed="false">03</button>
             </div>
             <div class="map-tabs" aria-label="Elegir lugar">
               <button data-tab="1" aria-pressed="true"><span class="tab-num">01</span>Santiago</button>
@@ -687,32 +681,34 @@
             
             <article class="map-panel active" id="panel-1">
               <div class="panel-body">
-                <div class="panel-meta">Viernes, 10 de septiembre · Sábado, 11</div>
-                <h3>Santiago,<br><em>donde empieza todo.</em></h3>
-                <p><strong>La preboda · Viernes 10</strong><br>Nos encantaría veros la tarde anterior para tomar algo, charlar en un ambiente distendido y conocernos entre todos antes del gran día. El lugar y la hora se comunicarán más adelante.</p>
-                <p><strong>Punto de autobuses · Sábado 11</strong><br>Los autobuses saldrán desde la céntrica Plaza de Galicia para llevaros a la ceremonia y, después, al pazo.</p>
+                <div class="panel-meta">Sábado, 11 de septiembre · Punto de salida</div>
+                <h3>Santiago,<br><em>el punto de partida.</em></h3>
+                <p><strong>Plaza de Galicia</strong></p>
+                <p>Los autobuses saldrán desde la céntrica Plaza de Galicia para llevaros a la ceremonia y, después, al pazo. Aquí os esperaremos a todos.</p>
                 <div class="panel-links"><a class="text-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Plaza+de+Galicia+Santiago+de+Compostela">Plaza de Galicia en Maps ↗</a></div>
               </div>
             </article>
 
             <article class="map-panel" id="panel-2">
               <div class="panel-body">
-                <div class="panel-meta">Sábado, 11 de septiembre · Mañana</div>
-                <h3>El momento<br><em>del sí, quiero.</em></h3>
+                <div class="panel-meta">Sábado, 11 de septiembre · Llegada</div>
+                <h3>La iglesia,<br><em>nuestra primera parada.</em></h3>
                 <p><strong>Parroquia de San Xulián de Bastavales</strong></p>
-                <p>Celebraremos la ceremonia en esta hermosa e histórica iglesia, rodeada de la tradicional piedra gallega. Será el momento más especial del fin de semana. La hora exacta se confirmará más adelante.</p>
-                <p>Al terminar, los autobuses estarán esperando para llevarnos directamente al pazo.</p>
+                <p>Los autobuses os dejarán en la misma puerta de la iglesia. Al terminar la ceremonia, volveremos a subir para dirigiros directamente al pazo.</p>
                 <div class="panel-links"><a class="text-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Parroquia+de+San+Xulian+de+Bastavales">Cómo llegar ↗</a></div>
               </div>
             </article>
 
             <article class="map-panel" id="panel-3">
               <div class="panel-body">
-                <div class="panel-meta">Sábado, 11 de septiembre · Mediodía y tarde</div>
-                <h3>Banquete<br><em>&amp; celebración.</em></h3>
+                <div class="panel-meta">Sábado, 11 de septiembre · Regreso</div>
+                <h3>El pazo,<br><em>y vuelta a casa.</em></h3>
                 <p><strong>Pazo de Vista Alegre</strong></p>
-                <p>Continuaremos la celebración en los jardines y salones del pazo. Disfrutaremos de la gastronomía gallega, brindis inolvidables y, por supuesto, barra libre y música.</p>
-                <div class="bus-note"><span class="eyebrow">Regreso a Santiago</span><p><strong>Turno temprano:</strong> para quienes prefieran volver antes a la ciudad.</p><p><strong>Fin de fiesta:</strong> último trayecto para quienes quieran darlo todo hasta el último baile. Los horarios se concretarán más adelante.</p></div>
+                <p>Habrá dos opciones de regreso desde el pazo a Santiago para que nadie se pierda la fiesta:</p>
+                <div class="bus-note">
+                  <p><strong>Turno temprano:</strong> para quienes prefieran volver antes a la ciudad.</p>
+                  <p><strong>Fin de fiesta:</strong> último trayecto para quienes quieran darlo todo hasta el último baile.</p>
+                </div>
                 <div class="panel-links"><a class="text-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Pazo+de+Vista+Alegre+Galicia">Cómo llegar ↗</a></div>
               </div>
             </article>
@@ -784,7 +780,7 @@
           <div class="reveal">
             <details><summary>¿Hasta cuándo puedo confirmar?</summary><div class="answer">Os pedimos que confirméis vuestra asistencia antes del 1 de agosto de 2027 para poder organizarlo todo con el mayor cariño.</div></details>
             <details><summary>¿Habrá autobús?</summary><div class="answer">Sí. La salida hacia la ceremonia será desde Plaza de Galicia. También habrá dos opciones de regreso desde el pazo: un turno temprano y otro al final de la fiesta. Indicad en el formulario si necesitáis plaza.</div></details>
-            <details><summary>¿A qué hora empieza la ceremonia?</summary><div class="answer">La ceremonia será el sábado 11 de septiembre por la mañana. Publicaremos la hora exacta y el horario completo cuando estén confirmados.</div></details>
+            <details><summary>¿A qué hora empieza la ceremonia?</summary><div class="answer">La ceremonia será el sábado 11 de septiembre a las 12:00 del mediodía en la Parroquia de San Xulián de Bastavales.</div></details>
             <details><summary>¿Puedo comunicar alergias o necesidades alimentarias?</summary><div class="answer">Por supuesto. Indicadlo en el formulario de asistencia para que podamos trasladarlo al equipo de catering.</div></details>
             <details><summary>¿Qué ropa me pongo?</summary><div class="answer">No hemos fijado aquí un código de vestimenta. Como la celebración incluye jardines y espacios exteriores, os recomendamos tener en cuenta el terreno y el tiempo de Galicia.</div></details>
           </div>
