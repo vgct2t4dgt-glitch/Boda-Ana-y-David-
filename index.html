@@ -544,9 +544,9 @@
   </style>
 </head>
 <body>
-  <!-- 1. Configuración Inicial (Solo aquí se declaran las constantes para evitar errores) -->
+  <!-- CONFIGURACIÓN CON TU NUEVA URL -->
   <script>
-    const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbwTdNWqqcYJCQHCit9glgqKMsaqEz7ZWCnFMqktIJBpWy4CYajA5Z21HR_hBoGR8hjy5A/exec";
+    const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbxZOppOWAjwq0G4Kr5w7EUPxxZKfz_OSwemrp_5qNXaifawY4FI0dumheIaRBNPiCzS3A/exec";
     const WEDDING_DATE = "2027-09-11";
     if (typeof document !== 'undefined') document.documentElement.classList.add('js');
   </script>
@@ -893,9 +893,8 @@
     </footer>
   </main>
 
-  <!-- 2. Lógica de la página (Sin duplicar constantes) -->
   <script>
-    // --- Navegación Móvil ---
+    // --- Lógica de Navegación y UI ---
     const menuToggle = document.getElementById('menuToggle');
     const navLinks = document.getElementById('navLinks');
     menuToggle.addEventListener('click', () => {
@@ -912,14 +911,12 @@
     }));
     window.addEventListener('scroll', () => document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20), {passive:true});
 
-    // --- Interacción del Mapa ---
     function showMapTab(id) {
       document.querySelectorAll('.map-panel').forEach(panel => panel.classList.toggle('active', panel.id === `panel-${id}`));
       document.querySelectorAll('[data-tab]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.tab === String(id))));
     }
     document.querySelectorAll('[data-tab]').forEach(button => button.addEventListener('click', () => showMapTab(button.dataset.tab)));
 
-    // --- Cuenta Atrás ---
     function updateCountdown() {
       const target = new Date(`${WEDDING_DATE}T00:00:00`);
       const now = new Date();
@@ -934,7 +931,6 @@
     }
     updateCountdown(); setInterval(updateCountdown, 60000);
 
-    // --- Animaciones Reveal ---
     if ('IntersectionObserver' in window) {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -946,7 +942,6 @@
       document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
     }
 
-    // --- Copiar al Portapapeles ---
     async function copyText(value, statusElement, successMessage, button) {
       const originalText = button ? button.textContent : '';
       try {
@@ -972,10 +967,9 @@
       copyText(document.getElementById('ibanText').textContent.trim(), document.getElementById('ibanStatus'), 'Número de cuenta copiado.', this);
     });
 
-    // --- Formulario RSVP ---
+    // --- Lógica del Formulario ---
     const form = document.getElementById('rsvpForm');
     const conditionalFields = document.getElementById('conditionalFields');
-    
     const guestCount = document.getElementById('guestCount');
     const guestTransport = document.getElementById('guestTransport');
     const guestSong = document.getElementById('guestSong');
@@ -1017,10 +1011,16 @@
       status.textContent = '';
 
       try {
+        // IMPORTANTE: Envío en formato 'application/x-www-form-urlencoded' para Google Apps Script
         const formData = new FormData(form);
+        const urlEncodedData = new URLSearchParams(formData).toString();
+        
         const response = await fetch(RSVP_ENDPOINT, {
           method: 'POST',
-          body: formData,
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: urlEncodedData,
         });
 
         if (!response.ok) throw new Error('Error en la red');
@@ -1042,7 +1042,7 @@
       }
     });
 
-    // --- Calendario ICS ---
+    // --- Calendario ---
     function downloadICS() {
       const content = [
         'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Ana y David//Boda 2027//ES',
