@@ -844,30 +844,38 @@
               </div>
             </fieldset>
 
-            <!-- Campos condicionales (solo si asiste) -->
-            <div id="conditionalFields" class="full" style="display:none;">
-              <div class="form-grid" style="gap:24px;">
-                <div class="field full">
-                  <label for="guestCount">Número de asistentes (incluyéndote) *</label>
-                  <input id="guestCount" name="asistentes" type="number" min="1" value="1" placeholder="Ej. 2">
-                </div>
-                <div class="field full">
-                  <label for="guestAllergies">Alergias o demandas alimenticias</label>
-                  <input id="guestAllergies" name="alergias" type="text" placeholder="Ej. Celiaquía, vegetariano...">
-                </div>
-                <div class="field full">
-                  <label for="guestTransport">¿Necesitas transporte (autobús)? *</label>
-                  <select id="guestTransport" name="transporte">
-                    <option value="">Selecciona una opción</option>
-                    <option value="Sí">Sí, lo necesito</option>
-                    <option value="No">No, voy por mi cuenta</option>
-                  </select>
-                </div>
-                <div class="field full">
-                  <label for="guestSong">¿Qué canción no puede faltar? *</label>
-                  <input id="guestSong" name="cancion" type="text" placeholder="Título y artista" required>
-                </div>
-              </div>
+            <!-- Nº asistentes -->
+            <div class="field conditional full">
+              <label for="guestCount">Número de asistentes (incluyéndote) *</label>
+              <input id="guestCount" name="asistentes" type="number" min="1" value="1">
+            </div>
+            
+            <!-- Nombres acompañantes -->
+            <div class="field conditional full">
+              <label for="guestNames">Nombres de los acompañantes (si vienen contigo)</label>
+              <input id="guestNames" name="acompanantes" type="text" placeholder="Ej. Juan Pérez, Ana López">
+            </div>
+
+            <!-- Alergias -->
+            <div class="field conditional full">
+              <label for="guestAllergies">Alergias o demandas alimenticias</label>
+              <input id="guestAllergies" name="alergias" type="text" placeholder="Ej. Celiaquía, vegetariano...">
+            </div>
+            
+            <!-- Transporte -->
+            <div class="field conditional full">
+              <label for="guestTransport">¿Necesitas transporte (autobús)? *</label>
+              <select id="guestTransport" name="transporte">
+                <option value="">Selecciona una opción</option>
+                <option value="Sí">Sí, lo necesito</option>
+                <option value="No">No, voy por mi cuenta</option>
+              </select>
+            </div>
+            
+            <!-- Canción -->
+            <div class="field conditional full">
+              <label for="guestSong">¿Qué canción no puede faltar? *</label>
+              <input id="guestSong" name="cancion" type="text" placeholder="Título y artista">
             </div>
           </div>
           
@@ -967,9 +975,8 @@
 
     // Lógica del formulario
     const form = document.getElementById('rsvpForm');
-    const conditionalFields = document.getElementById('conditionalFields');
+    const conditionalFields = form.querySelectorAll('.conditional');
     const guestCount = document.getElementById('guestCount');
-    const guestAllergies = document.getElementById('guestAllergies');
     const guestTransport = document.getElementById('guestTransport');
     const guestSong = document.getElementById('guestSong');
 
@@ -977,13 +984,15 @@
     form.querySelectorAll('input[name="asistencia"]').forEach(input => {
       input.addEventListener('change', (e) => {
         const isAttending = e.target.value === 'Sí';
-        conditionalFields.style.display = isAttending ? 'block' : 'none';
+        
+        conditionalFields.forEach(el => {
+          el.classList.toggle('visible', isAttending);
+        });
         
         // Hacer campos requeridos solo si asiste
         guestCount.required = isAttending;
         guestTransport.required = isAttending;
         guestSong.required = isAttending;
-        // guestAllergies no es requerido
       });
     });
 
@@ -1018,8 +1027,11 @@
         status.textContent = '¡Gracias! Hemos recibido vuestra respuesta.';
         status.style.color = '#b8c4b5';
         form.reset(); 
-        conditionalFields.style.display = 'none';
-        // Restaurar required a false
+        
+        // Ocultar campos condicionales al reiniciar
+        conditionalFields.forEach(el => {
+          el.classList.remove('visible');
+        });
         guestCount.required = false;
         guestTransport.required = false;
         guestSong.required = false;
