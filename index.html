@@ -547,7 +547,8 @@
 </head>
 <body>
   <script>
-    const RSVP_ENDPOINT = "";
+    // URL de tu Google Apps Script
+    const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbwTdNWqqcYJCQHCit9glgqKMsaqEz7ZWCnFMqktIJBpWy4CYajA5Z21HR_hBoGR8hjy5A/exec";
     const WEDDING_DATE = "2027-09-11";
     if (typeof document !== 'undefined') document.documentElement.classList.add('js');
   </script>
@@ -819,24 +820,63 @@
     <footer class="rsvp" id="rsvp">
       <div class="wrap">
         <div style="text-align:center" class="reveal" data-reveal="zoom"><span class="eyebrow">08 — Nos encantará veros</span><h2>¿Contamos<br><em>contigo?</em></h2><p class="rsvp-intro">Nos haría muchísima ilusión compartir este día con vosotros. Por favor, confirmad vuestra asistencia antes del <strong>1 de agosto de 2027</strong>.</p></div>
+        
         <form class="form" id="rsvpForm">
           <div class="form-grid">
-            <div class="field full"><label for="guestName">Nombre y apellidos *</label><input id="guestName" name="nombre" type="text" autocomplete="name" placeholder="Nombre y apellidos" required></div>
-            <fieldset class="field full"><legend>¿Nos acompañarás? *</legend><div class="choices">
-              <label class="choice"><input type="radio" name="asistencia" value="Sí, asistiré" required><span>Sí, allí estaré</span></label>
-              <label class="choice"><input type="radio" name="asistencia" value="No podré asistir" required><span>No podré asistir</span></label>
-            </div></fieldset>
-            <div class="field conditional full" id="attendanceFields">
-              <label for="bus">¿Necesitarás autobús?</label><select id="bus" name="autobus"><option value="">Selecciona una opción</option><option value="Ida y vuelta">Sí, ida y vuelta</option><option value="Solo ida">Solo ida</option><option value="Solo vuelta">Solo vuelta</option><option value="No necesito">No lo necesito</option></select>
+            <!-- Nombre -->
+            <div class="field full">
+              <label for="guestName">Nombre y apellidos *</label>
+              <input id="guestName" name="nombre" type="text" autocomplete="name" placeholder="Ej. María García" required>
             </div>
-            <div class="field conditional" id="returnField"><label for="returnBus">Preferencia de regreso</label><select id="returnBus" name="regreso"><option value="">Selecciona si lo sabes</option><option value="Turno temprano">Turno temprano</option><option value="Fin de fiesta">Fin de fiesta</option><option value="Me da igual">Me da igual</option></select></div>
-            <div class="field conditional" id="dietField"><label for="diet">Alergias / necesidades alimentarias</label><input id="diet" name="alergias_dieta" type="text" placeholder="Indícanos cualquier detalle importante"></div>
-            <div class="field conditional full" id="notesField"><label for="notes">Otra información</label><textarea id="notes" name="observaciones" rows="3" placeholder="Cualquier cosa que debamos saber…"></textarea></div>
+            
+            <!-- Email -->
+            <div class="field full">
+              <label for="guestEmail">Correo electrónico *</label>
+              <input id="guestEmail" name="email" type="email" autocomplete="email" placeholder="tu@email.com" required>
+            </div>
+
+            <!-- Asistencia -->
+            <fieldset class="field full">
+              <legend>¿Nos acompañarás? *</legend>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="asistencia" value="Sí" required><span>Sí, allí estaré</span></label>
+                <label class="choice"><input type="radio" name="asistencia" value="No" required><span>No podré asistir</span></label>
+              </div>
+            </fieldset>
+
+            <!-- Campos condicionales (solo si asiste) -->
+            <div id="conditionalFields" class="full" style="display:none;">
+              <div class="form-grid" style="gap:24px;">
+                <div class="field full">
+                  <label for="guestCount">Número de asistentes (incluyéndote) *</label>
+                  <input id="guestCount" name="asistentes" type="number" min="1" value="1" placeholder="Ej. 2">
+                </div>
+                <div class="field full">
+                  <label for="guestAllergies">Alergias o demandas alimenticias</label>
+                  <input id="guestAllergies" name="alergias" type="text" placeholder="Ej. Celiaquía, vegetariano...">
+                </div>
+                <div class="field full">
+                  <label for="guestTransport">¿Necesitas transporte (autobús)? *</label>
+                  <select id="guestTransport" name="transporte">
+                    <option value="">Selecciona una opción</option>
+                    <option value="Sí">Sí, lo necesito</option>
+                    <option value="No">No, voy por mi cuenta</option>
+                  </select>
+                </div>
+                <div class="field full">
+                  <label for="guestSong">¿Qué canción no puede faltar? *</label>
+                  <input id="guestSong" name="cancion" type="text" placeholder="Título y artista" required>
+                </div>
+              </div>
+            </div>
           </div>
-          <p class="privacy">Usaremos estos datos únicamente para organizar la celebración y gestionar vuestra asistencia. Los datos sobre alergias o necesidades alimentarias pueden revelar información de salud: comunicad solo lo imprescindible. Para publicar el formulario, añadid una política de privacidad con el contacto de los responsables, finalidad, base jurídica, destinatarios y plazo de conservación.</p>
+          
+          <p class="privacy">Usaremos estos datos únicamente para organizar la celebración y gestionar vuestra asistencia. Los datos sobre alergias o necesidades alimentarias pueden revelar información de salud: comunicad solo lo imprescindible.</p>
+          
           <button class="btn" type="submit" id="submitRsvp">Enviar confirmación</button>
           <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
         </form>
+
         <div class="footer-bottom"><strong>Ana &amp; David</strong><span>11 · 09 · 2027 — GALICIA</span><br><a class="backtop" href="#inicio">Volver al principio ↑</a></div>
       </div>
     </footer>
@@ -925,45 +965,71 @@
       );
     });
 
+    // Lógica del formulario
     const form = document.getElementById('rsvpForm');
-    const attendanceFields = document.getElementById('attendanceFields');
-    const returnField = document.getElementById('returnField');
-    const dietField = document.getElementById('dietField');
-    const notesField = document.getElementById('notesField');
-    const busSelect = document.getElementById('bus');
-    function updateAttendanceFields() {
-      const attendance = form.querySelector('input[name="asistencia"]:checked')?.value || '';
-      const attending = attendance === 'Sí, asistiré';
-      [attendanceFields, returnField, dietField, notesField].forEach(el => el.classList.toggle('visible', attending));
-      busSelect.required = attending;
-      if (!attending) { busSelect.value=''; document.getElementById('returnBus').value=''; document.getElementById('diet').value=''; document.getElementById('notes').value=''; }
-      if (attending) returnField.classList.toggle('visible', busSelect.value !== 'No necesito' && busSelect.value !== 'Solo ida' && busSelect.value !== '');
-    }
-    form.querySelectorAll('input[name="asistencia"]').forEach(input => input.addEventListener('change', updateAttendanceFields));
-    busSelect.addEventListener('change', () => {
-      const needsReturn = ['Ida y vuelta','Solo vuelta'].includes(busSelect.value);
-      returnField.classList.toggle('visible', needsReturn);
+    const conditionalFields = document.getElementById('conditionalFields');
+    const guestCount = document.getElementById('guestCount');
+    const guestAllergies = document.getElementById('guestAllergies');
+    const guestTransport = document.getElementById('guestTransport');
+    const guestSong = document.getElementById('guestSong');
+
+    // Mostrar u ocultar campos según asistencia
+    form.querySelectorAll('input[name="asistencia"]').forEach(input => {
+      input.addEventListener('change', (e) => {
+        const isAttending = e.target.value === 'Sí';
+        conditionalFields.style.display = isAttending ? 'block' : 'none';
+        
+        // Hacer campos requeridos solo si asiste
+        guestCount.required = isAttending;
+        guestTransport.required = isAttending;
+        guestSong.required = isAttending;
+        // guestAllergies no es requerido
+      });
     });
+
     form.addEventListener('submit', async event => {
       event.preventDefault();
       const status = document.getElementById('formStatus');
       const submit = document.getElementById('submitRsvp');
-      if (!RSVP_ENDPOINT) {
-        status.textContent = 'El formulario aún no está conectado. Contactad con Ana y David para confirmar; configurad RSVP_ENDPOINT para activar los envíos.';
+      
+      // Validación básica (HTML5 ya hace gran parte)
+      if (!form.checkValidity()) {
+        form.reportValidity();
         return;
       }
-      submit.disabled = true; submit.textContent = 'Enviando…'; status.textContent = '';
+
+      submit.disabled = true; 
+      submit.textContent = 'Enviando…'; 
+      status.textContent = '';
+
       try {
+        const formData = new FormData(form);
         const response = await fetch(RSVP_ENDPOINT, {
-          method:'POST', body:new FormData(form), headers:{'Accept':'application/json'}
+          method: 'POST',
+          body: formData,
+          // No establecemos headers para evitar problemas de CORS. 
+          // Google Apps Script maneja FormData correctamente.
         });
-        if (!response.ok) throw new Error('El servicio no ha aceptado la respuesta');
+
+        if (!response.ok) {
+          throw new Error('El servicio no ha aceptado la respuesta');
+        }
+
         status.textContent = '¡Gracias! Hemos recibido vuestra respuesta.';
-        form.reset(); updateAttendanceFields();
+        status.style.color = '#b8c4b5';
+        form.reset(); 
+        conditionalFields.style.display = 'none';
+        // Restaurar required a false
+        guestCount.required = false;
+        guestTransport.required = false;
+        guestSong.required = false;
+
       } catch (error) {
         status.textContent = 'No hemos podido enviar la respuesta. Por favor, inténtalo de nuevo o contacta directamente con Ana y David.';
+        status.style.color = '#ffb4b4';
       } finally {
-        submit.disabled = false; submit.textContent = 'Enviar confirmación';
+        submit.disabled = false; 
+        submit.textContent = 'Enviar confirmación';
       }
     });
 
