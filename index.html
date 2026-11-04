@@ -424,6 +424,18 @@
     .section--dark .text-link{color:var(--paper);text-decoration-color:rgba(255,255,255,.55)}
     .section--dark .text-link:hover{color:#fff}
 
+    /* Correcciones para el mapa interactivo dentro de la sección oscura */
+    .section--dark .map-panel { color: var(--ink); }
+    .section--dark .map-panel h3,
+    .section--dark .map-panel h3 em,
+    .section--dark .map-panel strong { color: var(--ink); }
+    .section--dark .map-panel p { color: var(--muted); }
+    .section--dark .map-panel .text-link { color: var(--green-dark); text-decoration-color: rgba(53,70,55,.4); }
+    .section--dark .map-panel .panel-meta { color: var(--green); }
+    .section--dark .map-panel .bus-note .eyebrow { color: var(--green); }
+    .section--dark .map-tabs button[aria-pressed="true"] { background: var(--green); }
+    .section--dark .map-tabs button[aria-pressed="true"] .tab-num { color: #fff; }
+
     @media(max-width:900px){
       .nav-inner{height:68px}.nav-links{gap:12px}.nav-links a{font-size:8px}
       .nav-cta{padding:10px 13px;font-size:9px}
@@ -659,8 +671,8 @@
       </div>
     </section>
 
-    <!-- SECCIÓN: MAPA (AUTOBUSES) -->
-    <section class="section" id="programa">
+    <!-- SECCIÓN: MAPA (AUTOBUSES) CON FONDO OSCURO -->
+    <section class="section section--dark" id="programa">
       <div class="wrap">
         <div class="section-head center reveal"><span class="eyebrow">03 — El transporte</span><h2>Desde dónde<br><em>salimos.</em></h2></div>
         <div class="program-grid">
