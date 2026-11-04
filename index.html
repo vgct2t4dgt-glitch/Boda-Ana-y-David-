@@ -544,8 +544,8 @@
   </style>
 </head>
 <body>
+  <!-- 1. Configuración Inicial (Solo aquí se declaran las constantes para evitar errores) -->
   <script>
-    // URL de tu Google Apps Script
     const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbwTdNWqqcYJCQHCit9glgqKMsaqEz7ZWCnFMqktIJBpWy4CYajA5Z21HR_hBoGR8hjy5A/exec";
     const WEDDING_DATE = "2027-09-11";
     if (typeof document !== 'undefined') document.documentElement.classList.add('js');
@@ -893,13 +893,9 @@
     </footer>
   </main>
 
+  <!-- 2. Lógica de la página (Sin duplicar constantes) -->
   <script>
-    // --- 1. Configuración Inicial ---
-    const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbwTdNWqqcYJCQHCit9glgqKMsaqEz7ZWCnFMqktIJBpWy4CYajA5Z21HR_hBoGR8hjy5A/exec";
-    const WEDDING_DATE = "2027-09-11";
-    if (typeof document !== 'undefined') document.documentElement.classList.add('js');
-
-    // --- 2. Navegación Móvil ---
+    // --- Navegación Móvil ---
     const menuToggle = document.getElementById('menuToggle');
     const navLinks = document.getElementById('navLinks');
     menuToggle.addEventListener('click', () => {
@@ -916,14 +912,14 @@
     }));
     window.addEventListener('scroll', () => document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20), {passive:true});
 
-    // --- 3. Interacción del Mapa ---
+    // --- Interacción del Mapa ---
     function showMapTab(id) {
       document.querySelectorAll('.map-panel').forEach(panel => panel.classList.toggle('active', panel.id === `panel-${id}`));
       document.querySelectorAll('[data-tab]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.tab === String(id))));
     }
     document.querySelectorAll('[data-tab]').forEach(button => button.addEventListener('click', () => showMapTab(button.dataset.tab)));
 
-    // --- 4. Cuenta Atrás ---
+    // --- Cuenta Atrás ---
     function updateCountdown() {
       const target = new Date(`${WEDDING_DATE}T00:00:00`);
       const now = new Date();
@@ -938,7 +934,7 @@
     }
     updateCountdown(); setInterval(updateCountdown, 60000);
 
-    // --- 5. Animaciones Reveal ---
+    // --- Animaciones Reveal ---
     if ('IntersectionObserver' in window) {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -950,7 +946,7 @@
       document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
     }
 
-    // --- 6. Copiar al Portapapeles ---
+    // --- Copiar al Portapapeles ---
     async function copyText(value, statusElement, successMessage, button) {
       const originalText = button ? button.textContent : '';
       try {
@@ -976,34 +972,31 @@
       copyText(document.getElementById('ibanText').textContent.trim(), document.getElementById('ibanStatus'), 'Número de cuenta copiado.', this);
     });
 
-    // --- 7. Formulario RSVP ---
+    // --- Formulario RSVP ---
     const form = document.getElementById('rsvpForm');
     const conditionalFields = document.getElementById('conditionalFields');
     
-    // Elementos que se vuelven obligatorios si asisten
     const guestCount = document.getElementById('guestCount');
     const guestTransport = document.getElementById('guestTransport');
     const guestSong = document.getElementById('guestSong');
 
     function toggleConditionalFields() {
-      // Buscamos si el radio "Sí" está seleccionado
       const selectedAttendance = form.querySelector('input[name="asistencia"]:checked');
       const isAttending = selectedAttendance && selectedAttendance.value === 'Sí';
       
       if (isAttending) {
-        conditionalFields.style.display = 'block'; // Forzamos que se muestre
+        conditionalFields.style.display = 'block';
         guestCount.required = true;
         guestTransport.required = true;
         guestSong.required = true;
       } else {
-        conditionalFields.style.display = 'none'; // Ocultamos
+        conditionalFields.style.display = 'none';
         guestCount.required = false;
         guestTransport.required = false;
         guestSong.required = false;
       }
     }
 
-    // Escuchamos los cambios en los botones de radio (change y click para asegurar compatibilidad móvil)
     form.querySelectorAll('input[name="asistencia"]').forEach(input => {
       input.addEventListener('change', toggleConditionalFields);
       input.addEventListener('click', toggleConditionalFields);
@@ -1035,7 +1028,7 @@
         status.textContent = '¡Gracias! Hemos recibido vuestra respuesta.';
         status.style.color = '#b8c4b5';
         form.reset(); 
-        conditionalFields.style.display = 'none'; // Volver a ocultar
+        conditionalFields.style.display = 'none';
         guestCount.required = false;
         guestTransport.required = false;
         guestSong.required = false;
@@ -1049,7 +1042,7 @@
       }
     });
 
-    // --- 8. Calendario ICS ---
+    // --- Calendario ICS ---
     function downloadICS() {
       const content = [
         'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Ana y David//Boda 2027//ES',
