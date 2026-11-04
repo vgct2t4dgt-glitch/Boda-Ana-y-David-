@@ -112,7 +112,7 @@
     /* === Cronología (Timeline) === */
     .timeline {
       position: relative;
-      max-width: 800px;
+      max-width: 780px;
       margin: 0 auto;
       padding: 20px 0;
     }
@@ -123,44 +123,44 @@
       bottom: 0;
       left: 20px;
       width: 1px;
-      background: var(--line);
+      background: rgba(45,55,44,.15);
     }
     .timeline-item {
       position: relative;
-      padding-left: 56px;
-      margin-bottom: 70px;
+      padding-left: 60px;
+      margin-bottom: 85px;
     }
     .timeline-item:last-child {
       margin-bottom: 0;
     }
     .timeline-dot {
       position: absolute;
-      left: 16px;
-      top: 6px;
+      left: 15px;
+      top: 4px;
       width: 9px;
       height: 9px;
       border-radius: 50%;
-      background: var(--green-dark);
+      background: var(--ink);
       border: 2px solid var(--paper);
-      box-shadow: 0 0 0 2px var(--line);
+      box-shadow: 0 0 0 1px rgba(45,55,44,.2);
+      z-index: 2;
       transition: background .3s;
     }
     .timeline-item:hover .timeline-dot {
-      background: var(--green);
+      background: var(--green-dark);
     }
     .timeline-time {
       display: block;
-      font-size: 10px;
-      letter-spacing: .18em;
+      font-size: 11px;
+      letter-spacing: .15em;
       text-transform: uppercase;
-      color: var(--green);
-      margin-bottom: 8px;
-      font-weight: 500;
+      color: var(--muted);
+      margin-bottom: 12px;
     }
     .timeline-title {
-      font: 400 clamp(26px, 3vw, 34px)/1.1 var(--serif);
+      font: 400 clamp(28px, 3vw, 34px)/1.1 var(--serif);
       color: var(--ink);
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
     .timeline-title em {
       font-weight: 300;
@@ -170,19 +170,19 @@
       font-size: 14px;
       line-height: 1.9;
       color: var(--muted);
-      margin-bottom: 24px;
+      margin-bottom: 28px;
+      max-width: 580px;
     }
     .timeline-image {
+      max-width: 560px;
       border-radius: 4px;
       overflow: hidden;
-      box-shadow: 0 16px 40px -20px rgba(0,0,0,.25);
-      aspect-ratio: 16/9;
-      background: var(--paper-deep);
+      box-shadow: 0 12px 30px -15px rgba(0,0,0,.15);
     }
     .timeline-image img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
+      display: block;
       transition: transform 1.4s cubic-bezier(.16,1,.3,1);
     }
     .timeline-item:hover .timeline-image img {
@@ -413,7 +413,7 @@
     .section--dark .timeline-title,
     .section--dark .timeline-title em{color:var(--paper)}
     .section--dark .timeline::before{background:rgba(255,255,255,.2)}
-    .section--dark .timeline-dot{background:var(--paper);border-color:var(--green-dark);box-shadow:0 0 0 2px rgba(255,255,255,.3)}
+    .section--dark .timeline-dot{background:var(--paper);border-color:var(--green-dark);box-shadow:0 0 0 1px rgba(255,255,255,.3)}
     .section--dark .timeline-time{color:#b8c4b5}
     .section--dark .guide-list li,
     .section--dark .dog-feature,
@@ -481,11 +481,12 @@
       .interlude{height:350px}
 
       /* Cronología Móvil */
-      .timeline{padding: 10px 0;}
-      .timeline::before{left: 12px;}
-      .timeline-item{padding-left: 40px; margin-bottom: 50px;}
-      .timeline-dot{left: 8px; top: 4px; width: 9px; height: 9px;}
-      .timeline-image{aspect-ratio: 4/3;}
+      .timeline { padding: 10px 0; }
+      .timeline::before { left: 10px; }
+      .timeline-item { padding-left: 36px; margin-bottom: 60px; }
+      .timeline-dot { left: 5px; top: 4px; width: 9px; height: 9px; }
+      .timeline-title { font-size: 26px; }
+      .timeline-image { max-width: 100%; }
 
       /* Mapa en móvil */
       .map-pin{width:38px;height:38px;font-size:12px;border-width:2px}
