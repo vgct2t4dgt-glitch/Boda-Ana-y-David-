@@ -99,7 +99,6 @@
     .photo-small{height:300px;overflow:hidden}
     .photo-small:nth-child(2){margin-top:42px}
     .photo-small:nth-child(3){margin-top:84px}
-    .photo-caption{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:12px}
     .dog-feature{margin-top:110px;padding-top:70px;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,6vw,80px);align-items:center}
     .dog-photo{height:390px;overflow:hidden}
     .dog-copy{max-width:500px}
@@ -110,7 +109,87 @@
     .interlude:before{content:"";position:absolute;inset:0;background:rgba(25,34,26,.38)}
     .interlude blockquote{position:relative;margin:0;padding:24px;font:italic 300 clamp(42px,7vw,82px)/.95 var(--serif)}
 
-    /* Programa — mapa rediseñado */
+    /* === Nueva Cronología (Timeline) === */
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px 0;
+    }
+    .timeline::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 20px;
+      width: 1px;
+      background: var(--line);
+    }
+    .timeline-item {
+      position: relative;
+      padding-left: 56px;
+      margin-bottom: 70px;
+    }
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+    .timeline-dot {
+      position: absolute;
+      left: 16px;
+      top: 6px;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--green-dark);
+      border: 2px solid var(--paper);
+      box-shadow: 0 0 0 2px var(--line);
+      transition: background .3s;
+    }
+    .timeline-item:hover .timeline-dot {
+      background: var(--green);
+    }
+    .timeline-time {
+      display: block;
+      font-size: 10px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    .timeline-title {
+      font: 400 clamp(26px, 3vw, 34px)/1.1 var(--serif);
+      color: var(--ink);
+      margin-bottom: 14px;
+    }
+    .timeline-title em {
+      font-weight: 300;
+      color: var(--green-dark);
+    }
+    .timeline-desc {
+      font-size: 14px;
+      line-height: 1.9;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .timeline-image {
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 16px 40px -20px rgba(0,0,0,.25);
+      aspect-ratio: 16/9;
+      background: var(--paper-deep);
+    }
+    .timeline-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 1.4s cubic-bezier(.16,1,.3,1);
+    }
+    .timeline-item:hover .timeline-image img {
+      transform: scale(1.04);
+    }
+
+    /* Programa — mapa simplificado */
     .program-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:start}
 
     .map-frame{
@@ -168,18 +247,8 @@
     .map-panel.active{display:block;animation:appear .45s cubic-bezier(.16,1,.3,1)}
     @keyframes appear{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 
-    .panel-image{position:relative;height:260px;overflow:hidden}
-    .panel-image img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s cubic-bezier(.16,1,.3,1)}
-    .map-panel:hover .panel-image img{transform:scale(1.04)}
-    .panel-image:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,28,21,0) 55%,rgba(20,28,21,.4));pointer-events:none}
-    .panel-badge{
-      position:absolute;top:16px;left:16px;z-index:1;
-      background:var(--green-dark);color:var(--paper);
-      font:500 10px var(--sans);letter-spacing:.18em;text-transform:uppercase;
-      padding:8px 14px;border-radius:99px;box-shadow:0 2px 10px rgba(0,0,0,.15);
-    }
-
-    .panel-body{padding:32px 32px 30px}
+    /* El panel ahora sin imagen */
+    .panel-body{padding:40px 36px}
     .panel-meta{
       font-size:9px;letter-spacing:.2em;text-transform:uppercase;
       color:var(--green);margin-bottom:16px;
@@ -190,7 +259,7 @@
     .panel-body p{font-size:13px;line-height:1.9;color:var(--muted);margin-bottom:14px}
     .panel-body p:last-of-type{margin-bottom:0}
 
-    .panel-links{display:flex;gap:18px;flex-wrap:wrap;margin-top:22px;padding-top:20px;border-top:1px solid var(--line)}
+    .panel-links{display:flex;gap:18px;flex-wrap:wrap;margin-top:24px;padding-top:20px;border-top:1px solid var(--line)}
     .panel-links .text-link{color:var(--green-dark);text-decoration-color:rgba(53,70,55,.4)}
     .panel-links .text-link:hover{text-decoration-color:var(--green-dark)}
 
@@ -321,7 +390,7 @@
     @keyframes heroIn{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
 
     /* Zoom fotos */
-    .photo-main img,.photo-small img,.dog-photo img,.panel-image img{transition:transform 1.2s cubic-bezier(.16,1,.3,1),filter .8s}
+    .photo-main img,.photo-small img,.dog-photo img{transition:transform 1.2s cubic-bezier(.16,1,.3,1),filter .8s}
     .photo-main:hover img,.photo-small:hover img,.dog-photo:hover img{transform:scale(1.05)}
 
     /* === Sección oscura === */
@@ -333,14 +402,20 @@
     .section--dark .dog-copy p,
     .section--dark .guide-list li,
     .section--dark .answer,
-    .section--dark .travel-item p{color:#c5d0c2}
+    .section--dark .travel-item p,
+    .section--dark .timeline-desc{color:#c5d0c2}
     .section--dark h2,
     .section--dark h3,
     .section--dark .pullquote,
     .section--dark summary,
     .section--dark .guide-list strong,
     .section--dark .travel-item h3,
-    .section--dark .travel-item .number{color:var(--paper)}
+    .section--dark .travel-item .number,
+    .section--dark .timeline-title,
+    .section--dark .timeline-title em{color:var(--paper)}
+    .section--dark .timeline::before{background:rgba(255,255,255,.2)}
+    .section--dark .timeline-dot{background:var(--paper);border-color:var(--green-dark);box-shadow:0 0 0 2px rgba(255,255,255,.3)}
+    .section--dark .timeline-time{color:#b8c4b5}
     .section--dark .guide-list li,
     .section--dark .dog-feature,
     .section--dark details,
@@ -394,14 +469,20 @@
 
       .interlude{height:350px}
 
+      /* Cronología Móvil */
+      .timeline{padding: 10px 0;}
+      .timeline::before{left: 12px;}
+      .timeline-item{padding-left: 40px; margin-bottom: 50px;}
+      .timeline-dot{left: 8px; top: 4px; width: 9px; height: 9px;}
+      .timeline-image{aspect-ratio: 4/3;}
+
+      /* Mapa en móvil */
       .map-pin{width:38px;height:38px;font-size:12px;border-width:2px}
       .map-tabs{margin-top:12px}
       .map-tabs button{padding:12px 4px;font-size:8px;gap:4px;letter-spacing:.06em}
       .map-tabs .tab-num{font-size:18px}
-      .panel-image{height:210px}
       .panel-body{padding:24px 22px 26px}
       .panel-body h3{font-size:28px;margin-bottom:14px}
-      .panel-badge{top:12px;left:12px;padding:6px 10px;font-size:9px;letter-spacing:.14em}
       .panel-links{padding-top:16px;margin-top:18px;gap:14px}
       .panel-meta:before{width:16px}
 
@@ -467,7 +548,7 @@
         <svg class="icon-close" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 6l12 12M6 18L18 6"/></svg>
       </button>
       <div class="nav-links" id="navLinks">
-        <a href="#historia">Nuestra historia</a><a href="#programa">El día</a><a href="#estancia">Alojamiento</a><a href="#guia">La guía</a><a href="#detalles">Detalles</a>
+        <a href="#historia">Nuestra historia</a><a href="#itinerario">El itinerario</a><a href="#programa">Ubicaciones</a><a href="#estancia">Alojamiento</a><a href="#detalles">Detalles</a>
       </div>
       <a class="btn nav-cta" href="#rsvp">Confirmar</a>
     </div>
@@ -485,7 +566,7 @@
         <div><strong id="cd-mins">—</strong><span>Minutos</span></div>
       </div>
       <div class="hero-actions">
-        <a class="btn light" href="#programa">Descubrir el fin de semana <span aria-hidden="true">↘</span></a>
+        <a class="btn light" href="#itinerario">Descubrir el fin de semana <span aria-hidden="true">↘</span></a>
         <button class="btn ghost" type="button" onclick="downloadICS()">Añadir al calendario</button>
       </div>
     </div>
@@ -519,9 +600,75 @@
 
     <section class="interlude" aria-label="Una nueva aventura"><blockquote class="reveal" data-reveal="zoom">Y ella dijo<br>"sí"…</blockquote></section>
 
+    <!-- NUEVA SECCIÓN: CRONOLOGÍA -->
+    <section class="section" id="itinerario">
+      <div class="wrap">
+        <div class="section-head center reveal">
+          <span class="eyebrow">02 — El itinerario</span>
+          <h2>El día,<br><em>paso a paso.</em></h2>
+        </div>
+        
+        <div class="timeline">
+          <!-- Evento 1 -->
+          <div class="timeline-item reveal">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-time">Viernes, 10 · Sábado, 11</span>
+              <h3 class="timeline-title">Santiago,<br><em>donde empieza todo.</em></h3>
+              <div class="timeline-desc">
+                <p><strong>La preboda · Viernes 10</strong><br>Nos encantaría veros la tarde anterior para tomar algo, charlar en un ambiente distendido y conocernos entre todos antes del gran día.</p>
+                <p><strong>Punto de autobuses · Sábado 11</strong><br>Los autobuses saldrán desde la céntrica Plaza de Galicia para llevaros a la ceremonia y, después, al pazo.</p>
+              </div>
+              <div class="timeline-image">
+                <img src="Santiago de Compostela_ Fotos antiguas.jpg" alt="Santiago de Compostela" loading="lazy">
+              </div>
+            </div>
+          </div>
+
+          <!-- Evento 2 -->
+          <div class="timeline-item reveal">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-time">Sábado, 11 de septiembre · Mañana</span>
+              <h3 class="timeline-title">El momento<br><em>del sí, quiero.</em></h3>
+              <div class="timeline-desc">
+                <p><strong>Parroquia de San Xulián de Bastavales</strong></p>
+                <p>Celebraremos la ceremonia en esta hermosa e histórica iglesia, rodeada de la tradicional piedra gallega. Será el momento más especial del fin de semana. La hora exacta se confirmará más adelante.</p>
+                <p>Al terminar, los autobuses estarán esperando para llevarnos directamente al pazo.</p>
+              </div>
+              <div class="timeline-image">
+                <img src="IMG_0967.jpeg" alt="Iglesia de San Xulián de Bastavales" loading="lazy">
+              </div>
+            </div>
+          </div>
+
+          <!-- Evento 3 -->
+          <div class="timeline-item reveal">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-time">Sábado, 11 de septiembre · Mediodía y tarde</span>
+              <h3 class="timeline-title">Banquete<br><em>&amp; celebración.</em></h3>
+              <div class="timeline-desc">
+                <p><strong>Pazo de Vista Alegre</strong></p>
+                <p>Continuaremos la celebración en los jardines y salones del pazo. Disfrutaremos de la gastronomía gallega, brindis inolvidables y, por supuesto, barra libre y música.</p>
+                <div class="bus-note">
+                  <span class="eyebrow">Regreso a Santiago</span>
+                  <p><strong>Turno temprano:</strong> para quienes prefieran volver antes a la ciudad.</p>
+                  <p><strong>Fin de fiesta:</strong> último trayecto para quienes quieran darlo todo hasta el último baile.</p>
+                </div>
+              </div>
+              <div class="timeline-image">
+                <img src="IMG_0966.jpeg" alt="Pazo de Vista Alegre" loading="lazy">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="programa">
       <div class="wrap">
-        <div class="section-head center reveal"><span class="eyebrow">02 — Reservad la fecha</span><h2>El fin de<br><em>semana.</em></h2></div>
+        <div class="section-head center reveal"><span class="eyebrow">03 — Las ubicaciones</span><h2>Dónde<br><em>nos vemos.</em></h2></div>
         <div class="program-grid">
           <div class="reveal">
             <div class="map-frame">
@@ -537,11 +684,8 @@
             </div>
           </div>
           <div class="program-detail reveal" style="--reveal-delay:.12s">
+            
             <article class="map-panel active" id="panel-1">
-              <div class="panel-image">
-                <img src="Santiago de Compostela_ Fotos antiguas.jpg" alt="Santiago de Compostela" loading="lazy">
-                <span class="panel-badge">Santiago</span>
-              </div>
               <div class="panel-body">
                 <div class="panel-meta">Viernes, 10 de septiembre · Sábado, 11</div>
                 <h3>Santiago,<br><em>donde empieza todo.</em></h3>
@@ -550,11 +694,8 @@
                 <div class="panel-links"><a class="text-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Plaza+de+Galicia+Santiago+de+Compostela">Plaza de Galicia en Maps ↗</a></div>
               </div>
             </article>
+
             <article class="map-panel" id="panel-2">
-              <div class="panel-image">
-                <img src="IMG_0967.jpeg" alt="Iglesia de San Xulián de Bastavales" loading="lazy">
-                <span class="panel-badge">Bastavales</span>
-              </div>
               <div class="panel-body">
                 <div class="panel-meta">Sábado, 11 de septiembre · Mañana</div>
                 <h3>El momento<br><em>del sí, quiero.</em></h3>
@@ -564,11 +705,8 @@
                 <div class="panel-links"><a class="text-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Parroquia+de+San+Xulian+de+Bastavales">Cómo llegar ↗</a></div>
               </div>
             </article>
+
             <article class="map-panel" id="panel-3">
-              <div class="panel-image">
-                <img src="IMG_0966.jpeg" alt="Pazo de Vista Alegre" loading="lazy">
-                <span class="panel-badge">Vista Alegre</span>
-              </div>
               <div class="panel-body">
                 <div class="panel-meta">Sábado, 11 de septiembre · Mediodía y tarde</div>
                 <h3>Banquete<br><em>&amp; celebración.</em></h3>
@@ -578,12 +716,13 @@
                 <div class="panel-links"><a class="text-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Pazo+de+Vista+Alegre+Galicia">Cómo llegar ↗</a></div>
               </div>
             </article>
+
           </div>
         </div>
       </div>
     </section>
 
-    <section class="stay-banner" id="estancia"><div class="wrap reveal" data-reveal="zoom"><span class="eyebrow">03 — Para vuestra estancia</span><h2>Quedaos<br><em>un poquito más.</em></h2><p>Una selección de alojamientos en Santiago para que podáis disfrutar del fin de semana con tranquilidad. Los cuatro primeros están junto a Plaza de Galicia, punto de salida de los autobuses.</p></div></section>
+    <section class="stay-banner" id="estancia"><div class="wrap reveal" data-reveal="zoom"><span class="eyebrow">04 — Para vuestra estancia</span><h2>Quedaos<br><em>un poquito más.</em></h2><p>Una selección de alojamientos en Santiago para que podáis disfrutar del fin de semana con tranquilidad. Los cuatro primeros están junto a Plaza de Galicia, punto de salida de los autobuses.</p></div></section>
     <section class="section" style="padding-top:65px">
       <div class="wrap">
         <div class="hotel-grid">
@@ -612,7 +751,7 @@
 
     <section class="section" id="guia">
       <div class="wrap">
-        <div class="section-head reveal"><span class="eyebrow">04 — Unos días en Galicia</span><h2>La pequeña<br><em>guía de Santiago.</em></h2><p class="intro" style="margin-top:22px">Por si llegáis antes, os quedáis el domingo o simplemente os apetece perderos un rato por la ciudad.</p></div>
+        <div class="section-head reveal"><span class="eyebrow">05 — Unos días en Galicia</span><h2>La pequeña<br><em>guía de Santiago.</em></h2><p class="intro" style="margin-top:22px">Por si llegáis antes, os quedáis el domingo o simplemente os apetece perderos un rato por la ciudad.</p></div>
         <div class="two-columns">
           <div class="reveal"><span class="eyebrow">Pasear y descubrir</span><h3>La ciudad, sin prisa.</h3><ul class="guide-list">
             <li><strong>Vinos y tapas</strong>Rúa do Franco y Rúa da Raíña son dos clásicos para disfrutar del ambiente del casco histórico.</li>
@@ -629,7 +768,7 @@
 
     <section class="section section--dark" id="viaje">
       <div class="wrap">
-        <div class="section-head center reveal"><span class="eyebrow">05 — Cómo llegar</span><h2>Todos los caminos<br><em>llevan a Santiago.</em></h2><p class="intro" style="margin:22px auto 0">Si venís desde fuera, estas son algunas opciones para llegar al centro de la ciudad.</p></div>
+        <div class="section-head center reveal"><span class="eyebrow">06 — Cómo llegar</span><h2>Todos los caminos<br><em>llevan a Santiago.</em></h2><p class="intro" style="margin:22px auto 0">Si venís desde fuera, estas son algunas opciones para llegar al centro de la ciudad.</p></div>
         <div class="travel-grid">
           <article class="travel-item reveal"><span class="number">01</span><h3>En tren</h3><p>La estación de Santiago conecta con servicios AVE y Alvia. Desde allí podéis llegar a Plaza de Galicia caminando o en taxi. <a class="text-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Estacion+de+tren+Santiago+de+Compostela">Ver estación ↗</a></p></article>
           <article class="travel-item reveal" style="--reveal-delay:.1s"><span class="number">02</span><h3>En avión</h3><p>El aeropuerto Rosalía de Castro (SCQ) está conectado con el centro mediante transporte público y taxi. Consultad horarios actualizados del autobús 6A. <a class="text-link" target="_blank" rel="noopener" href="https://www.aena.es/es/santiago-rosalia-de-castro.html">Información aeropuerto ↗</a></p></article>
@@ -640,7 +779,7 @@
 
     <section class="section" id="detalles">
       <div class="wrap">
-        <div class="section-head reveal"><span class="eyebrow">06 — Antes de venir</span><h2>Algunos<br><em>detalles prácticos.</em></h2></div>
+        <div class="section-head reveal"><span class="eyebrow">07 — Antes de venir</span><h2>Algunos<br><em>detalles prácticos.</em></h2></div>
         <div class="details-grid">
           <div class="reveal">
             <details><summary>¿Hasta cuándo puedo confirmar?</summary><div class="answer">Os pedimos que confirméis vuestra asistencia antes del 1 de agosto de 2027 para poder organizarlo todo con el mayor cariño.</div></details>
@@ -670,7 +809,7 @@
 
     <footer class="rsvp" id="rsvp">
       <div class="wrap">
-        <div style="text-align:center" class="reveal" data-reveal="zoom"><span class="eyebrow">07 — Nos encantará veros</span><h2>¿Contamos<br><em>contigo?</em></h2><p class="rsvp-intro">Nos haría muchísima ilusión compartir este día con vosotros. Por favor, confirmad vuestra asistencia antes del <strong>1 de agosto de 2027</strong>.</p></div>
+        <div style="text-align:center" class="reveal" data-reveal="zoom"><span class="eyebrow">08 — Nos encantará veros</span><h2>¿Contamos<br><em>contigo?</em></h2><p class="rsvp-intro">Nos haría muchísima ilusión compartir este día con vosotros. Por favor, confirmad vuestra asistencia antes del <strong>1 de agosto de 2027</strong>.</p></div>
         <form class="form" id="rsvpForm">
           <div class="form-grid">
             <div class="field full"><label for="guestName">Nombre y apellidos *</label><input id="guestName" name="nombre" type="text" autocomplete="name" placeholder="Nombre y apellidos" required></div>
